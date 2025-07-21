@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform Your Real Estate Business with AI | MWAAI - Dominate. Automate. Elevate.</title>
+    <meta name="description" content="Get a done-for-you AI system that captures leads, books appointments, and automates your real estate business. Call scheduled within 90 seconds of signup.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Global Scroll Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div>
+                    <i class="fas fa-robot"></i>
+                    <span>MWAAI</span>
+                </div>
+                <div class="brand-motto">DOMINATE. AUTOMATE. ELEVATE.</div>
+            </div>
+            <div class="nav-links">
+                <a href="#ai-story">AI Story</a>
+                <a href="#results">Results</a>
+                <a href="#testimonials">Success Stories</a>
+                <button class="btn btn-outline" onclick="scrollToForm()">Get Started</button>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-headline">
+                        Deploy <span class="highlight">Next-Gen AI Technology</span> to Dominate Real Estate
+                    </h1>
+                    <p class="hero-subheadline">
+                        Leverage cutting-edge machine learning algorithms and automated voice AI to capture, qualify, and convert leads 24/7. 
+                        <strong>Our intelligent system responds in 90 seconds with zero human intervention</strong> - transforming your pipeline efficiency.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">90s</span>
+                            <span class="stat-label">AI Response Time</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Neural Processing</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">127%</span>
+                            <span class="stat-label">Conversion Boost</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-large" onclick="scrollToForm()">
+                            <i class="fas fa-rocket"></i>
+                            Deploy AI System Now
+                        </button>
+                        <button class="btn btn-secondary" onclick="triggerAICall()">
+                            <i class="fas fa-phone"></i>
+                            Get AI Demo Call
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="phone-mockup-hero">
+                        <div class="phone-screen-hero">
+                            <div class="ai-interface">
+                                <div class="ai-status active">
+                                    <div class="status-dot"></div>
+                                    <span>AI Neural Network: ACTIVE</span>
+                                </div>
+                                <div class="lead-counter">
+                                    <span class="counter-number" id="leadCounter">247</span>
+                                    <span class="counter-label">Leads Processed Today</span>
+                                </div>
+                                <div class="response-time">
+                                    <i class="fas fa-bolt"></i>
+                                    <span>Last Response: 87 seconds</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Story Animation Section -->
+    <section id="ai-story" class="ai-story-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Watch MWAAI Transform Real Estate</h2>
+                <p class="section-motto">DOMINATE. AUTOMATE. ELEVATE.</p>
+                <p class="story-instruction">Scroll down to experience the AI revolution in action</p>
+                <div class="scroll-indicator">
+                    <div class="scroll-arrow">↓</div>
+                    <div class="scroll-text">Scroll to Activate Scenes</div>
+                </div>
+            </div>
+            
+            <div class="story-timeline" id="storyTimeline">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                
+                <!-- Scene 1: Appointment Scheduling -->
+                <div class="story-scene active" data-scene="1" id="scene1">
+                    <div class="scene-content">
+                        <div class="scene-3d-container">
+                            <div class="phone-mockup">
+                                <div class="phone-screen">
+                                    <div class="calendar-app">
+                                        <div class="calendar-header">Schedule Property Viewing</div>
+                                        <div class="calendar-grid">
+                                            <div class="calendar-day">12</div>
+                                            <div class="calendar-day">13</div>
+                                            <div class="calendar-day selected">15</div>
+                                            <div class="calendar-day">16</div>
+                                        </div>
+                                        <div class="time-slots">
+                                            <div class="time-slot active">2:00 PM</div>
+                                            <div class="time-slot">3:30 PM</div>
+                                        </div>
+                                        <div class="book-button">Book Now</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="floating-elements">
+                                <div class="floating-icon calendar-icon">📅</div>
+                                <div class="floating-icon house-icon">🏠</div>
+                                <div class="floating-icon clock-icon">⏰</div>
+                            </div>
+                        </div>
+                        <div class="scene-text">
+                            <h3>Lead Schedules Appointment</h3>
+                            <p>Potential client books a viewing through your website. The AI system immediately captures all details and begins processing.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scene 2: AI Processing -->
+                <div class="story-scene" data-scene="2" id="scene2">
+                    <div class="scene-content">
+                        <div class="scene-3d-container">
+                            <div class="ai-brain">
+                                <div class="brain-core">
+                                    <div class="neural-network">
+                                        <div class="neuron"></div>
+                                        <div class="neuron"></div>
+                                        <div class="neuron"></div>
+                                        <div class="neuron"></div>
+                                        <div class="neuron"></div>
+                                    </div>
+                                    <div class="processing-ring ring1"></div>
+                                    <div class="processing-ring ring2"></div>
+                                    <div class="processing-ring ring3"></div>
+                                </div>
+                                <div class="data-streams">
+                                    <div class="data-stream stream1"></div>
+                                    <div class="data-stream stream2"></div>
+                                    <div class="data-stream stream3"></div>
+                                </div>
+                            </div>
+                            <div class="ai-actions">
+                                <div class="action-bubble bubble1">Qualifying Lead</div>
+                                <div class="action-bubble bubble2">Scheduling Call</div>
+                                <div class="action-bubble bubble3">Preparing Info</div>
+                            </div>
+                        </div>
+                        <div class="scene-text">
+                            <h3>MWAAI Takes Over</h3>
+                            <p>AI instantly processes the lead, analyzes behavior patterns, calls within 90 seconds, and qualifies the prospect using advanced neural networks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scene 3: Deal Closure -->
+                <div class="story-scene" data-scene="3" id="scene3">
+                    <div class="scene-content">
+                        <div class="scene-3d-container">
+                            <div class="contract-scene">
+                                <div class="contract-paper">
+                                    <div class="contract-header">Purchase Agreement</div>
+                                    <div class="contract-lines">
+                                        <div class="contract-line"></div>
+                                        <div class="contract-line"></div>
+                                        <div class="contract-line"></div>
+                                        <div class="contract-line short"></div>
+                                    </div>
+                                    <div class="signature-area">
+                                        <div class="signature">John Doe</div>
+                                        <div class="checkmark">✓</div>
+                                    </div>
+                                </div>
+                                <div class="handshake">🤝</div>
+                            </div>
+                            <div class="celebration-effects">
+                                <div class="confetti piece1"></div>
+                                <div class="confetti piece2"></div>
+                                <div class="confetti piece3"></div>
+                                <div class="confetti piece4"></div>
+                            </div>
+                        </div>
+                        <div class="scene-text">
+                            <h3>Deal Closed Successfully</h3>
+                            <p>Qualified lead converts to sale with seamless AI-managed process. Commission earned while you focus on high-value activities.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scene 4: New Home Relaxation -->
+                <div class="story-scene" data-scene="4" id="scene4">
+                    <div class="scene-content">
+                        <div class="scene-3d-container">
+                            <div class="house-exterior">
+                                <div class="house-roof"></div>
+                                <div class="house-walls">
+                                    <div class="house-door"></div>
+                                    <div class="house-window window1"></div>
+                                    <div class="house-window window2"></div>
+                                </div>
+                            </div>
+                            <div class="happy-person">
+                                <div class="person-avatar">😊</div>
+                                <div class="relaxation-elements">
+                                    <div class="coffee-cup">☕</div>
+                                    <div class="house-keys">🗝️</div>
+                                </div>
+                            </div>
+                            <div class="success-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">90s</span>
+                                    <span class="metric-label">Response Time</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">100%</span>
+                                    <span class="metric-label">Satisfied</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scene-text">
+                            <h3>Happy New Homeowner</h3>
+                            <p>Client enjoys their new home while you earned commission effortlessly. The AI system continues working 24/7 for your next deal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Proven Results from Real Estate Professionals</h2>
+                <p>See the measurable impact of AI automation on real estate businesses</p>
+            </div>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="result-stat">127%</div>
+                    <div class="result-label">Increase in Lead Response Rate</div>
+                    <div class="result-description">AI responds to leads in 90 seconds vs industry average of 5+ hours</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="result-stat">18 hrs</div>
+                    <div class="result-label">Weekly Time Savings</div>
+                    <div class="result-description">Automated lead qualification and initial conversations</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="result-stat">89%</div>
+                    <div class="result-label">Lead Qualification Accuracy</div>
+                    <div class="result-description">AI identifies serious buyers with higher precision than manual methods</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="result-stat">$47K</div>
+                    <div class="result-label">Average Monthly Commission Increase</div>
+                    <div class="result-description">More qualified leads converted to closed deals</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Capture Form -->
+    <section id="get-started" class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Deploy Your AI Real Estate System</h2>
+                    <p>Get started in less than 60 seconds. Our AI will call you within 90 seconds to demonstrate the system.</p>
+                </div>
+                
+                <form id="leadForm" class="lead-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="businessType">What best describes your situation?</label>
+                            <select id="businessType" name="businessType" required>
+                                <option value="">Select your situation...</option>
+                                <option value="individual-agent">Individual Real Estate Agent</option>
+                                <option value="team-leader">Real Estate Team Leader</option>
+                                <option value="brokerage-owner">Brokerage Owner</option>
+                                <option value="investor">Real Estate Investor</option>
+                                <option value="other">Other Real Estate Professional</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="goals">What's your primary goal?</label>
+                            <select id="goals" name="goals" required>
+                                <option value="">Select your primary goal...</option>
+                                <option value="more-leads">Generate More Qualified Leads</option>
+                                <option value="faster-response">Respond to Leads Faster</option>
+                                <option value="automate-followup">Automate Follow-up Process</option>
+                                <option value="scale-business">Scale My Business</option>
+                                <option value="save-time">Save Time on Admin Work</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i>
+                        Activate AI System - Get Demo Call in 90 Seconds
+                    </button>
+                    
+                    <div class="form-trust">
+                        <div class="trust-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>100% Secure & Private</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-clock"></i>
+                            <span>90-Second Setup</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-phone"></i>
+                            <span>Instant Demo Call</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Initiate AI Dominance Protocol</h2>
+                <p>The future of real estate is here. While your competition uses outdated methods, you'll deploy enterprise-grade AI technology that transforms prospects into profits 24/7.</p>
+                
+                <div class="urgency-elements">
+                    <div class="urgency-item">
+                        <i class="fas fa-rocket"></i>
+                        <span>24-Hour<br/>Deployment</span>
+                    </div>
+                    <div class="urgency-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>90-Second<br/>Response Time</span>
+                    </div>
+                    <div class="urgency-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Instant<br/>Market Advantage</span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary btn-large final-cta-button" onclick="scrollToForm()">
+                    <i class="fas fa-power-off"></i>
+                    ACTIVATE AI SYSTEM NOW
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-robot"></i>
+                    <span>MWAAI</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MWAAI. All rights reserved. Dominate. Automate. Elevate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🤖 AI System Activated!</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Your AI neural network is now initializing. Our voice AI will call you within 90 seconds to demonstrate the system.</p>
+                <div class="loading-animation">
+                    <div class="loading-bar"></div>
+                </div>
+                <p><strong>Next Steps:</strong></p>
+                <ul>
+                    <li>Answer the incoming call (check your phone!)</li>
+                    <li>Experience the AI conversation engine</li>
+                    <li>Get personalized deployment timeline</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

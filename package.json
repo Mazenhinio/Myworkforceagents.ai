@@ -1,0 +1,23 @@
+{
+  "name": "mwaai-landing-page",
+  "version": "1.0.0",
+  "description": "MWAAI AI Real Estate Landing Page with Scroll Animations",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -p 3000",
+    "dev": "npx live-server --port=3000 --open=/index.html",
+    "build": "echo 'No build process needed for static site'",
+    "serve": "npx http-server . -p 3000 -o"
+  },
+  "keywords": [
+    "real-estate",
+    "ai", 
+    "landing-page",
+    "animations",
+    "mwaai"
+  ],
+  "author": "MWAAI",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+} 
