@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transform Your Real Estate Business with AI | MWAAI - Dominate. Automate. Elevate.</title>
-    <meta name="description" content="Get a done-for-you AI system that captures leads, books appointments, and automates your real estate business. Call scheduled within 90 seconds of signup.">
+    <title>Welcome to the Future of Work | MWA.AI - Your Trusted AI Transformation Partner</title>
+    <meta name="description" content="Transform your business with AI. Choose your experience: Click, Type, or Talk. Meet our humans, agents, and methods that revolutionize how you work.">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- VAPI Voice AI SDK will be loaded dynamically -->
+    
+    <!-- Three.js for 3D Audio Visualizer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -23,16 +35,18 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
-                <div>
-                    <i class="fas fa-robot"></i>
-                    <span>MWAAI</span>
+                <div class="brand-logo">
+                    <div class="infinity-logo">
+                        <img src="Inifnity Logo.png" alt="MWA.AI Infinity Logo" class="infinity-symbol">
+                    </div>
+                    <span class="brand-text">MWA.AI</span>
                 </div>
-                <div class="brand-motto">DOMINATE. AUTOMATE. ELEVATE.</div>
+                <div class="brand-tagline">YOUR TRUSTED AI TRANSFORMATION PARTNER</div>
             </div>
             <div class="nav-links">
+                <a href="#experiences">Experiences</a>
+                <a href="#meet-section">Meet Our Team</a>
                 <a href="#ai-story">AI Story</a>
-                <a href="#results">Results</a>
-                <a href="#testimonials">Success Stories</a>
                 <button class="btn btn-outline" onclick="scrollToForm()">Get Started</button>
             </div>
             <div class="mobile-menu-btn">
@@ -45,57 +59,394 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-headline">
-                        Deploy <span class="highlight">Next-Gen AI Technology</span> to Dominate Real Estate
-                    </h1>
-                    <p class="hero-subheadline">
-                        Leverage cutting-edge machine learning algorithms and automated voice AI to capture, qualify, and convert leads 24/7. 
-                        <strong>Our intelligent system responds in 90 seconds with zero human intervention</strong> - transforming your pipeline efficiency.
-                    </p>
-                    
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <span class="stat-number">90s</span>
-                            <span class="stat-label">AI Response Time</span>
+                <div class="hero-main">
+                    <!-- Logo Above Title -->
+                    <div class="hero-logo">
+                        <div class="hero-infinity-logo">
+                            <img src="Inifnity Logo.png" alt="MWA.AI Infinity Logo" class="hero-infinity-symbol">
                         </div>
-                        <div class="stat">
-                            <span class="stat-number">24/7</span>
-                            <span class="stat-label">Neural Processing</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">127%</span>
-                            <span class="stat-label">Conversion Boost</span>
-                        </div>
+                        <div class="hero-brand-text">MWA.AI</div>
+                        <div class="hero-brand-tagline">YOUR TRUSTED AI TRANSFORMATION PARTNER</div>
                     </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="hero-headline">
+                        Welcome to the<br><span class="highlight">Future of Work</span>
+                    </h1>
                     
-                    <div class="hero-actions">
-                        <button class="btn btn-primary btn-large" onclick="scrollToForm()">
-                            <i class="fas fa-rocket"></i>
-                            Deploy AI System Now
-                        </button>
-                        <button class="btn btn-secondary" onclick="triggerAICall()">
-                            <i class="fas fa-phone"></i>
-                            Get AI Demo Call
-                        </button>
+                    <!-- Choose Your Experience Section -->
+                    <div class="experience-section" id="experiences">
+                        <p class="experience-caption">Pick a Card</p>
+                        
+                        <!-- NEW RETRO-FUTURISTIC CARD SYSTEM -->
+                        <div class="cards-container">
+                            <!-- Card 1: Click -->
+                            <div class="game-card" data-card="click">
+                                <div class="card-inner">
+                                    <!-- Card Back -->
+                                    <div class="card-side card-back">
+                                        <div class="tech-pattern">
+                                            <div class="circuit-grid"></div>
+                                            <div class="holo-sweep"></div>
+                                            <div class="brand-logo">MWA</div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Front -->
+                                    <div class="card-side card-front">
+                                        <div class="card-content">
+                                            <div class="card-header">
+                                                <div class="icon-container">
+                                                    <i class="fas fa-mouse-pointer"></i>
+                                                </div>
+                                                <h3>CLICK</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Interactive point-and-click interface for visual learners</p>
+                                            </div>
+                                            <div class="card-actions">
+                                                <button class="btn-back" onclick="flipCardBack('click')">
+                                                    <i class="fas fa-arrow-left"></i> Back
+                                                </button>
+                                                <button class="btn-select" onclick="selectCard('click')">
+                                                    Select <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 2: Type -->
+                            <div class="game-card" data-card="type">
+                                <div class="card-inner">
+                                    <!-- Card Back -->
+                                    <div class="card-side card-back">
+                                        <div class="tech-pattern">
+                                            <div class="circuit-grid"></div>
+                                            <div class="holo-sweep"></div>
+                                            <div class="brand-logo">MWA</div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Front -->
+                                    <div class="card-side card-front">
+                                        <div class="card-content">
+                                            <div class="card-header">
+                                                <div class="icon-container">
+                                                    <i class="fas fa-keyboard"></i>
+                                                </div>
+                                                <h3>TYPE</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Text-based communication for detailed conversations</p>
+                                            </div>
+                                            <div class="card-actions">
+                                                <button class="btn-back" onclick="flipCardBack('type')">
+                                                    <i class="fas fa-arrow-left"></i> Back
+                                                </button>
+                                                <button class="btn-select" onclick="selectCard('type')">
+                                                    Select <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 3: Voice -->
+                            <div class="game-card" data-card="voice">
+                                <div class="card-inner">
+                                    <!-- Card Back -->
+                                    <div class="card-side card-back">
+                                        <div class="tech-pattern">
+                                            <div class="circuit-grid"></div>
+                                            <div class="holo-sweep"></div>
+                                            <div class="brand-logo">MWA</div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Front -->
+                                    <div class="card-side card-front">
+                                        <div class="card-content">
+                                            <div class="card-header">
+                                                <div class="icon-container">
+                                                    <i class="fas fa-microphone"></i>
+                                                </div>
+                                                <h3>VOICE</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Natural voice interaction - the most intuitive way</p>
+                                            </div>
+                                            <div class="card-actions">
+                                                <button class="btn-back" onclick="flipCardBack('voice')">
+                                                    <i class="fas fa-arrow-left"></i> Back
+                                                </button>
+                                                <button class="btn-select" onclick="selectCard('voice')">
+                                                    Select <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hand Shadow Effect -->
+                        <div class="hand-effect">
+                            <div class="shadow-base"></div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="hero-visual">
-                    <div class="phone-mockup-hero">
-                        <div class="phone-screen-hero">
-                            <div class="ai-interface">
-                                <div class="ai-status active">
-                                    <div class="status-dot"></div>
-                                    <span>AI Neural Network: ACTIVE</span>
+            </div>
+        </div>
+        
+        <!-- Animated Background Elements -->
+        <div class="hero-bg-animation">
+            <div class="floating-orb orb-1"></div>
+            <div class="floating-orb orb-2"></div>
+            <div class="floating-orb orb-3"></div>
+            <div class="particle-field">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet Our Section -->
+    <section id="meet-section" class="meet-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>From Overwhelmed to Automated: Your 90-Day Transformation</h2>
+                <p>See how Dr. G transforms chaotic operations into streamlined AI-powered success stories</p>
+            </div>
+            
+            <!-- Timeline Navigation -->
+            <div class="timeline-controls">
+                <button class="timeline-btn active" onclick="showTimelinePhase('before')" data-phase="before">
+                    <i class="fas fa-building"></i>
+                    <span>Meet Our Challenge</span>
+                </button>
+                <button class="timeline-btn" onclick="showTimelinePhase('during')" data-phase="during">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Meet Our Human</span>
+                </button>
+                <button class="timeline-btn" onclick="showTimelinePhase('after')" data-phase="after">
+                    <i class="fas fa-rocket"></i>
+                    <span>Meet Our Agents</span>
+                </button>
+            </div>
+            
+            <!-- Office Transformation Timeline -->
+            <div class="transformation-timeline-container">
+                <div class="timeline-progress-bar">
+                    <div class="progress-fill" id="timelineProgress"></div>
+                    <div class="timeline-markers">
+                        <div class="marker active" data-phase="before">
+                            <div class="marker-dot"></div>
+                            <span>BEFORE</span>
+                        </div>
+                        <div class="marker" data-phase="during">
+                            <div class="marker-dot"></div>
+                            <span>TRANSFORMATION</span>
+                        </div>
+                        <div class="marker" data-phase="after">
+                            <div class="marker-dot"></div>
+                            <span>AFTER</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-office-container">
+                    <!-- BEFORE: Traditional Office -->
+                    <div class="office-scene active" id="officeBefore">
+                        <div class="office-background before-bg">
+                            <div class="office-title">
+                                <h3><i class="fas fa-building"></i> Traditional Office</h3>
+                                <p>Expensive, limited, human-dependent</p>
+                            </div>
+                            
+                            <div class="workers-grid">
+                                <div class="human-worker" data-role="Customer Service" data-salary="$48,000">
+                                    <div class="worker-avatar">
+                                        <i class="fas fa-headset"></i>
+                                    </div>
+                                    <div class="worker-info">
+                                        <span class="role">Customer Service</span>
+                                        <span class="cost">$48K/year</span>
+                                    </div>
+                                    <div class="worker-limitations">
+                                        <span>❌ 8 hrs/day</span>
+                                        <span>❌ Vacation time</span>
+                                        <span>❌ Benefits required</span>
+                                    </div>
                                 </div>
-                                <div class="lead-counter">
-                                    <span class="counter-number" id="leadCounter">247</span>
-                                    <span class="counter-label">Leads Processed Today</span>
+                                
+                                <div class="human-worker" data-role="Data Analyst" data-salary="$83,500">
+                                    <div class="worker-avatar">
+                                        <i class="fas fa-chart-bar"></i>
+                                    </div>
+                                    <div class="worker-info">
+                                        <span class="role">Data Analyst</span>
+                                        <span class="cost">$83K/year</span>
+                                    </div>
+                                    <div class="worker-limitations">
+                                        <span>❌ Manual errors</span>
+                                        <span>❌ Slow processing</span>
+                                        <span>❌ Limited capacity</span>
+                                    </div>
                                 </div>
-                                <div class="response-time">
-                                    <i class="fas fa-bolt"></i>
-                                    <span>Last Response: 87 seconds</span>
+                                
+                                <div class="human-worker" data-role="Appointment Scheduler" data-salary="$47,000">
+                                    <div class="worker-avatar">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <div class="worker-info">
+                                        <span class="role">Scheduler</span>
+                                        <span class="cost">$47K/year</span>
+                                    </div>
+                                    <div class="worker-limitations">
+                                        <span>❌ Business hours only</span>
+                                        <span>❌ Double bookings</span>
+                                        <span>❌ Human error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="total-cost-before">
+                                <span class="cost-label">Annual Operating Cost:</span>
+                                <span class="cost-amount">$600,000+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DURING: Dr. G Leading Transformation -->
+                    <div class="office-scene" id="officeDuring">
+                        <div class="office-background transformation-bg">
+                            <div class="transformation-leader">
+                                <div class="dr-g-profile">
+                                    <div class="leader-avatar">
+                                        <img src="1711739037411.jpeg" alt="Dr. Timothy J. Giardino" class="leader-photo">
+                                        <div class="rank-badge">
+                                            <i class="fas fa-star"></i>
+                                            <span>CEO</span>
+                                        </div>
+                                    </div>
+                                    <div class="leader-info">
+                                        <h3>Dr. Timothy J. Giardino</h3>
+                                        <p class="title">Your AI Transformation General</p>
+                                        <div class="credentials">
+                                            <span class="credential"><i class="fas fa-medal"></i> 20-Year Army Veteran</span>
+                                            <span class="credential"><i class="fas fa-graduation-cap"></i> Doctorate in Business</span>
+                                            <span class="credential"><i class="fas fa-briefcase"></i> Corporate HRIS Executive</span>
+                                            <span class="credential"><i class="fas fa-robot"></i> AI Entrepreneur</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="transformation-process">
+                                    <h4><i class="fas fa-clipboard-list"></i> The Battle Plan</h4>
+                                    <div class="process-steps">
+                                        <div class="step active">
+                                            <div class="step-number">1</div>
+                                            <div class="step-content">
+                                                <h5>Reconnaissance</h5>
+                                                <p>Assess operations & identify AI opportunities</p>
+                                            </div>
+                                        </div>
+                                        <div class="step">
+                                            <div class="step-number">2</div>
+                                            <div class="step-content">
+                                                <h5>Deployment</h5>
+                                                <p>Strategic AI integration & team training</p>
+                                            </div>
+                                        </div>
+                                        <div class="step">
+                                            <div class="step-number">3</div>
+                                            <div class="step-content">
+                                                <h5>Domination</h5>
+                                                <p>Scale automations & future-proof operations</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mission-statement">
+                                    <blockquote>
+                                        <i class="fas fa-quote-left"></i>
+                                        "After leading teams from chaos to victory for two decades, I know what it takes to transform operations. Now I'm deploying that same strategic thinking to help businesses win the AI war."
+                                        <i class="fas fa-quote-right"></i>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AFTER: AI-Powered Future -->
+                    <div class="office-scene" id="officeAfter">
+                        <div class="office-background future-bg">
+                            <div class="office-title">
+                                <h3><i class="fas fa-rocket"></i> AI-Powered Workplace</h3>
+                                <p>Efficient, scalable, always available</p>
+                            </div>
+                            
+                            <div class="ai-agents-grid">
+                                <div class="ai-agent" data-role="Customer Service AI" data-savings="$48,000">
+                                    <div class="agent-avatar">
+                                        <i class="fas fa-robot"></i>
+                                        <div class="agent-status online"></div>
+                                    </div>
+                                    <div class="agent-info">
+                                        <span class="role">Customer Service AI</span>
+                                        <span class="cost">$0/year</span>
+                                    </div>
+                                    <div class="agent-benefits">
+                                        <span>✅ 24/7 availability</span>
+                                        <span>✅ Instant responses</span>
+                                        <span>✅ Zero human error</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="ai-agent" data-role="Data Analysis AI" data-savings="$83,500">
+                                    <div class="agent-avatar">
+                                        <i class="fas fa-brain"></i>
+                                        <div class="agent-status online"></div>
+                                    </div>
+                                    <div class="agent-info">
+                                        <span class="role">Data Analysis AI</span>
+                                        <span class="cost">$0/year</span>
+                                    </div>
+                                    <div class="agent-benefits">
+                                        <span>✅ Real-time insights</span>
+                                        <span>✅ Perfect accuracy</span>
+                                        <span>✅ Unlimited capacity</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="ai-agent" data-role="Scheduling AI" data-savings="$47,000">
+                                    <div class="agent-avatar">
+                                        <i class="fas fa-calendar-check"></i>
+                                        <div class="agent-status online"></div>
+                                    </div>
+                                    <div class="agent-info">
+                                        <span class="role">Scheduling AI</span>
+                                        <span class="cost">$0/year</span>
+                                    </div>
+                                    <div class="agent-benefits">
+                                        <span>✅ Never double-books</span>
+                                        <span>✅ Global time zones</span>
+                                        <span>✅ Smart optimization</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="total-savings-after">
+                                <span class="savings-label">Annual Savings:</span>
+                                <span class="savings-amount">$600,000+</span>
+                                <div class="savings-breakdown">
+                                    <span>+ 12 more AI agents available</span>
+                                    <span>+ 24/7 productivity</span>
+                                    <span>+ Zero human limitations</span>
                                 </div>
                             </div>
                         </div>
@@ -105,16 +456,21 @@
         </div>
     </section>
 
-    <!-- 3D Story Animation Section -->
-    <section id="ai-story" class="ai-story-section">
+    <!-- Liberation From Repetitive Tasks Story -->
+    <section id="ai-story" class="premium-story-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Watch MWAAI Transform Real Estate</h2>
-                <p class="section-motto">DOMINATE. AUTOMATE. ELEVATE.</p>
-                <p class="story-instruction">Scroll down to experience the AI revolution in action</p>
-                <div class="scroll-indicator">
-                    <div class="scroll-arrow">↓</div>
-                    <div class="scroll-text">Scroll to Activate Scenes</div>
+            <div class="story-header" data-aos="fade-up">
+                <h2 class="luxury-headline">
+                    <span class="highlight-gradient">Break Free From Repetitive Tasks</span>
+                </h2>
+                <p class="luxury-subtitle">Watch how AI automation transforms your daily grind into strategic growth</p>
+                <div class="story-tagline">
+                    <span class="tagline-text">Your journey from burnout to breakthrough</span>
+                    <div class="scroll-pulse">
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-core">↓</div>
+                    </div>
                 </div>
             </div>
             
@@ -124,13 +480,13 @@
                 </div>
                 
                 <!-- Scene 1: Appointment Scheduling -->
-                <div class="story-scene active" data-scene="1" id="scene1">
+                <div class="story-scene active" data-scene="1" id="scene1" data-aos="fade-up" data-aos-delay="100">
                     <div class="scene-content">
                         <div class="scene-3d-container">
                             <div class="phone-mockup">
                                 <div class="phone-screen">
                                     <div class="calendar-app">
-                                        <div class="calendar-header">Schedule Property Viewing</div>
+                                        <div class="calendar-header">Another Boring Day</div>
                                         <div class="calendar-grid">
                                             <div class="calendar-day">12</div>
                                             <div class="calendar-day">13</div>
@@ -138,64 +494,66 @@
                                             <div class="calendar-day">16</div>
                                         </div>
                                         <div class="time-slots">
-                                            <div class="time-slot active">2:00 PM</div>
-                                            <div class="time-slot">3:30 PM</div>
+                                            <div class="time-slot active">Data Entry</div>
+                                            <div class="time-slot">Email Follow-ups</div>
                                         </div>
-                                        <div class="book-button">Book Now</div>
+                                        <div class="book-button">Same Tasks Again</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="floating-elements">
-                                <div class="floating-icon calendar-icon">📅</div>
-                                <div class="floating-icon house-icon">🏠</div>
+                                <div class="floating-icon calendar-icon">📧</div>
+                                <div class="floating-icon house-icon">📊</div>
                                 <div class="floating-icon clock-icon">⏰</div>
                             </div>
                         </div>
                         <div class="scene-text">
-                            <h3>Lead Schedules Appointment</h3>
-                            <p>Potential client books a viewing through your website. The AI system immediately captures all details and begins processing.</p>
+                            <h3>Trapped in the Daily Grind</h3>
+                            <p>You're drowning in endless emails, manual data entry, scheduling conflicts, and repetitive follow-ups. Every day feels like Groundhog Day—the same boring, time-consuming tasks that steal your energy and creativity.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Scene 2: AI Processing -->
-                <div class="story-scene" data-scene="2" id="scene2">
+                <div class="story-scene" data-scene="2" id="scene2" data-aos="fade-up" data-aos-delay="200">
                     <div class="scene-content">
                         <div class="scene-3d-container">
-                            <div class="ai-brain">
-                                <div class="brain-core">
-                                    <div class="neural-network">
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
+                            <div class="ai-computer">
+                                <div class="computer-monitor">
+                                    <div class="screen">
+                                        <div class="screen-header">
+                                            <div class="window-buttons">
+                                                <div class="btn-dot red"></div>
+                                                <div class="btn-dot yellow"></div>
+                                                <div class="btn-dot green"></div>
+                                            </div>
+                                            <div class="screen-title">MWA.AI Automation</div>
+                                        </div>
+                                        <div class="screen-content">
+                                            <div class="automation-tasks">
+                                                <div class="task-line">📧 Processing 47 emails...</div>
+                                                <div class="task-line">📊 Updating database records...</div>
+                                                <div class="task-line">📅 Scheduling 12 appointments...</div>
+                                                <div class="task-line">✅ Tasks completed: 156</div>
+                                            </div>
+                                            <div class="progress-indicator">
+                                                <div class="progress-bar"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="processing-ring ring1"></div>
-                                    <div class="processing-ring ring2"></div>
-                                    <div class="processing-ring ring3"></div>
                                 </div>
-                                <div class="data-streams">
-                                    <div class="data-stream stream1"></div>
-                                    <div class="data-stream stream2"></div>
-                                    <div class="data-stream stream3"></div>
-                                </div>
-                            </div>
-                            <div class="ai-actions">
-                                <div class="action-bubble bubble1">Qualifying Lead</div>
-                                <div class="action-bubble bubble2">Scheduling Call</div>
-                                <div class="action-bubble bubble3">Preparing Info</div>
+                                <div class="computer-base"></div>
                             </div>
                         </div>
                         <div class="scene-text">
-                            <h3>MWAAI Takes Over</h3>
-                            <p>AI instantly processes the lead, analyzes behavior patterns, calls within 90 seconds, and qualifies the prospect using advanced neural networks.</p>
+                            <h3>AI Takes Control of the Chaos</h3>
+                            <p>MWA.AI's intelligent automation seamlessly handles all your repetitive tasks—email responses, data processing, scheduling, follow-ups—while you sleep. No more mindless clicking, copying, or manual busy work.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Scene 3: Deal Closure -->
-                <div class="story-scene" data-scene="3" id="scene3">
+                <div class="story-scene" data-scene="3" id="scene3" data-aos="fade-up" data-aos-delay="300">
                     <div class="scene-content">
                         <div class="scene-3d-container">
                             <div class="contract-scene">
@@ -222,252 +580,124 @@
                             </div>
                         </div>
                         <div class="scene-text">
-                            <h3>Deal Closed Successfully</h3>
-                            <p>Qualified lead converts to sale with seamless AI-managed process. Commission earned while you focus on high-value activities.</p>
+                            <h3>Freedom to Focus on What Matters</h3>
+                            <p>With AI handling the tedious work, you're finally free to focus on strategy, creativity, and growth. Your time is reclaimed for high-value activities that only humans can do—building relationships, making decisions, and driving innovation.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Scene 4: New Home Relaxation -->
-                <div class="story-scene" data-scene="4" id="scene4">
-                    <div class="scene-content">
-                        <div class="scene-3d-container">
-                            <div class="house-exterior">
-                                <div class="house-roof"></div>
-                                <div class="house-walls">
-                                    <div class="house-door"></div>
-                                    <div class="house-window window1"></div>
-                                    <div class="house-window window2"></div>
-                                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Liberation Conclusion -->
+    <section class="story-conclusion">
+        <div class="container">
+            <div class="conclusion-content">
+                <div class="conclusion-header">
+                    <h2 class="luxury-headline">
+                        <span class="highlight-gradient">Reclaim Your Time, Reclaim Your Life</span>
+                    </h2>
+                    <p class="luxury-subtitle">Stop being a slave to repetitive tasks. Start being the strategist you were meant to be.</p>
+                </div>
+                
+                <div class="transformation-promise">
+                    <div class="promise-grid">
+                        <div class="promise-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="promise-icon">
+                                <div class="icon-glow">😴</div>
                             </div>
-                            <div class="happy-person">
-                                <div class="person-avatar">😊</div>
-                                <div class="relaxation-elements">
-                                    <div class="coffee-cup">☕</div>
-                                    <div class="house-keys">🗝️</div>
-                                </div>
+                            <h3>Work While You Sleep</h3>
+                            <p>Your AI works 24/7 handling emails, data entry, scheduling, and follow-ups without ever getting tired</p>
+                        </div>
+                        
+                        <div class="promise-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="promise-icon">
+                                <div class="icon-glow">🧠</div>
                             </div>
-                            <div class="success-metrics">
-                                <div class="metric">
-                                    <span class="metric-value">90s</span>
-                                    <span class="metric-label">Response Time</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-value">100%</span>
-                                    <span class="metric-label">Satisfied</span>
-                                </div>
+                            <h3>Focus on High-Value Work</h3>
+                            <p>Reclaim mental energy for strategy, creativity, and relationship building—the work only humans can do</p>
+                        </div>
+                        
+                        <div class="promise-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="promise-icon">
+                                <div class="icon-glow">🎯</div>
                             </div>
+                            <h3>Break the Tedium Cycle</h3>
+                            <p>No more copy-paste, data entry, or mind-numbing repetitive tasks stealing your precious time</p>
                         </div>
-                        <div class="scene-text">
-                            <h3>Happy New Homeowner</h3>
-                            <p>Client enjoys their new home while you earned commission effortlessly. The AI system continues working 24/7 for your next deal.</p>
-                        </div>
+                    </div>
+                </div>
+                
+                <div class="nova-message">
+                    <div class="nova-avatar">
+                        <div class="avatar-glow"></div>
+                        <span class="nova-initial">N</span>
+                    </div>
+                    <div class="nova-text">
+                        <p><em>"Life's too short for boring tasks. Let AI handle the grind so you can focus on what makes you human—creativity, strategy, and meaningful connections."</em></p>
+                        <span class="nova-signature">— Nova, Your Liberation Agent</span>
+                    </div>
+                </div>
+                
+                <div class="final-cta-redirect">
+                    <h3>Ready to Break Free?</h3>
+                    <p>Choose your liberation experience above ↑</p>
+                    <div class="arrow-pointer">
+                        <span class="arrow-text">Pick a Card to Begin</span>
+                        <div class="arrow-animation">↑</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Results Section -->
-    <section class="results-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Proven Results from Real Estate Professionals</h2>
-                <p>See the measurable impact of AI automation on real estate businesses</p>
-            </div>
-            
-            <div class="results-grid">
-                <div class="result-card">
-                    <div class="result-icon">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <div class="result-stat">127%</div>
-                    <div class="result-label">Increase in Lead Response Rate</div>
-                    <div class="result-description">AI responds to leads in 90 seconds vs industry average of 5+ hours</div>
-                </div>
-                
-                <div class="result-card">
-                    <div class="result-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="result-stat">18 hrs</div>
-                    <div class="result-label">Weekly Time Savings</div>
-                    <div class="result-description">Automated lead qualification and initial conversations</div>
-                </div>
-                
-                <div class="result-card">
-                    <div class="result-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="result-stat">89%</div>
-                    <div class="result-label">Lead Qualification Accuracy</div>
-                    <div class="result-description">AI identifies serious buyers with higher precision than manual methods</div>
-                </div>
-                
-                <div class="result-card">
-                    <div class="result-icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <div class="result-stat">$47K</div>
-                    <div class="result-label">Average Monthly Commission Increase</div>
-                    <div class="result-description">More qualified leads converted to closed deals</div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Lead Capture Form -->
-    <section id="get-started" class="form-section">
-        <div class="container">
-            <div class="form-container">
-                <div class="form-header">
-                    <h2>Deploy Your AI Real Estate System</h2>
-                    <p>Get started in less than 60 seconds. Our AI will call you within 90 seconds to demonstrate the system.</p>
-                </div>
-                
-                <form id="leadForm" class="lead-form">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" id="firstName" name="firstName" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        
-                        <div class="form-group full-width">
-                            <label for="businessType">What best describes your situation?</label>
-                            <select id="businessType" name="businessType" required>
-                                <option value="">Select your situation...</option>
-                                <option value="individual-agent">Individual Real Estate Agent</option>
-                                <option value="team-leader">Real Estate Team Leader</option>
-                                <option value="brokerage-owner">Brokerage Owner</option>
-                                <option value="investor">Real Estate Investor</option>
-                                <option value="other">Other Real Estate Professional</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group full-width">
-                            <label for="goals">What's your primary goal?</label>
-                            <select id="goals" name="goals" required>
-                                <option value="">Select your primary goal...</option>
-                                <option value="more-leads">Generate More Qualified Leads</option>
-                                <option value="faster-response">Respond to Leads Faster</option>
-                                <option value="automate-followup">Automate Follow-up Process</option>
-                                <option value="scale-business">Scale My Business</option>
-                                <option value="save-time">Save Time on Admin Work</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-large">
-                        <i class="fas fa-rocket"></i>
-                        Activate AI System - Get Demo Call in 90 Seconds
-                    </button>
-                    
-                    <div class="form-trust">
-                        <div class="trust-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>100% Secure & Private</span>
-                        </div>
-                        <div class="trust-item">
-                            <i class="fas fa-clock"></i>
-                            <span>90-Second Setup</span>
-                        </div>
-                        <div class="trust-item">
-                            <i class="fas fa-phone"></i>
-                            <span>Instant Demo Call</span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
 
-    <!-- Final CTA Section -->
-    <section class="final-cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Initiate AI Dominance Protocol</h2>
-                <p>The future of real estate is here. While your competition uses outdated methods, you'll deploy enterprise-grade AI technology that transforms prospects into profits 24/7.</p>
-                
-                <div class="urgency-elements">
-                    <div class="urgency-item">
-                        <i class="fas fa-rocket"></i>
-                        <span>24-Hour<br/>Deployment</span>
-                    </div>
-                    <div class="urgency-item">
-                        <i class="fas fa-bolt"></i>
-                        <span>90-Second<br/>Response Time</span>
-                    </div>
-                    <div class="urgency-item">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Instant<br/>Market Advantage</span>
-                    </div>
-                </div>
-                
-                <button class="btn btn-primary btn-large final-cta-button" onclick="scrollToForm()">
-                    <i class="fas fa-power-off"></i>
-                    ACTIVATE AI SYSTEM NOW
-                </button>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+
+
+
+    <!-- Learn More Footer -->
+    <footer class="learn-more-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <i class="fas fa-robot"></i>
-                    <span>MWAAI</span>
+            <div class="learn-more-content">
+                <div class="learn-more-header">
+                    <h2>Ready to Transform Your Business?</h2>
+                    <p>Discover the full potential of MWA.AI's autonomous agents and see how we're revolutionizing business automation</p>
                 </div>
-                <div class="footer-links">
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#terms">Terms of Service</a>
-                    <a href="#contact">Contact</a>
+                <div class="learn-more-cta">
+                    <div class="footer-buttons">
+                        <a href="http://myworkforceagents.ai/" target="_blank" class="learn-more-btn">
+                            <span class="btn-text">Learn More About MWA.AI</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="https://myworkforceagents.ai/ola/services/discovery-call" target="_blank" class="book-call-btn">
+                            <span class="btn-text">Want to Get Right Into Things? Book a Call Now</span>
+                            <i class="fas fa-calendar-check"></i>
+                        </a>
+                    </div>
+                    <p class="learn-more-subtitle">Visit our main website to explore our full range of AI transformation services or schedule a personalized discovery call</p>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 MWAAI. All rights reserved. Dominate. Automate. Elevate.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Success Modal -->
-    <div id="successModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>🤖 AI System Activated!</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <p>Your AI neural network is now initializing. Our voice AI will call you within 90 seconds to demonstrate the system.</p>
-                <div class="loading-animation">
-                    <div class="loading-bar"></div>
-                </div>
-                <p><strong>Next Steps:</strong></p>
-                <ul>
-                    <li>Answer the incoming call (check your phone!)</li>
-                    <li>Experience the AI conversation engine</li>
-                    <li>Get personalized deployment timeline</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
+    <!-- Initialize AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out-cubic',
+            once: true,
+            offset: 100,
+            anchorPlacement: 'top-bottom'
+        });
+    </script>
+    
     <script src="script.js"></script>
 </body>
 </html> 

@@ -1,23 +1,19 @@
 {
-  "name": "mwaai-landing-page",
+  "name": "mwa-ai-website",
   "version": "1.0.0",
-  "description": "MWAAI AI Real Estate Landing Page with Scroll Animations",
-  "main": "index.html",
+  "description": "MWA.AI - AI Transformation Partner Website",
   "scripts": {
-    "start": "npx serve . -p 3000",
-    "dev": "npx live-server --port=3000 --open=/index.html",
-    "build": "echo 'No build process needed for static site'",
-    "serve": "npx http-server . -p 3000 -o"
+    "dev": "python -m http.server 8000",
+    "start": "python -m http.server 8000",
+    "serve": "python -m http.server 8000"
   },
   "keywords": [
-    "real-estate",
-    "ai", 
-    "landing-page",
-    "animations",
-    "mwaai"
+    "ai",
+    "automation",
+    "voice-ai",
+    "business-transformation",
+    "vapi"
   ],
-  "author": "MWAAI",
-  "license": "MIT",
-  "devDependencies": {},
-  "dependencies": {}
-} 
+  "author": "MWA.AI",
+  "license": "MIT"
+}
