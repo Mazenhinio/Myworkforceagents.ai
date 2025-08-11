@@ -96,76 +96,20 @@
 .brand-logo {
     display: flex;
     align-items: center;
-<<<<<<< HEAD
     justify-content: center;
     white-space: nowrap;
 }
 
 .brand-text {
     font-size: 24px;
-=======
-    gap: 12px;
-    white-space: nowrap;
-}
-
-.infinity-logo {
-    display: flex;
-    align-items: center;
-}
-
-.infinity-symbol {
-    width: 45px;
-    height: auto;
-    object-fit: contain;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    filter: 
-        drop-shadow(0 0 10px rgba(0, 212, 255, 0.4))
-        hue-rotate(180deg)
-        saturate(1.2)
-        brightness(1.1);
-    transition: var(--transition-smooth);
-    animation: infinityFloat 4s ease-in-out infinite;
-    transform-origin: center;
-}
-
-.nav-brand:hover .infinity-symbol {
-    filter: 
-        drop-shadow(0 0 20px rgba(0, 212, 255, 0.7))
-        drop-shadow(0 0 40px rgba(0, 212, 255, 0.4))
-        hue-rotate(180deg)
-        saturate(1.4)
-        brightness(1.3);
-    transform: scale(1.1) rotate(180deg);
-}
-
-.brand-text {
-    font-size: 28px;
->>>>>>> 15cf09c3c00d432c5bf587fe382061bc4d907fa4
     font-weight: 800;
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-<<<<<<< HEAD
     letter-spacing: -0.3px;
     text-align: center;
 }
-
-
-=======
-    letter-spacing: -0.5px;
-}
-
-@keyframes infinityFloat {
-    0%, 100% { 
-        transform: translateY(0px) rotate(0deg);
-    }
-    50% { 
-        transform: translateY(-3px) rotate(0deg);
-    }
-}
->>>>>>> 15cf09c3c00d432c5bf587fe382061bc4d907fa4
 
 .brand-tagline {
     font-size: 9px;
@@ -180,7 +124,6 @@
 }
 
 /* Hero Logo Styling */
-<<<<<<< HEAD
 .hero-title {
     text-align: center;
     margin-bottom: 60px;
