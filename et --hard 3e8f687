@@ -1,0 +1,6 @@
+[33m7dce255[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m Resolve merge conflicts in script.js
+[33mc4427e4[m Fix merge conflicts and TypeScript configuration - Resolve CSS merge conflict markers in styles.css - Remove problematic @react-three/fiber reference from tsconfig.json - Remove missing tsconfig.node.json reference - Clean up TypeScript configuration
+[33m3e8f687[m Merge remote changes and resolve conflicts - Keep updated infinity logo implementation - Keep updated content sections with new messaging - Resolve merge conflicts in index.html, script.js, and styles.css
+[33m32be208[m Update infinity logo implementation and content sections - Add rotating infinity logo with white/blue/navy color transition - Center logo above hero title - Update all content sections with new messaging - Remove navbar infinity logo - Update Nova signature and button text
+[33m15cf09c[m Initial commit: Add Myworkforce AI agent project files
+[33m02ebd04[m Initial commit: MWAAI landing page with 3D animations

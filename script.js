@@ -114,6 +114,7 @@ function initializeBackToExperiencesButton() {
         console.log('❌ Back to Experiences button not found');
     }
 }
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 MWA.AI System Initializing...');
@@ -129,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeMobileMenu();
     initializeCardExperience(); // Add this new function
     initializeTimeline();
+    
+    // Using delegated click handler for Back to Experiences button (no direct binding needed)
     // Initialize Voice Interface when page loads
     setTimeout(() => {
         const canvas = document.getElementById('threejs-canvas');
@@ -6067,5 +6070,3 @@ function initializeTimeline() {
         });
     }
 }
-
-console.log('🎯 MWAAI JavaScript loaded successfully!');

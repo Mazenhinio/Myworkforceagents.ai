@@ -15,5 +15,8 @@
     "vapi"
   ],
   "author": "MWA.AI",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
 }
