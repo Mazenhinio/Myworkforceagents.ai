@@ -2,7 +2,6 @@
 let globalStartTime = null;
 let globalTimerInterval = null;
 
-<<<<<<< HEAD
 // Global functions for HTML onclick handlers
 function scrollToExperiences() {
     const experiencesSection = document.getElementById('experiences');
@@ -115,9 +114,6 @@ function initializeBackToExperiencesButton() {
         console.log('❌ Back to Experiences button not found');
     }
 }
-
-=======
->>>>>>> 15cf09c3c00d432c5bf587fe382061bc4d907fa4
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 MWA.AI System Initializing...');
@@ -133,14 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeMobileMenu();
     initializeCardExperience(); // Add this new function
     initializeTimeline();
-    
-<<<<<<< HEAD
-    // Using delegated click handler for Back to Experiences button (no direct binding needed)
-    
-
-    
-=======
->>>>>>> 15cf09c3c00d432c5bf587fe382061bc4d907fa4
     // Initialize Voice Interface when page loads
     setTimeout(() => {
         const canvas = document.getElementById('threejs-canvas');
@@ -5704,7 +5692,6 @@ window.addEventListener('error', function(e) {
     console.error('❌ JavaScript Error:', e.error);
 });
 
-<<<<<<< HEAD
 console.log('🎯 MWAAI JavaScript loaded successfully!'); 
 
 // Enhanced Journey Timeline Functionality
@@ -6080,6 +6067,5 @@ function initializeTimeline() {
         });
     }
 }
-=======
-console.log('🎯 MWAAI JavaScript loaded successfully!'); 
->>>>>>> 15cf09c3c00d432c5bf587fe382061bc4d907fa4
+
+console.log('🎯 MWAAI JavaScript loaded successfully!');
