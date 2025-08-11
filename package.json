@@ -1,0 +1,19 @@
+{
+  "name": "mwa-ai-website",
+  "version": "1.0.0",
+  "description": "MWA.AI - AI Transformation Partner Website",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "start": "python -m http.server 8000",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "ai",
+    "automation",
+    "voice-ai",
+    "business-transformation",
+    "vapi"
+  ],
+  "author": "MWA.AI",
+  "license": "MIT"
+}
