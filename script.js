@@ -3279,7 +3279,7 @@ function showTypingIndicator() {
 
 // N8N Webhook Configuration
 const N8N_CONFIG = {
-    webhookUrl: 'https://khalil1973.app.n8n.cloud/webhook/23ac8ed0-1716-4ac4-bd64-197f883f4393',
+    webhookUrl: 'https://myworkforceagents.app.n8n.cloud/webhook/9b1f2c34-5a67-4d89-8e0f-b2c3d4e5f607',
     timeout: 10000, // 10 seconds
     retryAttempts: 2
 };
