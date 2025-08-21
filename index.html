@@ -665,51 +665,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Journey CTA -->
-                <div class="journey-cta" data-aos="fade-up" data-aos-delay="600">
-                    <div class="cta-content">
-                        <h3>Ready to Start Your AI Liberation Journey?</h3>
-                        <p>Choose your experience above and begin your transformation today</p>
-                        <div class="cta-buttons">
-                            <button class="btn-primary journey-btn" id="backToExperiencesBtn">
-                                <i class="fas fa-arrow-up"></i>
-                                Back to Experiences
-                            </button>
-                            <script>
-                                (function() {
-                                    function goBackToExperiencesInline() {
-                                        console.log('🎯 [inline] Back to Experiences clicked!');
-                                        var experiencesSection = document.getElementById('experiences');
-                                        var headerHeight = 120;
-                                        var targetPosition = experiencesSection ? (experiencesSection.offsetTop - headerHeight) : 0;
-                                        console.log('[inline] Scrolling to:', targetPosition);
-                                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                                    }
 
-                                    // Preserve existing global if already defined
-                                    if (!window.goBackToExperiences) {
-                                        window.goBackToExperiences = goBackToExperiencesInline;
-                                        console.log('🔧 [inline] goBackToExperiences installed');
-                                    } else {
-                                        console.log('ℹ️ [inline] Using existing goBackToExperiences');
-                                    }
-
-                                    // Bind click directly (in case delegated handler is unavailable)
-                                    var btn = document.getElementById('backToExperiencesBtn');
-                                    if (btn && !btn.dataset.boundBack) {
-                                        btn.dataset.boundBack = '1';
-                                        btn.addEventListener('click', function(e) {
-                                            e.preventDefault();
-                                            try { window.goBackToExperiences(); } catch (err) { console.error('❌ [inline] Error:', err); }
-                                        });
-                                        console.log('✅ [inline] Click handler bound to Back to Experiences');
-                                    }
-                                })();
-                            </script>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -723,20 +679,15 @@
             <div class="learn-more-content">
                 <div class="learn-more-header">
                     <h2>Your Transformation Starts Now</h2>
-                    <p>Discover the full potential of MWA.AI's autonomous agents and see how we're revolutionizing businesses like yours</p>
+                    <p>Ready to begin your AI liberation journey? Choose your experience above to start your transformation</p>
                 </div>
                 <div class="learn-more-cta">
                     <div class="footer-buttons">
-                        <a href="http://myworkforceagents.ai/" target="_blank" class="learn-more-btn">
-                            <span class="btn-text">Learn More About MWA.AI</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                        <a href="https://myworkforceagents.ai/ola/services/discovery-call" target="_blank" class="book-call-btn">
-                            <span class="btn-text">Book a Discovery Call Now</span>
-                            <i class="fas fa-calendar-check"></i>
-                        </a>
+                        <button class="learn-more-btn" onclick="goBackToExperiences()">
+                            <span class="btn-text">Choose Your Experience</span>
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
                     </div>
-                    <p class="learn-more-subtitle">Visit our main website to explore our full range of AI transformation services or schedule a personalized discovery call</p>
                 </div>
             </div>
         </div>
