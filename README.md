@@ -1,117 +1,56 @@
-# MWA.AI - AI Transformation Partner Website
+# My Workforce Agents
 
-A premium AI automation landing page designed to generate leads for real estate AI transformation services. The project embodies "Vegas meets little tech" - bold, engaging experiences while maintaining professionalism and trust.
+A modern landing page showcasing AI workforce automation solutions for real estate professionals.
 
-![Demo](https://img.shields.io/badge/JavaScript-ES2020+-F7DF1E?logo=javascript)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+## What it does
 
-## Features
+This website demonstrates three different ways potential clients can interact with our AI systems:
+- **Click Interface**: Traditional form-based interaction
+- **Chat Interface**: Text-based conversation with AI
+- **Voice Interface**: Voice AI conversation (currently disabled)
 
-- 🎯 **Interactive Experience Selection**: Three immersive interfaces (Click, Type, Voice)
-- 🌌 **Cinematic Transitions**: Dimensional rift animations with reality-tearing effects
-- 🎤 **Voice AI Integration**: VAPI.ai integration with real-time transcription
-- 🎨 **3D Audio Visualization**: Three.js powered globe with real-time audio response
-- 📱 **Mobile Optimized**: Full responsive design with touch-optimized interactions
-- ⏱️ **Time Tracking**: Global time tracking with dramatic completion reveals
-- 🔗 **Lead Capture**: Multi-step forms with webhook integration
+The goal is to capture leads and showcase our AI capabilities to real estate professionals looking to automate their workflows.
 
-## Quick Start
+## Running the project
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-
-# Navigate to project directory
-cd mwa-ai-website
-
-# Start development server
+# Start a local server
 npm run dev
-# or
+
+# Or use Python if you prefer
 python -m http.server 8000
 ```
 
-## Project Structure
+Then open your browser to `http://localhost:8000`
 
-```
-├── index.html              # Main landing page
-├── script.js               # Core functionality (6000+ lines)
-├── styles.css              # Complete styling system
-├── package.json            # Project configuration
-├── tsconfig.json           # TypeScript configuration
-└── README.md              # This file
-```
+## Files
 
-## Core Components
+- `index.html` - The main webpage
+- `script.js` - All the interactive functionality
+- `styles.css` - All the styling
+- `package.json` - Project configuration
 
-### 1. Interactive Experience Selection
-- **Click Interface**: Visual dashboard with step-by-step forms
-- **Type Interface**: Chat-based interaction with N8N webhook integration
-- **Voice Interface**: VAPI.ai integration with 3D audio visualization
+## Key features
 
-### 2. Cinematic Transition System
-- **Dimensional Rift**: Reality-tearing effects with particle systems
-- **3D Tunnel Dive**: Immersive transition animations
-- **Interface Emergence**: Smooth materialization of selected interface
+- **Chat Integration**: Connected to N8N webhooks for live AI conversations
+- **Lead Capture**: Multi-step forms that collect prospect information
+- **Mobile Friendly**: Works on phones and tablets
+- **Real Estate Focus**: Specifically designed for real estate automation use cases
 
-### 3. Voice AI Integration
-- **VAPI.ai Embedding**: Seamless voice agent integration
-- **Real-time Transcription**: Live speech-to-text display
-- **3D Audio Globe**: Three.js powered visualization responding to audio
+## Configuration
 
-### 4. Lead Capture System
-- **Multi-step Forms**: Progressive form interfaces
-- **Webhook Integration**: Real-time data capture
-- **Session Management**: Persistent conversation context
-- **Time Tracking**: Engagement analytics with dramatic reveals
+The N8N webhook URL is configured in `script.js`. Update the `N8N_CONFIG` object to point to your webhook endpoint.
 
-## Technology Stack
+## Browser compatibility
 
-- **Frontend**: Pure HTML5/CSS3/JavaScript (no frameworks)
-- **Styling**: CSS Variables, Custom Animations, Responsive Grid/Flexbox
-- **3D Graphics**: Three.js for audio visualization
-- **Voice AI**: VAPI.ai integration
-- **Deployment**: Static site (Netlify/Vercel/GitHub Pages ready)
-
-## Browser Support
-
-- **Chrome/Edge**: Full support
-- **Firefox**: Full support
-- **Safari**: Full support (requires user gesture for AudioContext)
-- **Mobile**: Optimized for performance on mid-tier devices
-
-## Performance Features
-
-- **CSS Variables**: Consistent theming and easy customization
-- **Will-Change Properties**: GPU acceleration for animations
-- **Transform3D**: Hardware acceleration for 3D effects
-- **Intersection Observer**: Efficient scroll-based animations
-- **Responsive Design**: Mobile-first approach with breakpoints
+Works in all modern browsers. Some features require user interaction to start (like audio features in Safari).
 
 ## Deployment
 
-The project is ready for deployment on any static hosting service:
+This is a static website that can be deployed anywhere:
+- Netlify (recommended)
+- Vercel
+- GitHub Pages
+- Any web hosting service
 
-- **Netlify**: Recommended for ease of use
-- **Vercel**: Best for performance optimization
-- **GitHub Pages**: Cost-effective for MVP
-- **Traditional Hosting**: FTP/SFTP upload option
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
-
-## License
-
-MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Built with vanilla JavaScript for maximum performance
-- Three.js for 3D audio visualization
-- VAPI.ai for voice AI integration
-- Inspired by modern web experiences and AI transformation
+Just upload the files and you're done.
