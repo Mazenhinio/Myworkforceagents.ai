@@ -5332,7 +5332,7 @@ function showTypingIndicator() {
 // N8N Webhook Configuration
 const N8N_CONFIG = {
     webhookUrl: 'https://myworkforceagents.app.n8n.cloud/webhook/9b1f2c34-5a67-4d89-8e0f-b2c3d4e5f607',
-    timeout: 60000, // 10 seconds
+    timeout: 120000, // 2 minutes
     retryAttempts: 2
 };
 
