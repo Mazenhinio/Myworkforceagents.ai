@@ -354,7 +354,7 @@ function showCardLoadingScreen(cardType) {
 function getCardInfo(cardType) {
     const cardInfo = {
         click: {
-            icon: 'fas fa-mouse-pointer',
+            icon: 'fas fa-hand-pointer',
             title: 'Interactive Experience',
             message: 'Setting up your visual AI workflow interface with point-and-click controls.'
         },
@@ -748,9 +748,6 @@ function createClickInterface() {
         <div class="click-form-container">
             <div class="form-header">
                 <div class="form-title">
-                    <div class="click-icon"><i class="fas fa-mouse-pointer"></i></div>
-                    <h2>Interactive Experience Setup</h2>
-                    <p>Configure your AI workflow through visual selection</p>
                 </div>
                 <div class="form-controls">
                     <button class="close-btn" onclick="closeFormInterface()" title="Exit to card selection">
@@ -820,33 +817,45 @@ function createClickInterface() {
                     <div class="goals-grid">
                         <div class="goal-item" data-value="instant-lead-response">
                             <div class="goal-icon"><i class="fas fa-bolt"></i></div>
-                            <h4>Instant Lead Response (FINN + LISA)</h4>
-                            <p class="goal-desc">Reply quickly, qualify, auto-book showings.</p>
+                            <div class="goal-content">
+                                <h4>Instant Lead Response (FINN + LISA)</h4>
+                                <p class="goal-desc">Reply quickly, qualify, auto-book showings.</p>
+                            </div>
                         </div>
                         <div class="goal-item" data-value="client-communications">
                             <div class="goal-icon"><i class="fas fa-comments"></i></div>
-                            <h4>Client Communications (LISA + ROSS)</h4>
-                            <p class="goal-desc">Send DMs/texts/emails via voice—manage updates, reschedules, follow‑ups.</p>
+                            <div class="goal-content">
+                                <h4>Client Communications (LISA + ROSS)</h4>
+                                <p class="goal-desc">Send DMs/texts/emails via voice—manage updates, reschedules, follow‑ups.</p>
+                            </div>
                         </div>
                         <div class="goal-item" data-value="listing-social-optimization">
                             <div class="goal-icon"><i class="fas fa-bullhorn"></i></div>
-                            <h4>Listing & Social Optimization (RESE)</h4>
-                            <p class="goal-desc">Auto-generate, brand, syndicate listings and social content.</p>
+                            <div class="goal-content">
+                                <h4>Listing & Social Optimization (RESE)</h4>
+                                <p class="goal-desc">Auto-generate, brand, syndicate listings and social content.</p>
+                            </div>
                         </div>
                         <div class="goal-item" data-value="transaction-management">
                             <div class="goal-icon"><i class="fas fa-file-contract"></i></div>
-                            <h4>Transaction Management (TESSA)</h4>
-                            <p class="goal-desc">Track deadlines, prep packets, send reminders, manage deal progress.</p>
+                            <div class="goal-content">
+                                <h4>Transaction Management (TESSA)</h4>
+                                <p class="goal-desc">Track deadlines, prep packets, send reminders, manage deal progress.</p>
+                            </div>
                         </div>
                         <div class="goal-item" data-value="follow-up-nurture-automation">
                             <div class="goal-icon"><i class="fas fa-seedling"></i></div>
-                            <h4>Follow-Up & Nurture Automation (LISA + FINN)</h4>
-                            <p class="goal-desc">Re-engage cold leads, post-showing touchpoints, long-term nurture.</p>
+                            <div class="goal-content">
+                                <h4>Follow-Up & Nurture Automation (LISA + FINN)</h4>
+                                <p class="goal-desc">Re-engage cold leads, post-showing touchpoints, long-term nurture.</p>
+                            </div>
                         </div>
                         <div class="goal-item" data-value="voice-activated-control">
                             <div class="goal-icon"><i class="fas fa-microphone"></i></div>
-                            <h4>Voice-Activated Agent Control (ROSS)</h4>
-                            <p class="goal-desc">Hands-free control—add leads, send updates, schedule tasks via voice.</p>
+                            <div class="goal-content">
+                                <h4>Voice-Activated Agent Control (ROSS)</h4>
+                                <p class="goal-desc">Hands-free control—add leads, send updates, schedule tasks via voice.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -855,6 +864,7 @@ function createClickInterface() {
                 <div class="form-step" data-step="4">
                     <div class="step-header">
                         <h3>Get Your AI Transformation Started</h3>
+                        <p class="step-subcaption">Fill out the form below and we'll get back to you within 24 hours</p>
                     </div>
                     <div class="contact-fields">
                         <div class="field-group">
@@ -870,14 +880,6 @@ function createClickInterface() {
                             <input type="tel" placeholder="+1 (555) 123-4567" required>
                         </div>
                         <div class="field-group">
-                            <label>Brokerage/Company</label>
-                            <input type="text" placeholder="Your brokerage name" required>
-                        </div>
-                        <div class="field-group">
-                            <label>License Number (Optional)</label>
-                            <input type="text" placeholder="Your real estate license #">
-                        </div>
-                        <div class="field-group">
                             <label>Monthly Transaction Volume</label>
                             <select required>
                                 <option value="">Select your volume</option>
@@ -886,6 +888,14 @@ function createClickInterface() {
                                 <option value="16-30">16-30 transactions/month</option>
                                 <option value="30+">30+ transactions/month</option>
                             </select>
+                        </div>
+                        <div class="field-group">
+                            <label>Brokerage/Company</label>
+                            <input type="text" placeholder="Your brokerage name" required>
+                        </div>
+                        <div class="field-group">
+                            <label>License Number (Optional)</label>
+                            <input type="text" placeholder="Your real estate license #">
                         </div>
                     </div>
                 </div>
@@ -1367,7 +1377,11 @@ function initializeClickInterface() {
                 dropdown.dataset.selected = value;
                 
                 // Auto-advance to next step
-                setTimeout(nextStep, 500);
+                setTimeout(() => {
+                    nextStep();
+                    // Update navigation in case we're on the final step
+                    setTimeout(updateStepNavigation, 100);
+                }, 500);
             });
         });
     });
@@ -1378,7 +1392,11 @@ function initializeClickInterface() {
         card.addEventListener('click', () => {
             sizeCards.forEach(c => c.classList.remove('selected'));
             card.classList.add('selected');
-            setTimeout(nextStep, 500);
+            setTimeout(() => {
+                nextStep();
+                // Update navigation in case we're on the final step (without showing errors)
+                setTimeout(updateStepNavigation, 100);
+            }, 500);
         });
     });
     
@@ -1429,6 +1447,8 @@ function initializeClickInterface() {
                 }
             });
             field.addEventListener('change', () => {
+                // Update navigation in case we're on the final step (without showing errors)
+                setTimeout(updateStepNavigation, 100);
                 // Clear invalid state when user changes select value
                 field.classList.remove('invalid');
                 const existingError = document.querySelector('.validation-error');
@@ -1442,6 +1462,8 @@ function initializeClickInterface() {
     // Initialize navigation
     updateStepNavigation();
 }
+
+
 
 function initializeTypeInterface() {
     // Simulate AI initialization
@@ -4752,6 +4774,15 @@ function validateCurrentStep() {
                 }
             }
             
+            // Add real-time input validation for text fields
+            const textInputs = step4.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+            textInputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    // Update navigation in case we're on the final step
+                    setTimeout(updateStepNavigation, 100);
+                });
+            });
+
             // Email validation
             const emailField = step4.querySelector('input[type="email"]');
             if (emailField && emailField.value && !isValidEmail(emailField.value)) {
@@ -4989,23 +5020,105 @@ function resetCardStates() {
     });
 }
 
+function validateEntireForm() {
+    // Check all steps for completion
+    for (let step = 1; step <= totalSteps; step++) {
+        // Temporarily set current step for validation
+        const originalStep = window.currentStep;
+        window.currentStep = step;
+
+        if (!validateCurrentStep()) {
+            window.currentStep = originalStep;
+            return false;
+        }
+
+        window.currentStep = originalStep;
+    }
+    return true;
+}
+
+function checkFormCompletion() {
+    // Check all steps for completion without showing error messages
+    for (let step = 1; step <= totalSteps; step++) {
+        // Temporarily set current step for validation
+        const originalStep = window.currentStep;
+        window.currentStep = step;
+
+        if (!isStepComplete(step)) {
+            window.currentStep = originalStep;
+            return false;
+        }
+
+        window.currentStep = originalStep;
+    }
+    return true;
+}
+
+function isStepComplete(stepNumber) {
+    switch(stepNumber) {
+        case 1: // Industry selection
+            const selectedIndustry = document.querySelector('.visual-dropdown .selected-text');
+            return selectedIndustry && selectedIndustry.textContent !== 'Choose your real estate focus';
+
+        case 2: // Business size
+            const selectedSize = document.querySelector('.size-card.selected');
+            return selectedSize !== null;
+
+        case 3: // AI Goals
+            const selectedGoals = document.querySelectorAll('.goal-item.selected');
+            return selectedGoals.length > 0;
+
+        case 4: // Contact info
+            const step4 = document.querySelector('[data-step="4"]');
+            const requiredFields = step4.querySelectorAll('input[required], select[required]');
+            let allFieldsFilled = true;
+
+            for (let field of requiredFields) {
+                if (!field.value.trim()) {
+                    allFieldsFilled = false;
+                    break;
+                }
+            }
+
+            // Email validation if email field exists and has value
+            if (allFieldsFilled) {
+                const emailField = step4.querySelector('input[type="email"]');
+                if (emailField && emailField.value && !isValidEmail(emailField.value)) {
+                    allFieldsFilled = false;
+                }
+            }
+
+            return allFieldsFilled;
+
+        default:
+            return true;
+    }
+}
+
 function updateStepNavigation() {
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
     const currentStepDisplay = document.querySelector('.current-step');
-    
+
     // Update step indicator
     currentStepDisplay.textContent = window.currentStep;
-    
+
     // Update button states
     prevBtn.disabled = window.currentStep === 1;
-    
+
     if (window.currentStep === totalSteps) {
         nextBtn.innerHTML = 'Submit <i class="fas fa-check"></i>';
         nextBtn.onclick = submitClickForm;
+
+        // Check if entire form is complete for submit button (without showing errors)
+        const isFormComplete = checkFormCompletion();
+        nextBtn.disabled = !isFormComplete;
+        nextBtn.classList.toggle('form-incomplete', !isFormComplete);
     } else {
         nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
         nextBtn.onclick = nextStep;
+        nextBtn.disabled = false;
+        nextBtn.classList.remove('form-incomplete');
     }
 }
 
@@ -5953,7 +6066,7 @@ function showCardSelectionModal(cardType) {
         click: {
             title: 'Interactive Click Experience',
             description: 'You\'ve chosen the visual interface path. Perfect for users who prefer point-and-click interactions and immediate visual feedback.',
-            icon: 'fas fa-mouse-pointer',
+            icon: 'fas fa-hand-pointer',
             color: '#00ff88'
         },
         type: {
