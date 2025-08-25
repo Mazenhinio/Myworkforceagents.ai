@@ -198,7 +198,9 @@
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .nav-links a {
@@ -3651,20 +3653,21 @@ body.interface-open {
 
 .click-form-container {
     position: relative;
-    max-width: 900px;
+    max-width: 650px;
     width: 100%;
     height: 100vh;
     max-height: 100vh;
     background: rgba(255, 255, 255, 0.05);
     border: 2px solid rgba(0, 212, 255, 0.3);
-    border-radius: 25px;
-    padding: 30px;
+    border-radius: 12px;
+    padding: 20px;
     backdrop-filter: blur(15px);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    aspect-ratio: 3 / 4;
 }
 
 .form-header {
@@ -3867,8 +3870,19 @@ body.interface-open {
     pointer-events: none;
     z-index: 200;
     backdrop-filter: blur(15px);
-    max-height: 250px;
+    max-height: 450px;
     overflow-y: auto;
+}
+
+/* Hide scrollbars in interface dropdowns */
+.dropdown-options::-webkit-scrollbar {
+    display: none;
+    width: 0;
+}
+
+.dropdown-options {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .visual-dropdown.open .dropdown-options {
@@ -3908,12 +3922,14 @@ body.interface-open {
 /* Size Cards */
 .size-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     gap: 15px;
     margin-top: 15px;
     flex: 1;
-    overflow-y: auto;
     max-height: calc(100% - 80px);
+    padding: 15px;
+    overflow: hidden;
 }
 
 .size-card {
@@ -3924,47 +3940,89 @@ body.interface-open {
     text-align: center;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transform-style: preserve-3d;
-    min-height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 160px;
 }
 
 .size-card:hover {
-    transform: translateY(-10px) rotateX(5deg);
+    transform: translateY(-8px);
     border-color: rgba(0, 212, 255, 0.8);
     background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 15px 35px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 12px 30px rgba(0, 212, 255, 0.25);
+    z-index: 10;
+    position: relative;
 }
 
 .size-card.selected {
-    border-color: var(--success-color);
-    background: rgba(0, 255, 136, 0.1);
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
-    transform: translateY(-5px) scale(1.02);
+    border-color: var(--success-color) !important;
+    background: rgba(0, 255, 136, 0.1) !important;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.4) !important;
+    transform: translateY(-5px) !important;
+    z-index: 20 !important;
+    position: relative !important;
+    margin: 0 !important;
+}
+
+/* Ensure all items show selected state correctly */
+.size-card.selected {
+    border-color: var(--success-color) !important;
+    background: rgba(0, 255, 136, 0.15) !important;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4) !important;
+    border-width: 2px !important;
+    border-radius: 10px !important;
+}
+
+/* Specific rules for each position to ensure they work */
+.size-card:nth-child(1).selected,
+.size-card:nth-child(2).selected,
+.size-card:nth-child(3).selected,
+.size-card:nth-child(4).selected {
+    border-color: var(--success-color) !important;
+    background: rgba(0, 255, 136, 0.15) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4) !important;
+    border-width: 2px !important;
 }
 
 .size-card i {
     font-size: 2.5rem;
     color: var(--accent-color);
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     display: block;
+    transition: color 0.3s ease;
+}
+
+.size-card.selected i {
+    color: var(--success-color) !important;
 }
 
 .size-card h4 {
     color: white;
     font-size: 1.2rem;
-    margin: 10px 0;
-    line-height: 1.2;
+    margin: 8px 0;
+    line-height: 1.3;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.size-card.selected h4 {
+    color: var(--success-color) !important;
 }
 
 .size-card p {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
     margin: 0;
-    line-height: 1.3;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.size-card.selected p {
+    color: rgba(0, 255, 136, 0.9) !important;
 }
 
 /* Goals Grid */
@@ -3976,35 +4034,80 @@ body.interface-open {
     flex: 1;
     overflow-y: auto;
     max-height: calc(100% - 80px);
+    padding: 20px 15px;
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+
+/* Prevent nav links from wrapping on medium screens */
+@media (max-width: 900px) {
+  .nav-links {
+    gap: 18px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+}
+
+/* Hide scrollbars in interface choices */
+.goals-grid::-webkit-scrollbar {
+    display: none;
+    width: 0;
+}
+
+.goals-grid {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .goal-item {
     background: rgba(255, 255, 255, 0.05);
     border: 2px solid rgba(0, 212, 255, 0.3);
     border-radius: 15px;
-    padding: 25px 20px;
-    text-align: center;
+    padding: 20px;
+    text-align: left;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    min-height: 160px;
+    min-height: 120px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
     position: relative;
+    gap: 15px;
 }
 
 .goal-item:hover {
     transform: translateY(-5px);
     border-color: rgba(0, 212, 255, 0.8);
     background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
+    z-index: 10;
+    position: relative;
 }
 
 .goal-item.selected {
-    border-color: var(--success-color);
-    background: rgba(0, 255, 136, 0.1);
-    box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
-    transform: translateY(-3px) scale(1.02);
+    border-color: var(--success-color) !important;
+    background: rgba(0, 255, 136, 0.15) !important;
+    box-shadow: 0 5px 30px rgba(0, 255, 136, 0.4) !important;
+    transform: translateY(-5px) !important;
+    z-index: 30 !important;
+    position: relative !important;
+    margin: 0 !important;
+}
+
+/* Ensure all goal items work correctly when selected */
+.goal-item:nth-child(1).selected,
+.goal-item:nth-child(2).selected,
+.goal-item:nth-child(3).selected,
+.goal-item:nth-child(4).selected,
+.goal-item:nth-child(5).selected,
+.goal-item:nth-child(6).selected {
+    border-color: var(--success-color) !important;
+    background: rgba(0, 255, 136, 0.2) !important;
+    box-shadow: 0 8px 35px rgba(0, 255, 136, 0.6) !important;
+    border-width: 3px !important;
 }
 
 .goal-item.selected::after {
@@ -4032,9 +4135,10 @@ body.interface-open {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 12px;
-    font-size: 1.5rem;
+    margin: 0;
+    font-size: 1.3rem;
     color: white;
+    flex-shrink: 0;
 }
 
 .goal-item h4 {
@@ -4042,6 +4146,13 @@ body.interface-open {
     font-size: 1rem;
     margin: 0 0 8px 0;
     line-height: 1.3;
+    font-weight: 600;
+}
+
+.goal-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .goal-desc {
@@ -4054,45 +4165,87 @@ body.interface-open {
 /* Contact Fields */
 .contact-fields {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 15px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
     flex: 1;
     overflow-y: auto;
-    max-height: calc(100% - 80px);
-    margin-top: 15px;
+    max-height: calc(100% - 100px);
+    margin-top: 20px;
+    padding: 15px;
 }
 
 .field-group {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    position: relative;
 }
 
 .field-group label {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    transition: color 0.3s ease;
+    line-height: 1.2;
 }
 
 .field-group input,
 .field-group select {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(0, 212, 255, 0.4);
-    border-radius: 10px;
-    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 12px;
+    padding: 14px 16px;
     color: white;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     min-height: 50px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+}
+
+.field-group input:hover,
+.field-group select:hover {
+    border-color: rgba(0, 212, 255, 0.6);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .field-group input:focus,
 .field-group select:focus {
     outline: none;
     border-color: var(--accent-color);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow:
+        0 0 0 4px rgba(0, 212, 255, 0.1),
+        0 0 25px rgba(0, 212, 255, 0.4),
+        0 8px 20px rgba(0, 0, 0, 0.3);
     transform: translateY(-2px);
+}
+
+.field-group:focus-within label {
+    color: var(--accent-color);
+    transform: translateY(-1px);
+    font-weight: 700;
+}
+
+/* Add subtle glow effect behind focused inputs */
+.field-group input:focus::before,
+.field-group select:focus::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 136, 0.1));
+    border-radius: 14px;
+    z-index: -1;
+    opacity: 0.8;
 }
 
 .field-group input::placeholder {
@@ -4102,17 +4255,39 @@ body.interface-open {
 .field-group select {
     cursor: pointer;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2300d4ff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
-    background-position: right 15px center;
+    background-position: right 18px center;
     background-size: 20px;
-    padding-right: 50px;
+    padding-right: 55px;
+    position: relative;
+}
+
+.field-group select::after {
+    content: '';
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3e%3cpath stroke='%2300d4ff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.field-group select:focus::after {
+    opacity: 0.8;
 }
 
 .field-group select option {
-    background: rgba(26, 26, 46, 0.95);
+    background: rgba(26, 26, 46, 0.98);
     color: white;
-    padding: 10px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 /* Form Navigation */
@@ -4174,10 +4349,21 @@ body.interface-open {
     box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
 }
 
-.next-btn:disabled {
+.next-btn:disabled,
+.next-btn.form-incomplete {
+    background: #666 !important;
+    border-color: #666 !important;
+    color: #ccc !important;
     opacity: 0.6;
     cursor: not-allowed;
     transform: none !important;
+}
+
+.next-btn.form-incomplete:hover {
+    background: #666 !important;
+    border-color: #666 !important;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
 .step-indicator {
@@ -4189,16 +4375,18 @@ body.interface-open {
     padding: 10px 20px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .click-form-container {
-        padding: 20px;
+        padding: 18px;
         margin: 10px;
         max-width: calc(100vw - 20px);
         height: calc(100vh - 20px);
         max-height: calc(100vh - 20px);
+        aspect-ratio: 4 / 5;
         box-sizing: border-box;
     }
     
@@ -4262,8 +4450,33 @@ body.interface-open {
     }
     
     .contact-fields {
-        grid-template-columns: 1fr;
-        gap: 12px;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        padding: 12px;
+        margin-top: 15px;
+    }
+
+    .field-group {
+        gap: 10px;
+    }
+
+    .field-group label {
+        font-size: 0.9rem;
+        letter-spacing: 0.3px;
+    }
+
+    .field-group input,
+    .field-group select {
+        padding: 14px 16px;
+        font-size: 0.95rem;
+        min-height: 50px;
+        border-radius: 10px;
+    }
+
+    .field-group select {
+        padding-right: 45px;
+        background-size: 18px;
+        background-position: right 14px center;
     }
     
     .form-navigation {
@@ -4290,12 +4503,13 @@ body.interface-open {
 
 @media (max-width: 480px) {
     .click-form-container {
-        padding: 15px;
-        border-radius: 20px;
+        padding: 12px;
+        border-radius: 15px;
         margin: 5px;
         max-width: calc(100vw - 10px);
         height: calc(100vh - 10px);
         max-height: calc(100vh - 10px);
+        aspect-ratio: 9 / 16;
     }
     
     .visual-form-grid {
@@ -4341,6 +4555,7 @@ body.interface-open {
     .step-indicator {
         font-size: 1rem;
         padding: 8px 16px;
+        white-space: nowrap;
     }
     
     .dropdown-trigger,
@@ -4376,8 +4591,21 @@ body.interface-open {
 .field-group input.invalid,
 .field-group select.invalid {
     border-color: #ff4757 !important;
-    background: rgba(255, 71, 87, 0.1) !important;
-    box-shadow: 0 0 0 2px rgba(255, 71, 87, 0.2) !important;
+    background: rgba(255, 71, 87, 0.12) !important;
+    box-shadow:
+        0 0 0 3px rgba(255, 71, 87, 0.15),
+        0 0 20px rgba(255, 71, 87, 0.2) !important;
+    animation: shake 0.5s ease-in-out;
+}
+
+.field-group:has(.invalid) label {
+    color: #ff4757;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
 
 .form-errors {
@@ -7678,6 +7906,9 @@ body.interface-open {
     
     .goals-grid {
         grid-template-columns: 1fr;
+        padding: 20px 10px;
+        padding-top: 25px;
+        padding-bottom: 10px;
     }
     
     /* Visual Form Mobile Improvements */
@@ -7709,7 +7940,7 @@ body.interface-open {
     
     .dropdown-options {
         border-radius: 10px;
-        max-height: 250px;
+        max-height: 450px;
         overflow-y: auto;
     }
     
@@ -7721,24 +7952,30 @@ body.interface-open {
     }
     
     .size-cards {
-        grid-template-columns: 1fr;
-        gap: 15px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 12px;
+        padding: 12px;
     }
-    
+
     .size-card {
         padding: 20px 15px;
         border-radius: 12px;
-        min-height: 80px;
+        min-height: 120px;
     }
     
     .size-card i {
-        font-size: 1.8rem;
+        font-size: 2rem;
         margin-bottom: 10px;
     }
-    
+
     .size-card h4 {
-        font-size: 1.1rem;
-        margin-bottom: 8px;
+        font-size: 1rem;
+        margin: 6px 0;
+    }
+
+    .size-card p {
+        font-size: 0.8rem;
     }
     
     .contact-fields {
@@ -10635,16 +10872,20 @@ section:not(:last-child)::after {
   }
   
   .nav-brand {
-    flex-direction: row;
-    gap: 10px;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
   }
-  
+
   .brand-logo {
-    font-size: 20px;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
   }
-  
+
   .brand-tagline {
-    font-size: 10px;
+    font-size: 8px;
+    line-height: 1;
+    margin-top: -2px;
   }
   
   .infinity-symbol {
@@ -11537,7 +11778,7 @@ section:not(:last-child)::after {
   }
   
   .transcription-content {
-    max-height: 250px;
+    max-height: 450px;
     padding: 15px 20px;
   }
   
