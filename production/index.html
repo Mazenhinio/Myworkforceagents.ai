@@ -25,10 +25,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
     
     <!-- Load main script early so functions are defined before HTML uses them -->
-    <script defer src="assets/js/script.js"></script>
+    <script defer src="assets/js/script.min.js"></script>
 </head>
 <body>
     <!-- Global Scroll Progress Bar -->
@@ -341,7 +341,9 @@
                             <!-- Main Agent Display -->
                             <div class="agent-display">
                                 <!-- FINN Agent -->
-                                <div class="agent-card active" data-agent="finn">
+                                <div class="agent-card active" data-agent="finn"
+                                     data-tooltip-pain="Feast-or-famine pipeline • Cold start in new neighborhoods • Dirty/duplicate contact lists • Non-compliant outreach risk (TCPA/DNC) • Channel attribution blind spots"
+                                     data-tooltip-solution="Always-on geo-farm campaigns that never sleep • Hyperlocal warm-up sequences that surface intent fast • Auto enrichment + de-dupe = clean CRM, always • Consent-aware sending with DNC scrubbing + audit trail • End-to-end attribution (UTMs/call tracking) to a single ROI dashboard">
                                     <div class="agent-header">
                                         <div class="agent-avatar finn-avatar">
                                             <i class="fas fa-bullseye"></i>
@@ -382,7 +384,9 @@
                                 </div>
 
                                 <!-- LISA Agent -->
-                                <div class="agent-card" data-agent="lisa">
+                                <div class="agent-card" data-agent="lisa"
+                                     data-tooltip-pain="Missed/late replies across SMS/DM/email • Manual qualifying & calendar ping-pong • Inconsistent follow-up cadences • Disjointed multi-channel threads • Opt-out/consent handling errors"
+                                     data-tooltip-solution="Replies in <60s, 24/7, on the channel the lead used • Conversational qualify + instant booking (reschedule smart logic) • Adaptive cadences that pause on reply and restart on silence • Unified thread memory; clean CRM notes after every touch • Consent captured, suppression lists updated automatically">
                                     <div class="agent-header">
                                         <div class="agent-avatar lisa-avatar">
                                             <i class="fas fa-comments"></i>
@@ -423,7 +427,9 @@
                                 </div>
 
                                 <!-- RESE Agent -->
-                                <div class="agent-card" data-agent="rese">
+                                <div class="agent-card" data-agent="rese"
+                                     data-tooltip-pain="Inconsistent listing promotion cadence • Time-heavy creative for new listings • Multi-listing bottlenecks & broken links • MLS branding/disclosure compliance risk • Weak analytics; no learn-and-repeat"
+                                     data-tooltip-solution="Auto-schedules MLS→social across platforms with reliable cadence • Generates reels/carousels/copy from MLS data + brand templates • One-click syndication, link checks, and UTM stamping • MLS-safe templates, fair-housing filters, and mandatory disclaimers • Post-level analytics + A/B copy; best variants auto-promoted">
                                     <div class="agent-header">
                                         <div class="agent-avatar rese-avatar">
                                             <i class="fas fa-home"></i>
@@ -464,7 +470,9 @@
                                 </div>
 
                                 <!-- TESSA Agent -->
-                                <div class="agent-card" data-agent="tessa">
+                                <div class="agent-card" data-agent="tessa"
+                                     data-tooltip-pain="Tasks/deadlines slipping (option/contingency) • Document chase & signature bottlenecks • CRM/PM out of sync; double entry • Vendor/inspection scheduling chaos • No status visibility for clients/team"
+                                     data-tooltip-solution="Watches timelines; nudges before deadlines; escalates risk automatically • Sends doc requests, tracks e-sign, chases missing items to done • Two-way sync across CRM, e-sign, file store, and transaction tools • Books vendors with rules; confirms and posts updates to the portal • Live status portal + proactive SMS/email updates for all parties">
                                     <div class="agent-header">
                                         <div class="agent-avatar tessa-avatar">
                                             <i class="fas fa-file-contract"></i>
@@ -505,7 +513,9 @@
                                 </div>
 
                                 <!-- ROSS Agent -->
-                                <div class="agent-card" data-agent="ross">
+                                <div class="agent-card" data-agent="ross"
+                                     data-tooltip-pain="Missed/after-hours calls; voicemail pileup • Inconsistent phone screening & routing • Long holds and dropped transfers • No call notes or CRM updates • Uncertain consent/phrasing on calls (TCPA)"
+                                     data-tooltip-solution="Answers 24/7; smart callbacks—no voicemail black holes • Scripted qualify + ID verify; routes by priority/availability • Warm transfers with context; queue mgmt to prevent drops • Summarizes calls, creates tasks, and logs to CRM instantly • Built-in consent prompts + recorded disclaimers; full audit log">
                                     <div class="agent-header">
                                         <div class="agent-avatar ross-avatar">
                                             <i class="fas fa-phone"></i>
@@ -707,5 +717,4 @@
     
     
 </body>
-</html> 
-</html> 
+</html> </html> 

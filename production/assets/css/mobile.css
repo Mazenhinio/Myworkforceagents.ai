@@ -1,0 +1,246 @@
+/* General Mobile Styles */
+body {
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape mode */
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+}
+
+/* Navigation */
+.navbar {
+    padding: 15px 0;
+}
+.navbar .container {
+    flex-direction: row; /* Keep logo and menu button on same line */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    align-items: flex-start;
+}
+
+.nav-links {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -280px; /* Start off-screen */
+    width: 280px;
+    height: 100vh;
+    background: #1a1a2e;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 20px 20px;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.nav-links.active {
+    display: flex;
+    right: 0; /* Slide in */
+}
+
+.nav-links a {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+.mobile-menu-btn {
+    display: block;
+    position: relative; /* Keep it in the flow */
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.mobile-menu-btn i {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+
+/* Hero Section */
+.hero {
+    padding-top: 100px;
+}
+
+.hero-content {
+    text-align: center;
+}
+
+.hero-headline {
+    font-size: 2.5rem;
+}
+
+.cards-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.game-card,
+.game-card:nth-child(1),
+.game-card:nth-child(2),
+.game-card:nth-child(3) {
+    width: 90%;
+    max-width: 300px;
+    margin: 0;
+    transform: none; /* Reset desktop transforms */
+}
+
+.game-card:hover {
+    transform: translateY(-10px) scale(1.02); /* Simpler hover effect */
+}
+
+
+/* Journey Section */
+.journey-section {
+    padding: 60px 0;
+}
+.journey-step .step-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.journey-step .step-container.reverse {
+    flex-direction: column;
+}
+
+.step-visual {
+    order: -1; /* Icon on top */
+    margin-bottom: 20px;
+}
+
+.challenge-grid, .solution-highlights {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.challenge-item, .highlight-item {
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+}
+
+.highlight-icon {
+    margin-bottom: 15px;
+}
+
+/* Meet Human Section */
+.meet-human-section {
+    padding: 60px 0;
+}
+.human-profile-card {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 30px;
+}
+
+.profile-image-section {
+    margin-bottom: 1rem;
+}
+
+.credentials-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.transformation-process .process-steps {
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* Agent Showcase */
+.agent-showcase {
+    padding: 1rem;
+    overflow: hidden; /* Prevent horizontal scroll */
+}
+
+.agent-display {
+    width: 100%;
+    position: relative;
+    min-height: 550px; /* Adjust height for mobile */
+}
+
+.agent-card {
+    padding: 20px;
+}
+
+.agent-header {
+    flex-direction: column;
+    text-align: center;
+}
+
+.challenge-solution {
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.agent-features {
+    gap: 10px;
+    justify-content: center;
+}
+
+.agent-navigation {
+    margin-top: 20px;
+}
+
+/* Footer */
+.learn-more-footer {
+    padding: 60px 0;
+}
+
+.footer-buttons {
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* Performance Optimizations for Mobile */
+/* Disable expensive animations */
+.hero-bg-animation,
+.particle-field,
+.holo-sweep,
+.circuit-grid,
+.hand-effect,
+.scroll-progress-bar,
+.hero-infinity-symbol,
+.brand-tagline,
+.highlight-gradient,
+.experience-caption,
+.icon-container::before,
+.shadow-base,
+.step-icon:hover,
+.promise-card:hover,
+.feature-item:hover,
+.nav-arrow:hover,
+.timeline-dot:hover,
+.journey-stage:hover .stage-icon,
+.credential-item:hover,
+.step:hover,
+.experience-path:hover,
+.human-profile-card:hover,
+.learn-more-btn:hover,
+.book-call-btn:hover {
+    animation: none !important;
+    transition: none !important;
+}
+
+/* Use hardware-accelerated properties for transforms */
+* {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform, opacity;
+}
+
