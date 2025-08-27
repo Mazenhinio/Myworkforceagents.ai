@@ -8331,3 +8331,328 @@ function initializeTimeline() {
         });
     }
 }
+
+
+// Experience Selection Functions
+function selectExperience(experienceType) {
+    console.log(`🎯 Experience selected: ${experienceType}`);
+    
+    // Play click/selection sound
+    try { playCardFlipSound(); } catch (_) {}
+    
+    // Provide haptic feedback on mobile devices
+    if (isTouchDevice() && navigator.vibrate) {
+        navigator.vibrate(50);
+    }
+    
+    // Get the button that was clicked
+    const button = event.target.closest(".btn");
+    
+    // Update button text to show loading
+    const originalText = button.innerHTML;
+    button.innerHTML = "Processing... <i class=\"fas fa-spinner fa-spin\"></i>";
+    button.disabled = true;
+    button.style.pointerEvents = "none";
+    
+    // Create experience selection effect
+    const experienceCard = button.closest(".experience-card");
+    if (experienceCard) {
+        experienceCard.classList.add("selected");
+        createExperienceSelectionEffect(experienceCard);
+    }
+    
+    // Simulate processing delay and redirect
+    setTimeout(() => {
+        redirectToExperience(experienceType, button, originalText, experienceCard);
+    }, 1500);
+}
+
+function createExperienceSelectionEffect(card) {
+    // Create particle effect
+    const particles = [];
+    const particleCount = 20;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement("div");
+        particle.className = "experience-particle";
+        particle.style.cssText = `
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--electric-blue), var(--creative-purple));
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.8;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        `;
+        
+        card.appendChild(particle);
+        particles.push(particle);
+        
+        // Animate particle
+        const angle = (i / particleCount) * Math.PI * 2;
+        const distance = Math.random() * 100 + 50;
+        const duration = Math.random() * 1000 + 500;
+        
+        setTimeout(() => {
+            particle.style.transition = `all ${duration}ms ease-out`;
+            particle.style.transform = `translate(
+                ${Math.cos(angle) * distance}px,
+                ${Math.sin(angle) * distance}px
+            )`;
+            particle.style.opacity = "0";
+        }, 100);
+        
+        // Remove particle after animation
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.parentNode.removeChild(particle);
+            }
+        }, duration + 100);
+    }
+}
+
+function redirectToExperience(experienceType, button, originalText, card) {
+    // Restore button
+    button.innerHTML = originalText;
+    button.disabled = false;
+    button.style.pointerEvents = "auto";
+    
+    // Remove selection state
+    if (card) {
+        card.classList.remove("selected");
+    }
+    
+    // Handle different experience types
+    switch(experienceType) {
+        case "finn":
+            // Redirect to FINN (Lead Generation) experience
+            window.location.href = "#finn-experience";
+            break;
+        case "lisa":
+            // Redirect to LISA (DM Response & Nurture) experience
+            window.location.href = "#lisa-experience";
+            break;
+        case "rese":
+            // Redirect to RESE (Listings & Socials) experience
+            window.location.href = "#rese-experience";
+            break;
+        case "tessa":
+            // Redirect to TESSA (Ops & Transaction Coordinator) experience
+            window.location.href = "#tessa-experience";
+            break;
+        case "ross":
+            // Redirect to ROSS (Voice Receptionist) experience
+            window.location.href = "#ross-experience";
+            break;
+        default:
+            console.log("Unknown experience type:", experienceType);
+            // Fallback - could redirect to contact form or show modal
+            break;
+    }
+}
+
+
+
+// Intersection Observer for journey progress tracking
+function initializeJourneyProgress() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '-50% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const stepNumber = entry.target.dataset.step;
+                updateJourneyProgress(stepNumber);
+            }
+        });
+    }, observerOptions);
+
+    // Observe all journey steps
+    document.querySelectorAll('.journey-step').forEach(step => {
+        observer.observe(step);
+    });
+}
+
+function updateJourneyProgress(activeStep) {
+    // Update progress dots
+    document.querySelectorAll('.progress-dot').forEach(dot => {
+        const stepNumber = dot.dataset.step;
+        if (stepNumber <= activeStep) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+
+    // Update progress line
+    const progressLine = document.querySelector('.progress-line');
+    if (progressLine) {
+        const progressPercentage = (activeStep / 3) * 100;
+        progressLine.style.setProperty('--progress-width', `${progressPercentage}%`);
+    }
+}
+
+// Initialize journey progress when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeJourneyProgress();
+    initializeAgentCarousel();
+});
+
+// AI Agent Carousel Functionality
+function initializeAgentCarousel() {
+    const agentSpotlights = document.querySelectorAll('.agent-spotlight');
+
+    // Agent order for carousel navigation
+    const agents = ['finn', 'lisa', 'rese', 'tessa', 'ross'];
+    let currentIndex = 0;
+
+    // Update carousel display with smooth animations
+    function updateCarousel(index, direction = 'next') {
+        const previousIndex = currentIndex;
+        currentIndex = index;
+
+        // Remove active class from all cards
+        document.querySelectorAll('.agent-card').forEach(card => {
+            card.classList.remove('active');
+        });
+
+        // Add leaving animation to current card
+        const currentCard = document.querySelector(`.agent-card[data-agent="${agents[previousIndex]}"]`);
+        if (currentCard) {
+            currentCard.classList.add('leaving');
+            setTimeout(() => {
+                currentCard.classList.remove('leaving');
+            }, 600);
+        }
+
+        // Add active class to new card
+        const newCard = document.querySelector(`.agent-card[data-agent="${agents[index]}"]`);
+        if (newCard) {
+            setTimeout(() => {
+                newCard.classList.add('active');
+            }, 150);
+        }
+
+        // Update dots
+        document.querySelectorAll('.dot').forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+
+        // Add haptic feedback
+        if (isTouchDevice() && navigator.vibrate) {
+            navigator.vibrate(30);
+        }
+    }
+
+    // Navigate to next agent
+    function nextAgent() {
+        const nextIndex = (currentIndex + 1) % agents.length;
+        updateCarousel(nextIndex, 'next');
+    }
+
+    // Navigate to previous agent
+    function prevAgent() {
+        const prevIndex = (currentIndex - 1 + agents.length) % agents.length;
+        updateCarousel(prevIndex, 'prev');
+    }
+
+    // Navigate to specific agent
+    function goToAgent(agentName) {
+        const index = agents.indexOf(agentName);
+        if (index !== -1) {
+            updateCarousel(index, 'direct');
+        }
+    }
+
+    // Event listeners for navigation
+    document.addEventListener('click', function(e) {
+        // Handle previous arrow clicks
+        if (e.target.closest('.prev-arrow')) {
+            e.preventDefault();
+            prevAgent();
+            return;
+        }
+
+        // Handle next arrow clicks
+        if (e.target.closest('.next-arrow')) {
+            e.preventDefault();
+            nextAgent();
+            return;
+        }
+
+        // Handle dot clicks
+        if (e.target.classList.contains('dot')) {
+            e.preventDefault();
+            const dots = document.querySelectorAll('.dot');
+            const index = Array.from(dots).indexOf(e.target);
+            if (index !== -1) {
+                updateCarousel(index, 'direct');
+            }
+            return;
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prevAgent();
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            nextAgent();
+        }
+    });
+
+    // Auto-play functionality - continuous loop
+    let autoPlayInterval = null;
+    const autoPlayDelay = 5000; // 5 seconds for faster cycling
+
+    function startAutoPlay() {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(() => {
+            nextAgent(); // Will automatically loop due to modulo arithmetic
+        }, autoPlayDelay);
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+
+    // Pause auto-play on user interaction
+    function pauseAutoPlay() {
+        stopAutoPlay();
+        // Restart after 8 seconds of inactivity
+        setTimeout(() => {
+            startAutoPlay();
+        }, 8000);
+    }
+
+    // Start auto-play immediately
+    startAutoPlay();
+
+    // Pause on hover for better UX
+    const showcaseContainer = document.querySelector('.agent-showcase');
+    if (showcaseContainer) {
+        showcaseContainer.addEventListener('mouseenter', stopAutoPlay);
+        showcaseContainer.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    // Initialize the first agent as active
+    setTimeout(() => {
+        updateCarousel(0, 'direct');
+    }, 100);
+}
