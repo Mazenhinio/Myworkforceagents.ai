@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Future of Work | MWA.AI - Your Trusted AI Transformation Partner</title>
+    <meta name="description" content="Transform your business with AI. Choose your experience: Click, Type, or Talk. Meet our humans, agents, and methods that revolutionize how you work.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- VAPI Voice AI SDK will be loaded dynamically -->
+    
+    <!-- Three.js for 3D Audio Visualizer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Load main script early so functions are defined before HTML uses them -->
+    <script defer src="assets/js/script.js"></script>
+</head>
+<body>
+    <!-- Global Scroll Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="brand-logo">
+                    <span class="brand-text">myWorkforceAgents.AI</span>
+                </div>
+                <div class="brand-tagline">YOUR TRUSTED AI TRANSFORMATION PARTNER</div>
+            </div>
+            <div class="nav-links">
+                <a href="#experiences">Experiences</a>
+                <a href="#meet-section">Meet Our Team</a>
+                <a href="#ai-story">AI Story</a>
+                <a href="https://myworkforceagents.ai/" target="_blank" class="btn btn-outline">Learn More</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-main">
+                    <!-- Hero Infinity Logo -->
+                    <div class="hero-logo">
+                        <div class="hero-infinity-logo">
+                            <img src="assets/images/Inifnity Logo.png" alt="MWA.AI Infinity Logo" class="hero-infinity-symbol">
+                        </div>
+                    </div>
+                    
+                    <!-- Hero Title -->
+                    <div class="hero-title">
+                        <h1 class="hero-headline">
+                            Welcome!<br><span class="highlight">Choose Your Experience</span>
+                        </h1>
+                    </div>
+                    
+                    <!-- Choose Your Experience Section -->
+                    <!-- <div class="experience-section" id="experiences">
+                        <p class="experience-caption">Pick an Experience</p>
+                         -->
+                        <!-- NEW RETRO-FUTURISTIC CARD SYSTEM -->
+                        <div class="cards-container">
+                            <!-- Card 1: Click -->
+                            <div class="game-card" data-card="click">
+                                <div class="card-inner">
+                                    <!-- Card Back -->
+                                    <div class="card-side card-back">
+                                        <div class="tech-pattern">
+                                            <div class="circuit-grid"></div>
+                                            <div class="holo-sweep"></div>
+                                            <div class="brand-logo">MWA</div>
+
+                                        </div>
+                                    </div>
+                                    <!-- Card Front -->
+                                    <div class="card-side card-front">
+                                        <div class="card-content">
+                                            <div class="card-header">
+                                                <div class="icon-container">
+                                                    <i class="fas fa-mouse-pointer"></i>
+                                                </div>
+                                                <h3>TAP</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Interactive point-and-click interface for visual users</p>
+                                            </div>
+                                            <div class="card-actions">
+                                                <button class="btn-select" onclick="selectCard('click')">
+                                                    Select <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 2: Type -->
+                            <div class="game-card" data-card="type" title="Instant message communications for text-based users.">
+                                <div class="card-inner">
+                                    <!-- Card Back -->
+                                    <div class="card-side card-back">
+                                        <div class="tech-pattern">
+                                            <div class="circuit-grid"></div>
+                                            <div class="holo-sweep"></div>
+                                            <div class="brand-logo">MWA</div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Front -->
+                                    <div class="card-side card-front">
+                                        <div class="card-content">
+                                            <div class="card-header">
+                                                <div class="icon-container">
+                                                    <i class="fas fa-keyboard"></i>
+                                                </div>
+                                                <h3>TEXT</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Instant message communications for text-based users.</p>
+                                            </div>
+                                            <div class="card-actions">
+                                                <button class="btn-select" onclick="selectCard('type')">
+                                                    Select <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 3: Voice -->
+                            <div class="game-card" data-card="voice" title="Hands‑free natural voice interface for conversational users.">
+                                <div class="card-inner">
+                                    <!-- Card Back -->
+                                    <div class="card-side card-back">
+                                        <div class="tech-pattern">
+                                            <div class="circuit-grid"></div>
+                                            <div class="holo-sweep"></div>
+                                            <div class="brand-logo">MWA</div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Front -->
+                                    <div class="card-side card-front">
+                                        <div class="card-content">
+                                            <div class="card-header">
+                                                <div class="icon-container">
+                                                    <i class="fas fa-microphone"></i>
+                                                </div>
+                                                <h3>TALK</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Hands‑free natural voice interface for conversational users.</p>
+                                            </div>
+                                            <div class="card-actions">
+                                                <button class="btn-select" onclick="selectCard('voice')">
+                                                    Select <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hand Shadow Effect -->
+                        <div class="hand-effect">
+                            <div class="shadow-base"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Animated Background Elements -->
+        <div class="hero-bg-animation">
+            <div class="floating-orb orb-1"></div>
+            <div class="floating-orb orb-2"></div>
+            <div class="floating-orb orb-3"></div>
+            <div class="particle-field">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet Our Section -->
+    <section id="meet-section" class="meet-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>From Overwhelmed to Automated:<br>Your 90‑Day Transformation</h2>
+                <p>Less grind, more growth — let your business run itself.</p>
+            </div>
+            
+            <!-- Office Transformation Timeline -->
+            <div class="transformation-timeline-container">
+                <div class="timeline-progress-bar">
+                    <div class="timeline-markers">
+                        <div class="marker active" data-phase="before">
+                            <div class="marker-dot"></div>
+                            <span>BEFORE</span>
+                        </div>
+                        <div class="marker" data-phase="during">
+                            <div class="marker-dot"></div>
+                            <span>TRANSFORMATION</span>
+                        </div>
+                        <div class="marker" data-phase="after">
+                            <div class="marker-dot"></div>
+                            <span>AFTER</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Timeline Navigation -->
+            <div class="timeline-controls">
+                <button class="timeline-btn active" onclick="showTimelinePhase('before')" data-phase="before">
+                    <i class="fas fa-building"></i>
+                    <span>Meet Our Challenge</span>
+                </button>
+                <button class="timeline-btn" onclick="showTimelinePhase('during')" data-phase="during">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Meet Our Human</span>
+                </button>
+                <button class="timeline-btn" onclick="showTimelinePhase('after')" data-phase="after">
+                    <i class="fas fa-rocket"></i>
+                    <span>Meet Our Agents</span>
+                </button>
+            </div>
+
+                <div class="timeline-office-container">
+                    <!-- BEFORE: Traditional Office -->
+                    <div class="office-scene active" id="officeBefore">
+                        <div class="office-background before-bg">
+                            <div class="office-title">
+                                <h3><i class="fas fa-building"></i> Traditional Office</h3>
+                                <p>Expensive, limited, human-dependent</p>
+                            </div>
+                            
+                            <div class="workers-grid">
+                                <div class="human-worker" data-role="Sales Development Rep (SDR)" data-salary="$55,000">
+                                    <div class="worker-avatar">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div class="worker-info">
+                                        <span class="role">Sales Development Rep (SDR)</span>
+                                        <span class="cost">$55K/year</span>
+                                    </div>
+                                    <div class="worker-limitations">
+                                        <span>❌ High turnover</span>
+                                        <span>❌ Inconsistent outreach</span>
+                                        <span>❌ Slow response</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="human-worker" data-role="Marketing Coordinator / Listing Manager" data-salary="$60,000">
+                                    <div class="worker-avatar">
+                                        <i class="fas fa-bullhorn"></i>
+                                    </div>
+                                    <div class="worker-info">
+                                        <span class="role">Marketing Coordinator / Listing Manager</span>
+                                        <span class="cost">$60K/year</span>
+                                    </div>
+                                    <div class="worker-limitations">
+                                        <span>❌ Inconsistent posting</span>
+                                        <span>❌ Time-consuming content</span>
+                                        <span>❌ Multi-listing bottlenecks</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="human-worker" data-role="Operations Coordinator" data-salary="$50,000">
+                                    <div class="worker-avatar">
+                                        <i class="fas fa-cogs"></i>
+                                    </div>
+                                    <div class="worker-info">
+                                        <span class="role">Operations Coordinator</span>
+                                        <span class="cost">$50K/year</span>
+                                    </div>
+                                    <div class="worker-limitations">
+                                        <span>❌ Human error</span>
+                                        <span>❌ Limited availability</span>
+                                        <span>❌ Tracking challenges</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="total-cost-before">
+                                <span class="cost-label">Annual Operating Cost:</span>
+                                <span class="cost-amount">$500,000+</span>
+                                <div class="hidden-costs">
+                                    <span class="hidden-costs-label">Hidden costs include:</span>
+                                    <span>1. Missed hours outside business hours</span>
+                                    <span>2. Leads going cold before contact</span>
+                                    <span>3. Task overlap</span>
+                                    <span>4. Burnout from covering operational gaps</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DURING: Dr. G Leading Transformation -->
+                    <div class="office-scene" id="officeDuring">
+                        <div class="office-background transformation-bg">
+                            <div class="transformation-leader">
+                                <div class="dr-g-profile">
+                                    <div class="leader-avatar">
+                                        <img src="assets/images/1711739037411.jpeg" alt="Dr. Timothy J. Giardino" class="leader-photo">
+                                        <div class="rank-badge">
+                                            <i class="fas fa-star"></i>
+                                            <span>Founder</span>
+                                        </div>
+                                    </div>
+                                    <div class="leader-info">
+                                        <h3>Dr. Timothy J. Giardino</h3>
+                                        <p class="title">Your Trusted AI Transformation Partner</p>
+                                        <div class="credentials">
+                                            <span class="credential"><i class="fas fa-medal"></i> 20-Year Army Veteran</span>
+                                            <span class="credential"><i class="fas fa-graduation-cap"></i> Doctorate in Business</span>
+                                            <span class="credential"><i class="fas fa-briefcase"></i> Corporate HRIS Executive</span>
+                                            <span class="credential"><i class="fas fa-robot"></i> AI Entrepreneur</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="transformation-process">
+                                    <h4><i class="fas fa-clipboard-list"></i> The Success Blueprint</h4>
+                                    <div class="process-steps">
+                                        <div class="step active">
+                                            <div class="step-number">1</div>
+                                            <div class="step-content">
+                                                <h5>Evaluate</h5>
+                                                <p>Discover AI Opportunities That Save You the Most Time & Money</p>
+                                            </div>
+                                        </div>
+                                        <div class="step">
+                                            <div class="step-number">2</div>
+                                            <div class="step-content">
+                                                <h5>Automate</h5>
+                                                <p>Put Your Custom AI Team to Work in Days, Not Months</p>
+                                            </div>
+                                        </div>
+                                        <div class="step">
+                                            <div class="step-number">3</div>
+                                            <div class="step-content">
+                                                <h5>Scale</h5>
+                                                <p>Grow Without Increasing Payroll or Sacrificing Client Service</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mission-statement">
+                                    <blockquote>
+                                        <i class="fas fa-quote-left"></i>
+                                        "After helping large organizations thrive from the battlefield to the boardroom, Dr. G founded MWA.AI with a single mission in mind: To help solopreneurs to medium-sized businesses not just survive—but thrive—in the Age of Agentic AI."
+                                        <i class="fas fa-quote-right"></i>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AFTER: AI-Powered Future -->
+                    <div class="office-scene" id="officeAfter">
+                        <div class="office-background future-bg">
+                            <div class="office-title">
+                                <h3><i class="fas fa-rocket"></i> AI-Powered Workplace</h3>
+                                <p>Efficient, scalable, always available</p>
+                            </div>
+                            
+                            <div class="ai-agents-grid">
+                                <div class="ai-agent" data-role="Lead Coordinator AI (FINN + LISA)" data-savings="$55,000">
+                                    <div class="agent-avatar">
+                                        <i class="fas fa-phone"></i>
+                                        <div class="agent-status online"></div>
+                                    </div>
+                                    <div class="agent-info">
+                                        <span class="role">Lead Coordinator AI (FINN + LISA)</span>
+                                        <span class="cost">$100s/year</span>
+                                    </div>
+                                    <div class="agent-benefits">
+                                        <span>✅ 24/7 availability</span>
+                                        <span>✅ Instant qualification & booking</span>
+                                        <span>✅ No human error</span>
+                                        <span>✅ Handles 25+ hrs/wk follow‑up</span>
+                                        <span>✅ Never misses a lead opportunity</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="ai-agent" data-role="Marketing & Listing AI (RESE)" data-savings="$60,000">
+                                    <div class="agent-avatar">
+                                        <i class="fas fa-bullhorn"></i>
+                                        <div class="agent-status online"></div>
+                                    </div>
+                                    <div class="agent-info">
+                                        <span class="role">Marketing & Listing AI (RESE)</span>
+                                        <span class="cost">$100s/year</span>
+                                    </div>
+                                    <div class="agent-benefits">
+                                        <span>✅ Auto-generates brand-voice listings</span>
+                                        <span>✅ Perfect accuracy</span>
+                                        <span>✅ Unlimited campaigns</span>
+                                        <span>✅ Cuts content creation time by 80%</span>
+                                        <span>✅ Consistent brand messaging across all platforms</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="ai-agent" data-role="Transaction Coordination AI (TESSA)" data-savings="$50,000">
+                                    <div class="agent-avatar">
+                                        <i class="fas fa-file-contract"></i>
+                                        <div class="agent-status online"></div>
+                                    </div>
+                                    <div class="agent-info">
+                                        <span class="role">Transaction Coordination AI (TESSA)</span>
+                                        <span class="cost">$100s/year</span>
+                                    </div>
+                                    <div class="agent-benefits">
+                                        <span>✅ Tracks deadlines</span>
+                                        <span>✅ Eliminates double-bookings</span>
+                                        <span>✅ Handles 85% of calendar/task management</span>
+                                        <span>✅ Boosts client satisfaction</span>
+                                        <span>✅ Never misses important deadlines</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="total-savings-after">
+                                <span class="savings-label">Annualized Savings:</span>
+                                <span class="savings-amount">$600K/year</span>
+                                <div class="savings-breakdown">
+                                    <span>✅ 24/7 productivity with no added payroll</span>
+                                    <span>✅ Every lead answered</span>
+                                    <span>✅ Listings live faster and get more visibility</span>
+                                    <span>✅ Smooth deal progress to close</span>
+                                    <span>✅ More time for growth and client relationships</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Liberation Journey -->
+    <section id="ai-story" class="premium-story-section">
+        <div class="container">
+            <div class="story-header" data-aos="fade-up">
+                <h2 class="luxury-headline">
+                    <span class="highlight-gradient">From Burnout to Breakthrough</span>
+                </h2>
+                <p class="luxury-subtitle">Your AI Liberation Journey</p>
+                <div class="story-tagline">
+                    <span class="tagline-text">Turn your daily grind into strategic growth—with the right AI agents by your side.</span>
+                    <div class="scroll-pulse">
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-core">↓</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="journey-timeline" id="journeyTimeline">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="journeyProgressFill"></div>
+                </div>
+                
+                <!-- Timeline Navigation Dots -->
+                <div class="timeline-navigation">
+                    <div class="timeline-dot active" data-stage="1" data-stage-name="The Grind"></div>
+                    <div class="timeline-dot" data-stage="2" data-stage-name="The Shift"></div>
+                    <div class="timeline-dot" data-stage="3" data-stage-name="The Deployment"></div>
+                    <div class="timeline-dot" data-stage="4" data-stage-name="The Expansion"></div>
+                    <div class="timeline-dot" data-stage="5" data-stage-name="Liberated Leadership"></div>
+                </div>
+                
+                <!-- Stage 1: Drowning in Busywork -->
+                <div class="journey-stage active" data-stage="1" id="stage1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stage-content">
+                        <div class="stage-visual">
+                            <div class="stage-icon">
+                                <i class="fas fa-stop-circle"></i>
+                                <div class="exhausted-emoji">�</div>
+                            </div>
+                            <div class="energy-bar">
+                                <div class="energy-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="stage-text">
+                            <h3>Stage 1: Drowning in Busywork 🛑</h3>
+                            <p class="stage-description">"When the business runs you." (0 hrs/week saved)</p>
+                            <div class="pain-points">
+                                <span>Manual work</span>
+                                <span>Repetitive tasks</span>
+                                <span>Tool overload</span>
+                                <span>Errors & delays</span>
+                            </div>
+                            <div class="customer-quote">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"I was spending 6 hours a day just on email follow-ups. It was killing my business. My family barely saw me, and I was always behind on everything."</p>
+                                <span class="quote-author">- Sarah M., Real Estate Agent</span>
+                                <div class="quote-metrics">
+                                    <span class="metric">📧 6 hours/day saved</span>
+                                    <span class="metric">👨‍👩‍👧‍👦 Family time restored</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 2: Seeing the Way Out -->
+                <div class="journey-stage" data-stage="2" id="stage2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stage-content">
+                        <div class="stage-visual">
+                            <div class="stage-icon">
+                                <i class="fas fa-search"></i>
+                                <div class="glowing-circuit">🔍</div>
+                            </div>
+                            <div class="energy-bar">
+                                <div class="energy-fill" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        <div class="stage-text">
+                            <h3>Stage 2: Seeing the Way Out 🔍</h3>
+                            <p class="stage-description">"Spotting what AI can take off your plate." (+5 hrs/week)</p>
+                            <div class="trigger-moments">
+                                <span>Agent Zero audit completed</span>
+                                <span>Workflow analysis</span>
+                                <span>Custom agent matching</span>
+                                <span>Implementation plan</span>
+                            </div>
+                            <div class="customer-quote">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"The audit revealed I was losing $15K monthly on manual processes. That was my wake-up call. I realized I was working harder, not smarter."</p>
+                                <span class="quote-author">- Mike R., Business Owner</span>
+                                <div class="quote-metrics">
+                                    <span class="metric">💰 $15K/month identified</span>
+                                    <span class="metric">🎯 ROI opportunity spotted</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 3: Your First Wins -->
+                <div class="journey-stage" data-stage="3" id="stage3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stage-content">
+                        <div class="stage-visual">
+                            <div class="stage-icon">
+                                <i class="fas fa-bolt"></i>
+                                <div class="ai-dashboard">⚡</div>
+                            </div>
+                            <div class="energy-bar">
+                                <div class="energy-fill" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        <div class="stage-text">
+                            <h3>Stage 3: Your First Wins ⚡</h3>
+                            <p class="stage-description">"AI starts working for you." (+15 hrs/week)</p>
+                            <div class="agent-activities">
+                                <span>Onboarding automation</span>
+                                <span>Follow-up sequences</span>
+                                <span>Lead qualification</span>
+                                <span>24/7 scheduling</span>
+                            </div>
+                            <div class="customer-quote">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"My AI agent handles 80% of my client communications. I finally have time to focus on strategy. My clients actually think I'm more responsive now!"</p>
+                                <span class="quote-author">- Jennifer L., Consultant</span>
+                                <div class="quote-metrics">
+                                    <span class="metric">🤖 80% automation achieved</span>
+                                    <span class="metric">📈 Client satisfaction up</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 4: Freedom to Grow -->
+                <div class="journey-stage" data-stage="4" id="stage4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stage-content">
+                        <div class="stage-visual">
+                            <div class="stage-icon">
+                                <i class="fas fa-rocket"></i>
+                                <div class="growth-arrow">�</div>
+                            </div>
+                            <div class="energy-bar">
+                                <div class="energy-fill" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="stage-text">
+                            <h3>Stage 4: Freedom to Grow 🚀</h3>
+                            <p class="stage-description">"Scale without hiring." (+25 hrs/week)</p>
+                            <div class="momentum-results">
+                                <span>Time reclamation</span>
+                                <span>Friction removal</span>
+                                <span>Strategic scaling</span>
+                                <span>Big-picture focus</span>
+                            </div>
+                            <div class="customer-quote">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"We've grown 300% in 6 months. The AI agents handle the volume while we focus on quality. We're now competing with companies 10x our size."</p>
+                                <span class="quote-author">- David K., Agency Owner</span>
+                                <div class="quote-metrics">
+                                    <span class="metric">🚀 300% growth in 6 months</span>
+                                    <span class="metric">🏆 Competing with giants</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 5: Leading with Leverage -->
+                <div class="journey-stage" data-stage="5" id="stage5" data-aos="fade-up" data-aos-delay="500">
+                    <div class="stage-content">
+                        <div class="stage-visual">
+                            <div class="stage-icon">
+                                <i class="fas fa-crown"></i>
+                                <div class="growth-arrow">🌟</div>
+                            </div>
+                            <div class="energy-bar">
+                                <div class="energy-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="stage-text">
+                            <h3>Stage 5: Leading with Leverage 🌟</h3>
+                            <p class="stage-description">"Leading an unstoppable team." (+30+ hrs/week)</p>
+                            <div class="momentum-results">
+                                <span>Total optimization</span>
+                                <span>Market leadership</span>
+                                <span>True delegation</span>
+                                <span>Continuous growth</span>
+                            </div>
+                            <div class="customer-quote">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"We've become the agency that others try to copy. Our AI-powered operations run so smoothly that I actually took a 2-week vacation for the first time in 8 years. Revenue didn't dip—it grew."</p>
+                                <span class="quote-author">- Michelle R., Brokerage Owner</span>
+                                <div class="quote-metrics">
+                                    <span class="metric">🏝️ 2-week vacation without worry</span>
+                                    <span class="metric">� Revenue growth while away</span>
+                                    <span class="metric">👑 Market leader position</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Liberation Conclusion -->
+    <!-- Learn More Footer -->
+    <footer class="learn-more-footer">
+        <div class="container">
+            <div class="learn-more-content">
+                <div class="learn-more-header">
+                    <h2>Your Transformation Starts Now</h2>
+                    <p>Ready to begin your AI liberation journey? Choose your experience above to start your transformation</p>
+                </div>
+                <div class="learn-more-cta">
+                    <div class="footer-buttons">
+                        <button class="learn-more-btn" onclick="goBackToExperiences()">
+                            <span class="btn-text">Choose Your Experience</span>
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out-cubic',
+            once: true,
+            offset: 100,
+            anchorPlacement: 'top-bottom'
+        });
+    </script>
+    
+    
+</body>
+</html> 

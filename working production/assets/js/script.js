@@ -4,20 +4,13 @@ let clickFormStartTime = null;
 
 // GoHighLevel CRM Configuration
 const GHL_CONFIG = {
-    webhookUrl: 'https://services.leadconnectorhq.com/hooks/CnmiBt5QEudC1IpnvnWc/webhook-trigger/8KcHsPQKlO23E6akyhGQ',
-    enabled: true,
-    fallbackEmail: 'leads@myworkforceagents.ai'
+    webhookUrl: 'https://services.leadconnectorhq.com/hooks/CnmiBt5QEudC1IpnvnWc/webhook-trigger/8KcHsPQKlO23E6akyhGQ', // Your actual GHL webhook URL
+    enabled: true, // Set to false to disable GHL integration during testing
+    fallbackEmail: 'leads@myworkforceagents.ai' // Fallback email for failed submissions
 };
 let globalTimerInterval = null;
 
-// Performance optimization variables
-let isLowPerformanceDevice = false;
-let animationFrameId = null;
-let scrollTimeout = null;
-let resizeTimeout = null;
-let isMobileDevice = false;
-
-// Enhanced mobile detection and performance assessment
+// Mobile detection and utilities
 const isMobile = () => {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
            window.innerWidth <= 768;
@@ -27,74 +20,32 @@ const isTouchDevice = () => {
     return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 };
 
-// Performance detection for older devices
-const detectDevicePerformance = () => {
-    const userAgent = navigator.userAgent;
-    const isOldDevice = /iPhone.*OS [7-9]_|iPhone.*OS 1[0-2]_|Android.*4\.[0-4]|Android.*5\.[0-3]/.test(userAgent);
-    const isLowMemory = navigator.deviceMemory && navigator.deviceMemory < 4;
-    const isSlowConnection = navigator.connection && 
-        (navigator.connection.effectiveType === 'slow-2g' || 
-         navigator.connection.effectiveType === '2g' || 
-         navigator.connection.effectiveType === '3g');
-    
-    isLowPerformanceDevice = isOldDevice || isLowMemory || isSlowConnection;
-    isMobileDevice = isMobile();
-    
-    // Add performance class to body for CSS targeting
-    if (isLowPerformanceDevice) {
-        document.body.classList.add('low-performance-device');
-    }
-    if (isMobileDevice) {
-        document.body.classList.add('mobile-device');
-    }
-};
-
-// Performance monitoring removed for stability
-
-// Enhanced mobile-specific optimizations
+// Mobile-specific optimizations
 function optimizeForMobile() {
-    detectDevicePerformance();
-    
-    if (isMobileDevice) {
+    if (isMobile()) {
         // Add mobile class to body for CSS targeting
         document.body.classList.add('mobile-device');
-        
-        // Add performance class for low-end devices
-        if (isLowPerformanceDevice) {
-            document.body.classList.add('low-performance-device');
-        }
         
         // Improve touch responsiveness
         document.body.style.touchAction = 'manipulation';
         
-        // Reduce motion for accessibility and performance
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || isLowPerformanceDevice) {
-            document.body.classList.add('reduced-motion');
-        }
-        
-        // Optimize viewport for better performance
-        const viewport = document.querySelector('meta[name="viewport"]');
-        if (viewport && isLowPerformanceDevice) {
-            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-        }
-        
-        // Prevent zoom on form inputs only for low-performance devices
-        if (isLowPerformanceDevice) {
-            const inputs = document.querySelectorAll('input, textarea');
-            inputs.forEach(input => {
-                input.addEventListener('focus', () => {
-                    if (viewport) {
-                        viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-                    }
-                });
-                
-                input.addEventListener('blur', () => {
-                    if (viewport) {
-                        viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
-                    }
-                });
+        // Prevent zoom on form inputs
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                const viewport = document.querySelector('meta[name="viewport"]');
+                if (viewport) {
+                    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                }
             });
-        }
+            
+            input.addEventListener('blur', () => {
+                const viewport = document.querySelector('meta[name="viewport"]');
+                if (viewport) {
+                    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+                }
+            });
+        });
     }
 }
 
@@ -211,54 +162,132 @@ function initializeBackToExperiencesButton() {
     }
 }
 
-// Optimized DOM ready handler
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 MWA.AI System Initializing...');
+    
     // Initialize mobile optimizations first
     optimizeForMobile();
     
     // Start global time tracking immediately (hidden from user)
     startGlobalTimeTracking();
     
-    // Initialize core systems first
+    // Initialize all systems
+    initializeAnimations();
+    initialize3DStoryAnimations();
+    initializeFormValidation();
     initializeScrollEffects();
     initializeMobileMenu();
-    initializeCardExperience();
+    initializeCardExperience(); // Add this new function
+    initializeTimeline();
     
-    // Initialize performance-heavy features conditionally
-    if (!isLowPerformanceDevice) {
-        initializeAnimations();
-        initialize3DStoryAnimations();
-        initializeTimeline();
-        
-        // Initialize Voice Interface with delay for better performance
-        setTimeout(() => {
-            const canvas = document.getElementById('threejs-canvas');
-            if (canvas && window.THREE) {
-                initVoiceInterface();
-            }
-        }, 3000);
-    } else {
-        // Simplified animations for low-performance devices
-        initializeBasicAnimations();
-    }
-    
-    // Initialize form validation
-    initializeFormValidation();
-    
-    // Initialize agent carousel and journey progress
-    initializeAgentCarousel();
-    initializeJourneyProgress();
+    // Using delegated click handler for Back to Experiences button (no direct binding needed)
+    // Initialize Voice Interface when page loads
+    setTimeout(() => {
+        const canvas = document.getElementById('threejs-canvas');
+        if (canvas && window.THREE) {
+            console.log('🎙️ Pre-loading Voice Interface...');
+            initVoiceInterface();
+        }
+    }, 2000);
     
     // Start lead counter animation immediately
     animateLeadCounter();
+    
+    console.log('✅ All systems online!');
 });
 
-// Card Experience Interaction Handlers - REMOVED (will be replaced with new implementation)
+// Card Experience Interaction Handlers
 function initializeCardExperience() {
-    console.log('🃏 Card Experience will be initialized by new interface system');
+    console.log('🃏 Initializing Card Experience...');
+    
+    // Add click handlers to card backs
+    const gameCards = document.querySelectorAll('.game-card');
+    
+    gameCards.forEach(card => {
+        const cardBack = card.querySelector('.card-back');
+        
+        // Click on card back to flip
+        cardBack.addEventListener('click', () => {
+            const cardType = card.dataset.card;
+            flipCard(cardType);
+        });
+    });
 }
 
-// Card interface functions removed - will be replaced with new implementation
+function flipCard(cardType) {
+    console.log(`🃏 Flipping card: ${cardType}`);
+    
+    const gameCard = document.querySelector(`[data-card="${cardType}"]`);
+    
+    // Add flip animation - only to the game card container
+    gameCard.classList.add('flipped');
+    
+    // Add sound effect (optional)
+    playCardFlipSound();
+    
+    // Add special effects
+    createCardFlipParticles(gameCard);
+}
+
+function flipCardBack(cardType) {
+    console.log(`🃏 Flipping card back: ${cardType}`);
+    
+    const gameCard = document.querySelector(`[data-card="${cardType}"]`);
+    
+    // Remove flip animation
+    gameCard.classList.remove('flipped');
+    
+    // Remove selection state
+    gameCard.classList.remove('selected');
+    
+    // Add sound effect
+    playCardFlipSound();
+}
+
+function selectCard(cardType) {
+    console.log(`🃏 Card selected: ${cardType}`);
+    
+    const gameCard = document.querySelector(`[data-card="${cardType}"]`);
+    
+    // Prevent double-tapping on mobile
+    if (gameCard.classList.contains('selected')) {
+        console.log('🚫 Card already selected, preventing double selection');
+        return;
+    }
+    
+    // Play click/selection sound
+    try { playCardFlipSound(); } catch (_) {}
+
+    // Add selection state and pending animation
+    gameCard.classList.add('selected', 'pending');
+    
+    // Provide haptic feedback on mobile devices
+    if (isTouchDevice() && navigator.vibrate) {
+        navigator.vibrate(50); // Short vibration for feedback
+    }
+    
+    // Update button text to show loading
+    const button = gameCard.querySelector('.btn-select');
+    const originalText = button.innerHTML;
+    // Persist original label on the card for later restore
+    if (!gameCard.dataset.originalLabel) {
+        gameCard.dataset.originalLabel = originalText;
+    }
+    button.innerHTML = 'Loading... <i class="fas fa-spinner fa-spin"></i>';
+    
+    // Disable button to prevent multiple clicks
+    button.disabled = true;
+    button.style.pointerEvents = 'none';
+    
+    // Create dramatic effect
+    createCardSelectionEffect(gameCard);
+    
+    // Show loading screen after a brief moment
+    setTimeout(() => {
+        showCardLoadingScreen(cardType);
+    }, 600);
+}
 
 // Show loading screen between card selection and interface transition
 function showCardLoadingScreen(cardType) {
@@ -1432,10 +1461,6 @@ function initializeClickInterface() {
     
     // Initialize navigation
     updateStepNavigation();
-    
-    // Make navigation functions globally available
-    window.nextStep = nextStep;
-    window.previousStep = previousStep;
 }
 
 
@@ -4699,11 +4724,445 @@ function simpleInterfaceCleanup() {
     console.log('✅ Interface cleanup complete - returned to card selection');
 }
 
-// CLICK INTERFACE FUNCTIONS - REMOVED (will be replaced with new implementation)
+// CLICK INTERFACE FUNCTIONS
+window.currentStep = 1;
+const totalSteps = 4;
+window.isTransitioning = false; // Prevent multiple rapid transitions
 
-// CARD INTERFACE FUNCTIONS - REMOVED (will be replaced with new implementation)
+// Validation function for each step
+function validateCurrentStep() {
+    switch(window.currentStep) {
+        case 1: // Industry selection
+            const selectedIndustry = document.querySelector('.visual-dropdown .selected-text');
+            if (!selectedIndustry || selectedIndustry.textContent === 'Choose your real estate focus') {
+                showValidationError('Please select your real estate industry focus.');
+                return false;
+            }
+            break;
+            
+        case 2: // Business size
+            const selectedSize = document.querySelector('.size-card.selected');
+            if (!selectedSize) {
+                showValidationError('Please select your business size.');
+                return false;
+            }
+            break;
+            
+        case 3: // AI Goals
+            const selectedGoals = document.querySelectorAll('.goal-item.selected');
+            if (selectedGoals.length === 0) {
+                showValidationError('Please select at least one AI agent priority.');
+                return false;
+            }
+            break;
+            
+        case 4: // Contact info
+            const step4 = document.querySelector('[data-step="4"]');
+            const requiredFields = step4.querySelectorAll('input[required], select[required]');
+            
+            // Clear previous invalid states
+            step4.querySelectorAll('.invalid').forEach(field => field.classList.remove('invalid'));
+            
+            let hasErrors = false;
+            let firstInvalidField = null;
+            
+            for (let field of requiredFields) {
+                if (!field.value.trim()) {
+                    field.classList.add('invalid');
+                    hasErrors = true;
+                    if (!firstInvalidField) firstInvalidField = field;
+                }
+            }
+            
+            // Add real-time input validation for text fields
+            const textInputs = step4.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+            textInputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    // Update navigation in case we're on the final step
+                    setTimeout(updateStepNavigation, 100);
+                });
+            });
 
-// Keep the form submission functions that are shared across interfaces
+            // Email validation
+            const emailField = step4.querySelector('input[type="email"]');
+            if (emailField && emailField.value && !isValidEmail(emailField.value)) {
+                emailField.classList.add('invalid');
+                hasErrors = true;
+                if (!firstInvalidField) firstInvalidField = emailField;
+            }
+            
+            if (hasErrors) {
+                if (firstInvalidField) {
+                    showValidationError('Please fill in all required fields correctly.');
+                    firstInvalidField.focus();
+                }
+                return false;
+            }
+            break;
+    }
+    return true;
+}
+
+function showValidationError(message) {
+    // Remove any existing error messages
+    const existingError = document.querySelector('.validation-error');
+    if (existingError) {
+        existingError.remove();
+    }
+    
+    // Create new error message
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'validation-error';
+    errorDiv.innerHTML = `
+        <i class="fas fa-exclamation-triangle"></i>
+        <span>${message}</span>
+    `;
+    
+    // Insert error message at the top of the current step
+    const currentStep = document.querySelector(`[data-step="${window.currentStep}"]`);
+    if (currentStep) {
+        currentStep.insertBefore(errorDiv, currentStep.firstChild);
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            if (errorDiv.parentNode) {
+                errorDiv.remove();
+            }
+        }, 5000);
+    }
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function nextStep() {
+    // Validate current step before proceeding
+    if (!validateCurrentStep()) {
+        return; // Stop if validation fails
+    }
+    
+    if (window.currentStep < totalSteps && !window.isTransitioning) {
+        window.isTransitioning = true; // Prevent multiple transitions
+        // Close all open dropdowns
+        closeAllDropdowns();
+        
+        // Get current and next step elements
+        const currentStepEl = document.querySelector(`[data-step="${window.currentStep}"]`);
+        const nextStepEl = document.querySelector(`[data-step="${window.currentStep + 1}"]`);
+        
+        if (currentStepEl && nextStepEl) {
+            // Start transition
+            currentStepEl.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+            currentStepEl.style.opacity = '0';
+            currentStepEl.style.transform = 'translateX(-30px)';
+            
+            // Wait for current step to fade out, then show next step
+            setTimeout(() => {
+                // Hide current step completely
+                currentStepEl.classList.remove('active');
+                currentStepEl.style.visibility = 'hidden';
+                currentStepEl.style.opacity = '0';
+                currentStepEl.style.transform = 'translateX(0)';
+                currentStepEl.style.transition = '';
+                
+                // Show next step
+                window.currentStep++;
+                nextStepEl.classList.add('active');
+                nextStepEl.style.visibility = 'visible';
+                nextStepEl.style.opacity = '0';
+                nextStepEl.style.transform = 'translateX(30px)';
+                
+                // Update navigation immediately after step change
+                updateStepNavigation();
+                
+                // Trigger animation
+                requestAnimationFrame(() => {
+                    nextStepEl.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+                    nextStepEl.style.opacity = '1';
+                    nextStepEl.style.transform = 'translateX(0)';
+                });
+                
+                // Clean up animation after completion
+                setTimeout(() => {
+                    nextStepEl.style.transition = '';
+                    nextStepEl.style.transform = '';
+                    window.isTransitioning = false; // Re-enable transitions
+                }, 400);
+            }, 300);
+        } else {
+            window.isTransitioning = false; // Re-enable transitions if elements not found
+        }
+    }
+}
+
+function previousStep() {
+    if (window.currentStep > 1 && !window.isTransitioning) {
+        window.isTransitioning = true; // Prevent multiple transitions
+        // Close all open dropdowns
+        closeAllDropdowns();
+        
+        // Get current and previous step elements
+        const currentStepEl = document.querySelector(`[data-step="${window.currentStep}"]`);
+        const prevStepEl = document.querySelector(`[data-step="${window.currentStep - 1}"]`);
+        
+        if (currentStepEl && prevStepEl) {
+            // Start transition
+            currentStepEl.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+            currentStepEl.style.opacity = '0';
+            currentStepEl.style.transform = 'translateX(30px)';
+            
+            // Wait for current step to fade out, then show previous step
+            setTimeout(() => {
+                // Hide current step completely
+                currentStepEl.classList.remove('active');
+                currentStepEl.style.visibility = 'hidden';
+                currentStepEl.style.opacity = '0';
+                currentStepEl.style.transform = 'translateX(0)';
+                currentStepEl.style.transition = '';
+                
+                // Show previous step
+                window.currentStep--;
+                prevStepEl.classList.add('active');
+                prevStepEl.style.visibility = 'visible';
+                prevStepEl.style.opacity = '0';
+                prevStepEl.style.transform = 'translateX(-30px)';
+                
+                // Update navigation immediately after step change
+                updateStepNavigation();
+                
+                // Trigger animation
+                requestAnimationFrame(() => {
+                    prevStepEl.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+                    prevStepEl.style.opacity = '1';
+                    prevStepEl.style.transform = 'translateX(0)';
+                });
+                
+                // Clean up animation after completion
+                setTimeout(() => {
+                    prevStepEl.style.transform = '';
+                    prevStepEl.style.transition = '';
+                    window.isTransitioning = false; // Re-enable transitions
+                }, 400);
+            }, 300);
+        } else {
+            window.isTransitioning = false; // Re-enable transitions if elements not found
+        }
+    }
+}
+
+function closeAllDropdowns() {
+    const dropdowns = document.querySelectorAll('.visual-dropdown');
+    dropdowns.forEach(dropdown => {
+        dropdown.classList.remove('open');
+    });
+}
+
+function closeFormInterface() {
+    console.log('🚪 Closing form interface...');
+    
+    // Remove interface-active class to trigger exit animation
+    const formInterface = document.getElementById('activeFormInterface');
+    if (formInterface) {
+        formInterface.classList.remove('interface-active');
+        
+        // Wait for animation to complete, then remove
+        setTimeout(() => {
+            if (formInterface.parentNode) {
+                formInterface.remove();
+            }
+            
+            // Re-enable body scrolling
+            document.body.classList.remove('interface-open');
+            
+            // Restore background elements
+            restoreBackgroundAfterClose();
+            
+            // Reset card states
+            resetCardStates();
+            
+            console.log('✅ Form interface closed successfully');
+        }, 500);
+    }
+}
+
+function restoreBackgroundAfterClose() {
+    const hero = document.querySelector('.hero');
+    const navbar = document.querySelector('.navbar');
+    const footer = document.querySelector('.footer');
+    const meetSection = document.querySelector('#meet-section');
+    const aiStorySection = document.querySelector('#ai-story');
+    
+    const elementsToRestore = [hero, navbar, footer, meetSection, aiStorySection];
+    
+    elementsToRestore.forEach(element => {
+        if (element) {
+            element.style.transition = 'filter 1s ease-out, opacity 1s ease-out';
+            element.style.filter = 'blur(0px)';
+            element.style.opacity = '1';
+        }
+    });
+}
+
+function resetCardStates() {
+    const gameCards = document.querySelectorAll('.game-card');
+    gameCards.forEach(card => {
+        card.classList.remove('selected', 'pending', 'flipped');
+        
+        // Restore original button text
+        const button = card.querySelector('.btn-select');
+        if (button && card.dataset.originalLabel) {
+            button.innerHTML = card.dataset.originalLabel;
+            button.disabled = false;
+            button.style.pointerEvents = 'auto';
+        }
+    });
+}
+
+function validateEntireForm() {
+    // Check all steps for completion
+    for (let step = 1; step <= totalSteps; step++) {
+        // Temporarily set current step for validation
+        const originalStep = window.currentStep;
+        window.currentStep = step;
+
+        if (!validateCurrentStep()) {
+            window.currentStep = originalStep;
+            return false;
+        }
+
+        window.currentStep = originalStep;
+    }
+    return true;
+}
+
+function checkFormCompletion() {
+    // Check all steps for completion without showing error messages
+    for (let step = 1; step <= totalSteps; step++) {
+        // Temporarily set current step for validation
+        const originalStep = window.currentStep;
+        window.currentStep = step;
+
+        if (!isStepComplete(step)) {
+            window.currentStep = originalStep;
+            return false;
+        }
+
+        window.currentStep = originalStep;
+    }
+    return true;
+}
+
+function isStepComplete(stepNumber) {
+    switch(stepNumber) {
+        case 1: // Industry selection
+            const selectedIndustry = document.querySelector('.visual-dropdown .selected-text');
+            return selectedIndustry && selectedIndustry.textContent !== 'Choose your real estate focus';
+
+        case 2: // Business size
+            const selectedSize = document.querySelector('.size-card.selected');
+            return selectedSize !== null;
+
+        case 3: // AI Goals
+            const selectedGoals = document.querySelectorAll('.goal-item.selected');
+            return selectedGoals.length > 0;
+
+        case 4: // Contact info
+            const step4 = document.querySelector('[data-step="4"]');
+            const requiredFields = step4.querySelectorAll('input[required], select[required]');
+            let allFieldsFilled = true;
+
+            for (let field of requiredFields) {
+                if (!field.value.trim()) {
+                    allFieldsFilled = false;
+                    break;
+                }
+            }
+
+            // Email validation if email field exists and has value
+            if (allFieldsFilled) {
+                const emailField = step4.querySelector('input[type="email"]');
+                if (emailField && emailField.value && !isValidEmail(emailField.value)) {
+                    allFieldsFilled = false;
+                }
+            }
+
+            return allFieldsFilled;
+
+        default:
+            return true;
+    }
+}
+
+function updateStepNavigation() {
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const currentStepDisplay = document.querySelector('.current-step');
+
+    // Update step indicator
+    currentStepDisplay.textContent = window.currentStep;
+
+    // Update button states
+    prevBtn.disabled = window.currentStep === 1;
+
+    if (window.currentStep === totalSteps) {
+        nextBtn.innerHTML = 'Submit <i class="fas fa-check"></i>';
+        nextBtn.onclick = submitClickForm;
+
+        // Check if entire form is complete for submit button (without showing errors)
+        const isFormComplete = checkFormCompletion();
+        nextBtn.disabled = !isFormComplete;
+        nextBtn.classList.toggle('form-incomplete', !isFormComplete);
+    } else {
+        nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+        nextBtn.onclick = nextStep;
+        nextBtn.disabled = false;
+        nextBtn.classList.remove('form-incomplete');
+    }
+}
+
+function submitClickForm() {
+    console.log('📝 Submitting click form...');
+    
+    try {
+        // Validate current step before submitting
+        if (!validateCurrentStep()) {
+            // Show friendly message if validation fails
+            showValidationError('Please fill in all required fields before proceeding.');
+            return; // Stop if validation fails
+        }
+        
+        // Collect form data
+        const formData = collectFormData();
+        
+        // Calculate time spent
+        const timeSpent = clickFormStartTime ? Date.now() - clickFormStartTime : 0;
+        const timeDisplay = formatTimeSpent(timeSpent);
+        
+        // Show loading state
+        showFormSubmitting();
+        
+        // Send to CRM and show appropriate success message
+        handleFormSubmissionWithCRM(formData, timeSpent)
+            .then(result => {
+                if (result.success) {
+                    showFormSuccess(formData, timeDisplay, result.crm);
+                } else {
+                    showFormError('Submission failed. Please try again or contact support.');
+                }
+            })
+            .catch(error => {
+                console.error('❌ Form submission error:', error);
+                showFormError('Something went wrong. Please try again or contact support.');
+            });
+        
+    } catch (error) {
+        console.error('❌ Error submitting form:', error);
+        showValidationError('Something went wrong. Please check all fields and try again.');
+    }
+}
+
 function collectFormData() {
     const formData = {
         industry: document.querySelector('[data-field="industry"]')?.dataset.selected || '',
@@ -4723,9 +5182,158 @@ function collectFormData() {
     return formData;
 }
 
-// CARD INTERFACE FORM FUNCTIONS - REMOVED (will be replaced with new implementation)
+function validateFormData(formData) {
+    const errors = [];
+    
+    if (!formData.industry) {
+        errors.push('Please select your industry');
+    }
+    
+    if (!formData.businessSize) {
+        errors.push('Please select your business size');
+    }
+    
+    if (formData.goals.length === 0) {
+        errors.push('Please select at least one AI goal');
+    }
+    
+    if (!formData.contact.name || !formData.contact.email || !formData.contact.phone) {
+        errors.push('Please fill in all required contact fields');
+    }
+    
+    if (errors.length > 0) {
+        showFormErrors(errors);
+        return false;
+    }
+    
+    return true;
+}
 
-// CARD INTERFACE FORM FUNCTIONS - REMOVED (will be replaced with new implementation)
+function showFormErrors(errors) {
+    // Create error display
+    const errorContainer = document.createElement('div');
+    errorContainer.className = 'form-errors';
+    errorContainer.innerHTML = `
+        <div class="error-header">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h4>Please fix the following issues:</h4>
+        </div>
+        <ul class="error-list">
+            ${errors.map(error => `<li>${error}</li>`).join('')}
+        </ul>
+        <button class="error-close-btn" onclick="this.parentElement.remove()">
+            <i class="fas fa-times"></i> Close
+        </button>
+    `;
+    
+    // Insert at top of form
+    const formContainer = document.querySelector('.click-form-container');
+    formContainer.insertBefore(errorContainer, formContainer.firstChild);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (errorContainer.parentNode) {
+            errorContainer.remove();
+        }
+    }, 5000);
+}
+
+function showFormSuccess(formData, timeDisplay = null, crmType = null) {
+    // Replace form content with success message
+    const formContainer = document.querySelector('.click-form-container');
+    
+    // Build time display if provided
+    const timeSection = timeDisplay ? `
+        <div class="completion-time">
+            <p><i class="fas fa-clock"></i> <strong>Completed in:</strong> ${timeDisplay}</p>
+        </div>
+    ` : '';
+    
+    // Build CRM success indicator
+    const crmSection = crmType === 'ghl' ? `
+        <div class="crm-success">
+            <p><i class="fas fa-check-circle"></i> <strong>Successfully sent to GoHighLevel CRM</strong></p>
+        </div>
+    ` : crmType === 'fallback' ? `
+        <div class="crm-fallback">
+            <p><i class="fas fa-info-circle"></i> <strong>Submission saved - our team will contact you shortly</strong></p>
+        </div>
+    ` : '';
+    
+    formContainer.innerHTML = `
+        <div class="form-success">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Thank You!</h2>
+            <p>Your AI transformation request has been submitted successfully.</p>
+            ${timeSection}
+            ${crmSection}
+            <div class="success-details">
+                <p><strong>Industry:</strong> ${formData.industry}</p>
+                <p><strong>Business Size:</strong> ${formData.businessSize}</p>
+                <p><strong>AI Goals:</strong> ${formData.goals.length} selected</p>
+            </div>
+            <p class="success-message">
+                Our team will review your information and contact you within 24 hours 
+                to schedule your personalized AI transformation consultation.
+            </p>
+            <div class="success-actions">
+                <button class="btn-primary" onclick="closeFormInterface()">
+                    <i class="fas fa-home"></i> Return to Home
+                </button>
+                <button class="btn-outline" onclick="window.open('https://myworkforceagents.ai/', '_blank')">
+                    <i class="fas fa-external-link-alt"></i> Visit Our Website
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+function showFormSubmitting() {
+    const formContainer = document.querySelector('.click-form-container');
+    formContainer.innerHTML = `
+        <div class="form-submitting">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+            <h2>Submitting Your Request...</h2>
+            <p>Please wait while we process your AI transformation request.</p>
+            <div class="loading-steps">
+                <div class="step active">
+                    <i class="fas fa-check"></i> Validating information
+                </div>
+                <div class="step active">
+                    <i class="fas fa-spinner fa-spin"></i> Sending to CRM
+                </div>
+                <div class="step">
+                    <i class="fas fa-clock"></i> Setting up consultation
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function showFormError(message) {
+    const formContainer = document.querySelector('.click-form-container');
+    formContainer.innerHTML = `
+        <div class="form-error">
+            <div class="error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2>Submission Failed</h2>
+            <p>${message}</p>
+            <div class="error-actions">
+                <button class="btn-primary" onclick="location.reload()">
+                    <i class="fas fa-redo"></i> Try Again
+                </button>
+                <button class="btn-outline" onclick="window.open('mailto:support@myworkforceagents.ai?subject=Form Submission Issue', '_blank')">
+                    <i class="fas fa-envelope"></i> Contact Support
+                </button>
+            </div>
+        </div>
+    `;
+}
 
 // TYPE INTERFACE FUNCTIONS
 function showAIMessage(message) {
@@ -7137,26 +7745,21 @@ function showErrorModal(errorMessage) {
     }, 15000);
 }
 
-// Optimized Global Scroll Effects with Performance Considerations
+// Global Scroll Effects with Direction Awareness
 function initializeScrollEffects() {
-    console.log('🎬 Initializing Optimized Scroll Animations...');
-    
-    // Skip complex animations for low-performance devices
-    if (isLowPerformanceDevice) {
-        initializeBasicScrollEffects();
-        return;
-    }
+    console.log('🎬 Initializing Global Scroll Animations...');
     
     let lastScrollY = window.scrollY;
     let scrollDirection = 'down';
     let ticking = false;
     
-    // Reduced sections for better performance
+    // All sections that should have scroll animations
     const animatedSections = [
         '.hero',
         '.results-section', 
         '.form-section',
-        '.final-cta'
+        '.final-cta',
+        '.ai-story-section'
     ];
     
     // Track scroll direction
@@ -7166,13 +7769,16 @@ function initializeScrollEffects() {
         lastScrollY = currentScrollY;
     }
     
-    // Simplified element progress calculation
+    // Calculate element visibility and progress
     function calculateElementProgress(element) {
         const rect = element.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
+        // Element center position relative to viewport center
         const elementCenter = rect.top + rect.height / 2;
         const viewportCenter = windowHeight / 2;
+        
+        // Calculate progress (0 to 1) based on distance from viewport center
         const distanceFromCenter = Math.abs(elementCenter - viewportCenter);
         const maxDistance = windowHeight / 2 + rect.height / 2;
         const progress = Math.max(0, 1 - (distanceFromCenter / maxDistance));
@@ -7180,11 +7786,12 @@ function initializeScrollEffects() {
         return {
             progress: progress,
             isVisible: rect.top < windowHeight && rect.bottom > 0,
-            isActive: progress > 0.2
+            isActive: progress > 0.2,
+            inViewport: rect.top >= 0 && rect.bottom <= windowHeight
         };
     }
     
-    // Simplified scroll animations
+    // Apply scroll-based animations to elements
     function applyScrollAnimations() {
         updateScrollDirection();
         
@@ -7194,33 +7801,39 @@ function initializeScrollEffects() {
             
             const { progress, isVisible, isActive } = calculateElementProgress(section);
             
-            // Apply basic animations only
-            if (isActive && isVisible) {
-                section.style.opacity = Math.min(1, progress + 0.3);
-                section.style.transform = `translateY(${(1 - progress) * 20}px)`;
+            // Apply section-specific animations
+            switch(sectionSelector) {
+                case '.hero':
+                    animateHeroSection(section, scrollDirection, progress, isActive);
+                    break;
+                case '.results-section':
+                    animateResultsSection(section, scrollDirection, progress, isActive);
+                    break;
+                case '.form-section':
+                    animateFormSection(section, scrollDirection, progress, isActive);
+                    break;
+                case '.final-cta':
+                    animateFinalCTA(section, scrollDirection, progress, isActive);
+                    break;
             }
         });
+        
+        // Animate individual elements
+        animateScrollElements(scrollDirection);
     }
     
-    // Optimized scroll handler with throttling
+    // Throttled scroll handler
     function onScroll() {
         if (!ticking) {
-            if (isLowPerformanceDevice) {
-                scrollTimeout = setTimeout(() => {
-                    applyScrollAnimations();
-                    ticking = false;
-                }, 32); // 30fps for low-performance devices
-            } else {
-                animationFrameId = requestAnimationFrame(() => {
-                    applyScrollAnimations();
-                    ticking = false;
-                });
-            }
+            requestAnimationFrame(() => {
+                applyScrollAnimations();
+                ticking = false;
+            });
             ticking = true;
         }
     }
     
-    // Set up scroll listener with passive option
+    // Set up scroll listener
     window.addEventListener('scroll', onScroll, { passive: true });
     
     // Initial animation state
@@ -7238,97 +7851,6 @@ function initializeScrollEffects() {
                 });
             }
         });
-    });
-}
-
-// Basic scroll effects for low-performance devices
-function initializeBasicScrollEffects() {
-    console.log('📱 Initializing Basic Scroll Effects for Low-Performance Devices...');
-    
-    // Simple scroll progress bar
-    const scrollProgressBar = document.getElementById('scrollProgressBar');
-    if (scrollProgressBar) {
-        let ticking = false;
-        
-        const updateProgress = () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            scrollProgressBar.style.transform = `scaleX(${scrollPercent / 100})`;
-            ticking = false;
-        };
-        
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                scrollTimeout = setTimeout(updateProgress, 50);
-                ticking = true;
-            }
-        }, { passive: true });
-    }
-    
-    // Simple navbar effect
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        let ticking = false;
-        
-        const updateNavbar = () => {
-            if (window.pageYOffset > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            ticking = false;
-        };
-        
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                scrollTimeout = setTimeout(updateNavbar, 50);
-                ticking = true;
-            }
-        }, { passive: true });
-    }
-    
-    // Basic smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
-
-// Basic animations for low-performance devices
-function initializeBasicAnimations() {
-    console.log('🎨 Initializing Basic Animations for Low-Performance Devices...');
-    
-    // Simple intersection observer for fade-in effects
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements that need basic animations
-    const animatedElements = document.querySelectorAll('.journey-step, .agent-card, .challenge-item, .result-card, .form-container');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
     });
 }
 
@@ -7808,328 +8330,4 @@ function initializeTimeline() {
             }
         });
     }
-}
-
-
-// Experience Selection Functions
-function selectExperience(experienceType) {
-    console.log(`🎯 Experience selected: ${experienceType}`);
-    
-    // Play click/selection sound
-    try { playCardFlipSound(); } catch (_) {}
-    
-    // Provide haptic feedback on mobile devices
-    if (isTouchDevice() && navigator.vibrate) {
-        navigator.vibrate(50);
-    }
-    
-    // Get the button that was clicked
-    const button = event.target.closest(".btn");
-    
-    // Update button text to show loading
-    const originalText = button.innerHTML;
-    button.innerHTML = "Processing... <i class=\"fas fa-spinner fa-spin\"></i>";
-    button.disabled = true;
-    button.style.pointerEvents = "none";
-    
-    // Create experience selection effect
-    const experienceCard = button.closest(".experience-card");
-    if (experienceCard) {
-        experienceCard.classList.add("selected");
-        createExperienceSelectionEffect(experienceCard);
-    }
-    
-    // Simulate processing delay and redirect
-    setTimeout(() => {
-        redirectToExperience(experienceType, button, originalText, experienceCard);
-    }, 1500);
-}
-
-function createExperienceSelectionEffect(card) {
-    // Create particle effect
-    const particles = [];
-    const particleCount = 20;
-    
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement("div");
-        particle.className = "experience-particle";
-        particle.style.cssText = `
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: linear-gradient(135deg, var(--electric-blue), var(--creative-purple));
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1000;
-            opacity: 0.8;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        `;
-        
-        card.appendChild(particle);
-        particles.push(particle);
-        
-        // Animate particle
-        const angle = (i / particleCount) * Math.PI * 2;
-        const distance = Math.random() * 100 + 50;
-        const duration = Math.random() * 1000 + 500;
-        
-        setTimeout(() => {
-            particle.style.transition = `all ${duration}ms ease-out`;
-            particle.style.transform = `translate(
-                ${Math.cos(angle) * distance}px,
-                ${Math.sin(angle) * distance}px
-            )`;
-            particle.style.opacity = "0";
-        }, 100);
-        
-        // Remove particle after animation
-        setTimeout(() => {
-            if (particle.parentNode) {
-                particle.parentNode.removeChild(particle);
-            }
-        }, duration + 100);
-    }
-}
-
-function redirectToExperience(experienceType, button, originalText, card) {
-    // Restore button
-    button.innerHTML = originalText;
-    button.disabled = false;
-    button.style.pointerEvents = "auto";
-    
-    // Remove selection state
-    if (card) {
-        card.classList.remove("selected");
-    }
-    
-    // Handle different experience types
-    switch(experienceType) {
-        case "finn":
-            // Redirect to FINN (Lead Generation) experience
-            window.location.href = "#finn-experience";
-            break;
-        case "lisa":
-            // Redirect to LISA (DM Response & Nurture) experience
-            window.location.href = "#lisa-experience";
-            break;
-        case "rese":
-            // Redirect to RESE (Listings & Socials) experience
-            window.location.href = "#rese-experience";
-            break;
-        case "tessa":
-            // Redirect to TESSA (Ops & Transaction Coordinator) experience
-            window.location.href = "#tessa-experience";
-            break;
-        case "ross":
-            // Redirect to ROSS (Voice Receptionist) experience
-            window.location.href = "#ross-experience";
-            break;
-        default:
-            console.log("Unknown experience type:", experienceType);
-            // Fallback - could redirect to contact form or show modal
-            break;
-    }
-}
-
-
-
-// Intersection Observer for journey progress tracking
-function initializeJourneyProgress() {
-    const observerOptions = {
-        root: null,
-        rootMargin: '-50% 0px',
-        threshold: 0
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const stepNumber = entry.target.dataset.step;
-                updateJourneyProgress(stepNumber);
-            }
-        });
-    }, observerOptions);
-
-    // Observe all journey steps
-    document.querySelectorAll('.journey-step').forEach(step => {
-        observer.observe(step);
-    });
-}
-
-function updateJourneyProgress(activeStep) {
-    // Update progress dots
-    document.querySelectorAll('.progress-dot').forEach(dot => {
-        const stepNumber = dot.dataset.step;
-        if (stepNumber <= activeStep) {
-            dot.classList.add('active');
-        } else {
-            dot.classList.remove('active');
-        }
-    });
-
-    // Update progress line
-    const progressLine = document.querySelector('.progress-line');
-    if (progressLine) {
-        const progressPercentage = (activeStep / 3) * 100;
-        progressLine.style.setProperty('--progress-width', `${progressPercentage}%`);
-    }
-}
-
-// Initialize journey progress when DOM is loaded
-// Agent carousel and journey progress initialization moved to main DOM ready handler
-
-// AI Agent Carousel Functionality
-function initializeAgentCarousel() {
-    const agentSpotlights = document.querySelectorAll('.agent-spotlight');
-    const agentCards = document.querySelectorAll('.agent-card');
-    const navArrows = document.querySelectorAll('.nav-arrow');
-
-    // Agent order for carousel navigation
-    const agents = ['finn', 'lisa', 'rese', 'tessa', 'ross'];
-    let currentIndex = 0;
-
-    // Update carousel display with smooth animations
-    function updateCarousel(index, direction = 'next') {
-        const previousIndex = currentIndex;
-        currentIndex = index;
-
-        // Remove active class from all cards
-        document.querySelectorAll('.agent-card').forEach(card => {
-            card.classList.remove('active');
-        });
-
-        // Add leaving animation to current card
-        const currentCard = document.querySelector(`.agent-card[data-agent="${agents[previousIndex]}"]`);
-        if (currentCard) {
-            currentCard.classList.add('leaving');
-            setTimeout(() => {
-                currentCard.classList.remove('leaving');
-            }, 600);
-        }
-
-        // Add active class to new card
-        const newCard = document.querySelector(`.agent-card[data-agent="${agents[index]}"]`);
-        if (newCard) {
-            setTimeout(() => {
-                newCard.classList.add('active');
-            }, 150);
-        }
-
-        // Update dots
-        document.querySelectorAll('.dot').forEach((dot, i) => {
-            if (i === index) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
-        });
-
-        // Add haptic feedback
-        if (isTouchDevice() && navigator.vibrate) {
-            navigator.vibrate(30);
-        }
-    }
-
-    // Navigate to next agent
-    function nextAgent() {
-        const nextIndex = (currentIndex + 1) % agents.length;
-        updateCarousel(nextIndex, 'next');
-    }
-
-    // Navigate to previous agent
-    function prevAgent() {
-        const prevIndex = (currentIndex - 1 + agents.length) % agents.length;
-        updateCarousel(prevIndex, 'prev');
-    }
-
-    // Navigate to specific agent
-    function goToAgent(agentName) {
-        const index = agents.indexOf(agentName);
-        if (index !== -1) {
-            updateCarousel(index, 'direct');
-        }
-    }
-
-    // Event listeners for navigation
-    document.addEventListener('click', function(e) {
-        // Handle previous arrow clicks
-        if (e.target.closest('.prev-arrow')) {
-            e.preventDefault();
-            prevAgent();
-            return;
-        }
-
-        // Handle next arrow clicks
-        if (e.target.closest('.next-arrow')) {
-            e.preventDefault();
-            nextAgent();
-            return;
-        }
-
-        // Handle dot clicks
-        if (e.target.classList.contains('dot')) {
-            e.preventDefault();
-            const dots = document.querySelectorAll('.dot');
-            const index = Array.from(dots).indexOf(e.target);
-            if (index !== -1) {
-                updateCarousel(index, 'direct');
-            }
-            return;
-        }
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            prevAgent();
-        } else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            nextAgent();
-        }
-    });
-
-    // Auto-play functionality - continuous loop
-    let autoPlayInterval = null;
-    const autoPlayDelay = 5000; // 5 seconds for faster cycling
-
-    function startAutoPlay() {
-        if (autoPlayInterval) clearInterval(autoPlayInterval);
-        autoPlayInterval = setInterval(() => {
-            nextAgent(); // Will automatically loop due to modulo arithmetic
-        }, autoPlayDelay);
-    }
-
-    function stopAutoPlay() {
-        if (autoPlayInterval) {
-            clearInterval(autoPlayInterval);
-            autoPlayInterval = null;
-        }
-    }
-
-    // Pause auto-play on user interaction
-    function pauseAutoPlay() {
-        stopAutoPlay();
-        // Restart after 8 seconds of inactivity
-        setTimeout(() => {
-            startAutoPlay();
-        }, 8000);
-    }
-
-    // Start auto-play immediately
-    startAutoPlay();
-
-    // Pause on hover for better UX
-    const showcaseContainer = document.querySelector('.agent-showcase');
-    if (showcaseContainer) {
-        showcaseContainer.addEventListener('mouseenter', stopAutoPlay);
-        showcaseContainer.addEventListener('mouseleave', startAutoPlay);
-    }
-
-    // Initialize the first agent as active
-    setTimeout(() => {
-        updateCarousel(0, 'direct');
-    }, 100);
 }

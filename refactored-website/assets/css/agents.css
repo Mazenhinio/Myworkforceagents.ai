@@ -1,0 +1,461 @@
+/* =============================================
+   MODERN AGENT SHOWCASE - EXACT PRODUCTION COPY
+   ============================================= */
+
+.agent-showcase {
+    margin: 60px 0;
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    align-self: stretch;
+}
+
+.agent-display {
+    position: relative;
+    height: 560px; /* Reduced height for a more compact look */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =============================================
+   AGENT NAVIGATION ARROWS
+   ============================================= */
+
+.agent-navigation {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.nav-arrow {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--electric-blue);
+    font-family: 'Arial', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.nav-arrow:hover {
+    transform: scale(1.05) translateY(-1px);
+    border-color: var(--electric-blue);
+    background: rgba(0, 212, 255, 0.15);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    font-size: 1.6rem;
+}
+
+.nav-arrow:active {
+    transform: scale(0.96);
+}
+
+/* =============================================
+   MODERN AGENT CARDS
+   ============================================= */
+
+.agent-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.95);
+    transition: opacity 0.4s cubic-bezier(0.2, 0, 0.2, 1), transform 0.4s cubic-bezier(0.2, 0, 0.2, 1), visibility 0.4s;
+    pointer-events: none;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    /* Reduced top padding to tighten space above agent name */
+    padding: 16px 32px 32px; /* top right/left bottom */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    will-change: opacity, transform;
+}
+
+.agent-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    pointer-events: auto;
+    z-index: 2;
+}
+
+.agent-card.exiting {
+    opacity: 0;
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+/* =============================================
+   AGENT CARD COMPONENTS
+   ============================================= */
+
+.agent-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px; /* This value was reduced */
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.agent-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* =============================================
+   UNIQUE AGENT COLOR THEMES
+   ============================================= */
+
+/* FINN (Lead Generation): Orange/Red theme */
+.agent-card[data-agent="finn"] .agent-avatar {
+    background: linear-gradient(135deg, #ff4500, #ff8c00);
+    box-shadow: 0 8px 25px rgba(255, 69, 0, 0.4);
+}
+.agent-card[data-agent="finn"] .challenge-solution .challenge {
+    border-left-color: #ff4500;
+}
+.agent-card[data-agent="finn"] .challenge-solution .solution {
+    border-left-color: #ff8c00;
+}
+.agent-card[data-agent="finn"] .feature i {
+    color: #ff8c00;
+}
+.agent-card[data-agent="finn"] .feature:hover {
+    border-color: rgba(255, 140, 0, 0.7);
+    background: rgba(255, 140, 0, 0.12);
+}
+
+/* LISA (Response & Nurture): Blue/Cyan theme */
+.agent-card[data-agent="lisa"] .agent-avatar {
+    background: linear-gradient(135deg, #00bfff, #0080ff);
+    box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
+}
+.agent-card[data-agent="lisa"] .challenge-solution .challenge {
+    border-left-color: #00bfff;
+}
+.agent-card[data-agent="lisa"] .challenge-solution .solution {
+    border-left-color: #0080ff;
+}
+.agent-card[data-agent="lisa"] .feature i {
+    color: #00bfff;
+}
+.agent-card[data-agent="lisa"] .feature:hover {
+    border-color: rgba(0, 191, 255, 0.7);
+    background: rgba(0, 191, 255, 0.12);
+}
+
+/* RESE (Listings & Socials): Purple/Pink theme */
+.agent-card[data-agent="rese"] .agent-avatar {
+    background: linear-gradient(135deg, #9c27b0, #e91e63);
+    box-shadow: 0 8px 25px rgba(156, 39, 176, 0.4);
+}
+.agent-card[data-agent="rese"] .challenge-solution .challenge {
+    border-left-color: #9c27b0;
+}
+.agent-card[data-agent="rese"] .challenge-solution .solution {
+    border-left-color: #e91e63;
+}
+.agent-card[data-agent="rese"] .feature i {
+    color: #e91e63;
+}
+.agent-card[data-agent="rese"] .feature:hover {
+    border-color: rgba(233, 30, 99, 0.7);
+    background: rgba(233, 30, 99, 0.12);
+}
+
+/* TESSA (Ops & Transaction): Green/Teal theme */
+.agent-card[data-agent="tessa"] .agent-avatar {
+    background: linear-gradient(135deg, #4caf50, #009688);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+}
+.agent-card[data-agent="tessa"] .challenge-solution .challenge {
+    border-left-color: #4caf50;
+}
+.agent-card[data-agent="tessa"] .challenge-solution .solution {
+    border-left-color: #009688;
+}
+.agent-card[data-agent="tessa"] .feature i {
+    color: #4caf50;
+}
+.agent-card[data-agent="tessa"] .feature:hover {
+    border-color: rgba(76, 175, 80, 0.7);
+    background: rgba(76, 175, 80, 0.12);
+}
+
+/* ROSS (Voice Receptionist): Red/Orange theme */
+.agent-card[data-agent="ross"] .agent-avatar {
+    background: linear-gradient(135deg, #f44336, #ff5722);
+    box-shadow: 0 8px 25px rgba(244, 67, 54, 0.4);
+}
+.agent-card[data-agent="ross"] .challenge-solution .challenge {
+    border-left-color: #f44336;
+}
+.agent-card[data-agent="ross"] .challenge-solution .solution {
+    border-left-color: #ff5722;
+}
+.agent-card[data-agent="ross"] .feature i {
+    color: #ff5722;
+}
+.agent-card[data-agent="ross"] .feature:hover {
+    border-color: rgba(255, 87, 34, 0.7);
+    background: rgba(255, 87, 34, 0.12);
+}
+
+.agent-info h3 {
+    font-size: 2.5rem; /* Increased to better utilize vertical space */
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: left;
+    margin: 0 0 4px 0;
+}
+
+.agent-info p {
+    font-size: 1.25rem; /* Increased for improved hierarchy */
+    color: var(--text-secondary);
+    margin: 0;
+    text-align: left;
+}
+
+.challenge-solution {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; /* Reduced gap */
+    margin-bottom: 24px; /* Reduced margin */
+}
+
+.challenge, .solution {
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.15);
+    border-left: 4px solid; /* Color will be set per agent */
+}
+
+.challenge h4, .solution h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    color: var(--text-primary);
+}
+
+.challenge p, .solution p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.agent-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.feature:hover span {
+    color: #ffffff;
+}
+
+.feature i {
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature:hover i {
+    transform: scale(1.1);
+}
+
+.feature span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+/* =============================================
+   MOBILE RESPONSIVE AGENT STYLES
+   ============================================= */
+
+@media (max-width: 768px) {
+    .agent-display {
+        /* Use auto height on mobile for better adaptiveness */
+        height: auto;
+        min-height: 520px; /* Set a min-height to avoid layout collapse */
+        padding: 20px 0;
+    }
+
+    .agent-card {
+        position: relative; /* Change to relative for auto height to work */
+    /* Keep reduced top padding on mobile too */
+    padding: 16px 28px 28px;
+        /* Hide non-active cards differently on mobile */
+        display: none;
+    }
+
+    /* MOBILE OPTIMIZATIONS */
+    .agent-features { /* Hide feature pills to shorten card */
+        display: none !important;
+    }
+
+    .agent-navigation { /* Hide arrows; swipe will replace */
+        display: none !important;
+    }
+
+    .agent-card.active { /* Slightly smaller padding for small screens */
+        border-radius: 18px;
+    }
+
+    .agent-info h3 {
+    font-size: 2rem; /* Larger on mobile to reduce perceived top gap */
+    }
+
+    .agent-info p {
+    font-size: 1.05rem;
+    }
+
+    .challenge-solution { /* Already single column via existing rules, tighten spacing */
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .challenge, .solution {
+        padding: 14px 14px 16px;
+        border-radius: 10px;
+    }
+
+    .challenge h4, .solution h4 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .challenge p, .solution p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .agent-card.active {
+        display: flex;
+    }
+
+    .agent-card.exiting {
+        display: none; /* Instantly hide on mobile for clean transition */
+    }
+
+    .agent-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .agent-info h3, .agent-info p {
+        text-align: center;
+    }
+
+    .challenge-solution {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .agent-display {
+        min-height: 480px;
+    }
+    
+    .agent-card {
+        padding: 12px 20px 20px; /* tighter spacing on very small screens */
+    }
+
+    .agent-info h3 { font-size: 1.45rem; }
+    .agent-info p { font-size: 0.95rem; }
+    .challenge, .solution { padding: 12px 12px 14px; }
+    .challenge h4, .solution h4 { font-size: 0.95rem; }
+    .challenge p, .solution p { font-size: 0.85rem; }
+
+    .agent-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =============================================
+   ACCESSIBILITY ENHANCEMENTS
+   ============================================= */
+
+.agent-card:focus-within {
+    outline: 2px solid var(--electric-blue);
+    outline-offset: 4px;
+}
+
+.nav-arrow:focus {
+    outline: 2px solid var(--electric-blue);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .agent-card,
+    .nav-arrow,
+    .feature,
+    .agent-avatar {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
+
+    .agent-card.active {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
