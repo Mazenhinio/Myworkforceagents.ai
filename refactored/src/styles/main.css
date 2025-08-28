@@ -1,0 +1,198 @@
+/**
+ * Main CSS Entry Point
+ * Imports all stylesheets in the correct order
+ */
+
+/* 1. CSS Variables (Design System Foundation) */
+@import './variables.css';
+
+/* 2. CSS Reset (Normalize browser defaults) */
+@import './reset.css';
+
+/* 3. Utility Classes (Helper classes) */
+@import './utilities.css';
+
+/* 4. Layout Components */
+@import '../components/Navigation/Navigation.css';
+@import '../components/Hero/Hero.css';
+@import '../components/Footer/Footer.css';
+
+/* 5. Section Components */
+@import '../components/ExperienceCards/ExperienceCards.css';
+@import '../components/JourneySteps/JourneySteps.css';
+@import '../components/AgentShowcase/AgentShowcase.css';
+@import '../components/HumanProfile/HumanProfile.css';
+
+/* 6. Interactive Components */
+@import '../components/AgentTooltips/AgentTooltips.css';
+
+/* 7. Global Layout and Base Styles */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: var(--line-height-normal);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Global scroll progress bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  z-index: var(--z-max);
+  transition: width var(--transition-fast);
+  will-change: width;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--text-primary);
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling anchor adjustment */
+html {
+  scroll-padding-top: var(--nav-height);
+}
+
+/* Component state classes */
+.mwa-component {
+  transition: opacity var(--transition-base);
+}
+
+.mwa-component:not(.mwa-initialized) {
+  opacity: 0;
+}
+
+.mwa-component.mwa-initialized {
+  opacity: 1;
+}
+
+/* Loading states */
+.loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--glass-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error states */
+.error {
+  color: #ff4444;
+  border-color: #ff4444;
+}
+
+/* Success states */
+.success {
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+/* Dark mode support (if user preference changes) */
+@media (prefers-color-scheme: light) {
+  :root {
+    /* We'll keep dark theme as default for this design */
+    /* but this allows for future light mode support */
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --text-secondary: #ffffff;
+  }
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  .scroll-progress-bar,
+  .mobile-menu-btn,
+  .nav-arrow {
+    display: none !important;
+  }
+  
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+  }
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Smooth font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* GPU acceleration for animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Disable animations for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .scroll-progress-bar {
+    transition: none;
+  }
+}

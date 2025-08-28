@@ -1,0 +1,49 @@
+<!-- Agent Tooltips Component -->
+<div class="agent-tooltips" data-component="agent-tooltips">
+  <!-- Tooltip container will be dynamically created -->
+  <div class="tooltip-container" data-tooltip-container style="display: none;">
+    <div class="tooltip-content" data-tooltip-content>
+      <div class="tooltip-header">
+        <div class="tooltip-agent-info">
+          <span class="tooltip-agent-name" data-tooltip-agent-name></span>
+          <span class="tooltip-agent-role" data-tooltip-agent-role></span>
+        </div>
+        <div class="tooltip-close" data-tooltip-close>
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      
+      <div class="tooltip-sections">
+        <div class="tooltip-section pain-section" data-tooltip-section="pain">
+          <h4 class="tooltip-section-title">
+            <i class="fas fa-exclamation-triangle"></i>
+            Pain Points
+          </h4>
+          <div class="tooltip-section-content" data-tooltip-pain-content></div>
+        </div>
+        
+        <div class="tooltip-section solution-section" data-tooltip-section="solution">
+          <h4 class="tooltip-section-title">
+            <i class="fas fa-lightbulb"></i>
+            Solutions
+          </h4>
+          <div class="tooltip-section-content" data-tooltip-solution-content></div>
+        </div>
+      </div>
+      
+      <div class="tooltip-footer">
+        <div class="tooltip-actions">
+          <button class="tooltip-action-btn primary" data-tooltip-action="learn-more">
+            Learn More
+          </button>
+          <button class="tooltip-action-btn secondary" data-tooltip-action="demo">
+            Request Demo
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Tooltip arrow -->
+    <div class="tooltip-arrow" data-tooltip-arrow></div>
+  </div>
+</div>

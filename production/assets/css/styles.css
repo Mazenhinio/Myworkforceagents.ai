@@ -247,13 +247,13 @@ body {
     justify-content: center;
     margin: 0 auto 15px;
     color: white;
-    font-size: 1.5rem;
-}
-
+        font-size: 1.5rem;
+    }
+    
 .card-content h3 {
-    font-size: 1.8rem;
+        font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 10px;
+        margin-bottom: 10px;
 }
 
 .card-body p {
@@ -270,9 +270,9 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     margin: 0 auto;
 }
 
@@ -590,14 +590,14 @@ body {
     transition: all 0.3s ease;
     pointer-events: auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        align-items: center;
+        justify-content: center;
+    }
 
 .nav-arrow:hover {
     background: var(--accent-primary);
     border-color: var(--accent-primary);
-    transform: scale(1.1);
+        transform: scale(1.1);
 }
 
 .prev-arrow {
@@ -640,7 +640,7 @@ body {
 }
 
 .profile-image-section {
-    text-align: center;
+        text-align: center;
     margin-bottom: 40px;
 }
 
@@ -859,49 +859,49 @@ body {
 }
 
 .agent-tooltip.visible {
-    opacity: 1;
-    transform: scale(1);
+        opacity: 1;
+        transform: scale(1);
 }
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-    .mobile-menu-btn {
+  .mobile-menu-btn {
         display: block;
     }
     
-    .nav-links {
+  .nav-links {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
         background: rgba(10, 10, 15, 0.95);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
+    backdrop-filter: blur(20px);
+    flex-direction: column;
         padding: 20px;
         border-top: 1px solid var(--glass-border);
-    }
-    
-    .nav-links.active {
+  }
+  
+  .nav-links.active {
         display: flex;
     }
     
     .hero-headline {
         font-size: 3rem;
-    }
-    
-    .cards-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
+  }
+  
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
     .step-container,
     .step-container.reverse {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: center;
-    }
-    
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+  
     .challenge-solution {
         grid-template-columns: 1fr;
     }
@@ -915,7 +915,7 @@ body {
     }
     
     .credentials-grid {
-        grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
     }
     
     .human-profile-card {
@@ -924,7 +924,7 @@ body {
     
     .section-header h2,
     .journey-header h2,
-    .learn-more-header h2 {
+  .learn-more-header h2 {
         font-size: 2rem;
     }
     
@@ -947,13 +947,13 @@ body {
     }
     
     .challenge-item {
-        padding: 20px;
+  padding: 20px;
     }
     
     .game-card {
-        height: 350px;
-    }
-    
+    height: 350px;
+  }
+  
     .agent-tooltip {
         max-width: 280px;
         padding: 16px;

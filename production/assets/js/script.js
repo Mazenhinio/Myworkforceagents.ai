@@ -15,7 +15,7 @@ function selectCard(cardType) {
     const selectedCard = document.querySelector(`[data-card="${cardType}"]`);
     if (selectedCard) {
         selectedCard.style.transform = 'scale(1.05)';
-        setTimeout(() => {
+    setTimeout(() => {
             selectedCard.style.transform = '';
         }, 200);
     }
@@ -60,9 +60,9 @@ function initializeAgentCarousel() {
         // Add active class to new card
         const newCard = document.querySelector(`.agent-card[data-agent="${agents[index]}"]`);
         if (newCard) {
-            setTimeout(() => {
+                setTimeout(() => {
                 newCard.classList.add('active');
-            }, 100);
+                }, 100);
         }
 
         currentIndex = index;
@@ -158,8 +158,8 @@ function initializeAgentTooltips() {
                 <div>
                     <div style="font-size: 1.2rem; font-weight: 700;">${data.name}</div>
                     <div style="font-size: 0.9rem; opacity: 0.8;">${data.role}</div>
-                </div>
             </div>
+        </div>
             
             <div style="margin-bottom: 16px;">
                 <div style="color: #ff6b35; font-weight: 600; margin-bottom: 8px;">
@@ -169,20 +169,20 @@ function initializeAgentTooltips() {
                     ${painPoints.map(point => `<li style="position: relative; padding-left: 16px; margin-bottom: 6px; font-size: 0.9rem; line-height: 1.5;">
                         <span style="position: absolute; left: 0; color: #ff6b35;">●</span>${point}
                     </li>`).join('')}
-                </ul>
-            </div>
+        </ul>
+        </div>
             
             <div>
                 <div style="color: #00ff88; font-weight: 600; margin-bottom: 8px;">
                     <i class="fas fa-lightbulb"></i> Solutions
-                </div>
+        </div>
                 <ul style="list-style: none; padding: 0; margin: 0;">
                     ${solutionPoints.map(point => `<li style="position: relative; padding-left: 16px; margin-bottom: 6px; font-size: 0.9rem; line-height: 1.5;">
                         <span style="position: absolute; left: 0; color: #00ff88;">●</span>${point}
                     </li>`).join('')}
-                </ul>
-            </div>
-        `;
+                    </ul>
+        </div>
+    `;
     }
 
     function showTooltip(event, agent, painText, solutionText) {
@@ -203,14 +203,14 @@ function initializeAgentTooltips() {
             tooltip.style.opacity = '0';
             tooltip.style.transform = 'scale(0.8)';
             isVisible = false;
-            setTimeout(() => {
+        setTimeout(() => {
                 if (tooltip && !isVisible) {
                     document.body.removeChild(tooltip);
                     tooltip = null;
                 }
-            }, 300);
-        }
+        }, 300);
     }
+}
 
     function updatePosition(event) {
         if (!tooltip) return;

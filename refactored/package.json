@@ -1,0 +1,26 @@
+{
+  "name": "mwa-ai-landing",
+  "version": "1.0.0",
+  "description": "MWA.AI Landing Page - Refactored with TypeScript",
+  "main": "dist/main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node tools/dev-server.js",
+    "build": "node tools/build.js",
+    "type-check": "tsc --noEmit",
+    "lint": "echo 'Linting...'",
+    "serve": "python3 -m http.server 8080 --directory dist"
+  },
+  "keywords": [
+    "typescript",
+    "landing-page",
+    "ai",
+    "real-estate"
+  ],
+  "author": "MWA.AI Team",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {}
+}
