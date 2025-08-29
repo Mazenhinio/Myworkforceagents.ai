@@ -1,0 +1,330 @@
+/* =============================================
+   PROFILE COMPONENT STYLES
+   ============================================= */
+
+/* Main layout */
+.profile-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 50px;
+    align-items: center;
+    padding: 40px;
+    min-height: 450px;
+}
+
+/* Information section */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.profile-header h3 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--electric-blue), var(--creative-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.profile-title {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.profile-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Credentials */
+.credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.credential-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.credential-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 212, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.credential-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 212, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.credential-content h5 {
+    color: var(--accent-color);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.credential-content p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.3;
+}
+
+/* Photo section */
+.profile-photo-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-photo-container {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    height: 420px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 102, 255, 0.25);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(139, 92, 246, 0.1));
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.3s ease;
+}
+
+.profile-photo:hover {
+    transform: scale(1.02);
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to top, rgba(26, 26, 46, 0.9), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 15px;
+    color: white;
+}
+
+.photo-info h4 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.photo-info p {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Background particles */
+.profile-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(0, 212, 255, 0.4);
+    border-radius: 50%;
+    animation: float 8s infinite ease-in-out;
+}
+
+.particle:nth-child(2) { animation-delay: -2s; }
+.particle:nth-child(3) { animation-delay: -4s; }
+.particle:nth-child(4) { animation-delay: -6s; }
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(-15px);
+        opacity: 0.8;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .profile-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .profile-photo-section {
+        order: -1;
+    }
+    
+    .profile-photo-container {
+        max-width: 300px;
+        height: 360px;
+        margin: 0 auto;
+    }
+    
+    .credentials-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-layout {
+        padding: 25px 20px;
+        gap: 25px;
+    }
+    
+    .profile-header h3 {
+        font-size: 1.8rem;
+    }
+    
+    .profile-title {
+        font-size: 1.1rem;
+    }
+    
+    .profile-description {
+        font-size: 0.95rem;
+    }
+    
+    .profile-photo-container {
+        max-width: 280px;
+        height: 320px;
+    }
+    
+    .credential-item {
+        padding: 12px;
+        gap: 10px;
+    }
+    
+    .credential-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .credential-content h5 {
+        font-size: 0.9rem;
+    }
+    
+    .credential-content p {
+        font-size: 0.8rem;
+    }
+    
+    .photo-overlay {
+        height: 70px;
+        padding: 12px;
+    }
+    
+    .photo-info h4 {
+        font-size: 1rem;
+    }
+    
+    .photo-info p {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-layout {
+        padding: 20px 15px;
+        gap: 20px;
+    }
+    
+    .profile-header h3 {
+        font-size: 1.6rem;
+    }
+    
+    .profile-description {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+    
+    .profile-photo-container {
+        max-width: 250px;
+        height: 280px;
+    }
+    
+    .credentials-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    .credential-item {
+        padding: 10px;
+        gap: 8px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .credential-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    .credential-content h5 {
+        font-size: 0.85rem;
+    }
+    
+    .credential-content p {
+        font-size: 0.75rem;
+    }
+    
+    .photo-overlay {
+        height: 60px;
+        padding: 10px;
+    }
+    
+    .photo-info h4 {
+        font-size: 0.9rem;
+    }
+    
+    .photo-info p {
+        font-size: 0.7rem;
+    }
+}

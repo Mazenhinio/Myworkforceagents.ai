@@ -339,6 +339,7 @@ img, video, iframe {
 /* Hero Section */
 .hero {
     min-height: 100vh;
+    min-height: 100svh; /* Safari iOS fix */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1172,206 +1173,18 @@ img, video, iframe {
     line-height: 1.6;
 }
 
-.human-profile-container {
-    max-width: 1000px;
+/* Profile Container */
+.profile-container {
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-}
-
-.human-profile-card {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 60px;
-    align-items: start;
+    min-height: 500px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
     background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.6));
     border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 20px;
-    padding: 40px;
     backdrop-filter: blur(20px);
-}
-
-.profile-image-section {
-    position: relative;
-}
-
-.profile-image-wrapper {
-    position: relative;
-    text-align: center;
-}
-
-.profile-image {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid rgba(0, 212, 255, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 102, 255, 0.3);
-}
-
-.profile-badge {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-    box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
-}
-
-.profile-content {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.profile-header h3 {
-    font-family: 'Clash Display', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 10px;
-    background: linear-gradient(135deg, var(--electric-blue), var(--creative-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.profile-title {
-    font-size: 1.3rem;
-    color: var(--text-secondary);
-    font-style: italic;
-    margin-bottom: 20px;
-}
-
-.credentials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.credential-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    border-radius: 15px;
-    transition: all 0.3s ease;
-}
-
-.credential-item:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(0, 212, 255, 0.5);
-    transform: translateY(-3px);
-}
-
-.credential-icon {
-    width: 50px;
-    height: 50px;
-    background: rgba(0, 212, 255, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent-color);
-    font-size: 1.5rem;
-    flex-shrink: 0;
-}
-
-.credential-content h5 {
-    color: var(--accent-color);
-    margin-bottom: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.credential-content p {
-    color: var(--text-secondary);
-    line-height: 1.5;
-}
-
-.transformation-process {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    border-radius: 15px;
-    padding: 30px;
-}
-
-.transformation-process h4 {
-    color: var(--accent-color);
-    margin-bottom: 25px;
-    font-size: 1.3rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.process-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.step {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-}
-
-.step-number {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 700;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-}
-
-.step-content h5 {
-    color: var(--text-primary);
-    margin-bottom: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.step-content p {
-    color: var(--text-secondary);
-    line-height: 1.5;
-}
-
-.mission-statement {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    border-radius: 15px;
-    padding: 30px;
-}
-
-.mission-statement blockquote {
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    position: relative;
-    margin: 0;
-}
-
-.mission-statement i {
-    color: var(--creative-purple);
-    font-size: 1.5rem;
-    margin: 0 10px;
 }
 
 /* Footer */
@@ -1442,14 +1255,12 @@ img, video, iframe {
         grid-template-columns: 1fr;
     }
     
-    .human-profile-card {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        text-align: center;
-    }
-    
     .challenge-solution {
         grid-template-columns: 1fr;
+    }
+    
+    .profile-container {
+        min-height: 400px;
     }
 }
 
@@ -1487,20 +1298,20 @@ img, video, iframe {
     
     
     .hero {
-        padding: 120px 0 60px;
-        min-height: 90vh;
+        padding: 160px 0 100px;
+        min-height: 100vh;
+        min-height: 100svh; /* Safari iOS fix */
     }
     
     .hero-headline { font-size: clamp(2.2rem, 5.2vw, 3.3rem); margin-bottom: 28px; }
     
     .journey-section,
     .meet-human-section {
-        padding: 40px 0;
+        padding: 25px 0;
     }
     
     .challenge-grid,
-    .solution-highlights,
-    .credentials-grid {
+    .solution-highlights {
         grid-template-columns: 1fr;
     }
     
@@ -1606,9 +1417,11 @@ img, video, iframe {
         font-size: 1.2rem;
     }
     
-    .profile-image {
-        width: 200px;
-        height: 200px;
+    .profile-container {
+        min-height: 350px;
+        margin: 0 10px;
+        border-radius: 15px;
+        padding: 20px;
     }
     
     .footer-buttons {
@@ -1642,8 +1455,9 @@ img, video, iframe {
     }
     
     .hero {
-        padding: 100px 0 40px;
-        min-height: 80vh;
+        padding: 140px 0 80px;
+        min-height: 95vh;
+        min-height: 95svh; /* Safari iOS fix */
     }
     
     .hero-headline { font-size: clamp(2.05rem, 6vw, 2.6rem); margin-bottom: 22px; }
@@ -1732,13 +1546,10 @@ img, video, iframe {
         font-size: 1.5rem;
     }
     
-    .human-profile-card {
-        padding: 20px;
-    }
-    
-    .profile-image {
-        width: 150px;
-        height: 150px;
+    .profile-container {
+        min-height: 300px;
+        margin: 0 5px;
+        padding: 15px;
     }
     
     .agent-features {
