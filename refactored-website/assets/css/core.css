@@ -1,0 +1,530 @@
+/* CSS Variables for Consistent Theming */
+:root {
+    --primary-color: #0066ff;
+    --primary-dark: #0052cc;
+    --accent-color: #00d4ff;
+    --electric-blue: #00d4ff;
+    --creative-purple: #8b5cf6;
+    --human-orange: #ff6b35;
+    --success-color: #00ff88;
+    --warning-color: #ff6b35;
+    --warmth-orange: #ff6b35;
+    --action-red: #ff4757;
+    --friendly-orange: #ffa726;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-light: #fafbfc;
+    --bg-ultra-light: #fcfdfe;
+    --bg-dark: #1a1a2e;
+    --navy-primary: #1a1a2e;
+    --navy-light: rgba(26, 26, 46, 0.8);
+    --border-radius: 12px;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+    --shadow-glow: 0 0 20px rgba(0, 102, 255, 0.3);
+    --transition-normal: all 0.3s ease;
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --section-padding: 100px 0;
+}
+
+/* Performance optimizations for mobile devices */
+.mobile-device {
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.low-performance-device {
+    --transition-normal: all 0.2s ease;
+    --transition-smooth: all 0.3s ease;
+}
+
+.reduced-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+
+/* Optimize for older mobile devices */
+@media (max-width: 768px) {
+    * {
+        box-shadow: none !important;
+    }
+    
+    .navbar,
+    .hero,
+    .journey-section,
+    .meet-human-section {
+        background: var(--navy-primary) !important;
+    }
+    
+    .navbar {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    button, 
+    .btn,
+    .nav-links a,
+    .nav-arrow {
+        min-height: 44px;
+        min-width: 44px;
+        touch-action: manipulation;
+    }
+    
+    body {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    
+    .floating-orb {
+        animation: none !important;
+    }
+    
+    .agent-card {
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    .agent-header {
+        gap: 16px;
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+    }
+    
+    .agent-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .nav-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+    }
+    
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Main body styles */
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: var(--navy-primary);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Hide scrollbars but keep functionality */
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Prevent horizontal overflow globally */
+*, *::before, *::after {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-large {
+    padding: 18px 36px;
+    font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .step-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .step-container.reverse {
+        grid-template-columns: 1fr;
+    }
+    
+    .challenge-solution {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-container {
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Ensure no horizontal overflow on mobile */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+    
+    .container {
+        padding: 0 15px;
+        max-width: 100vw;
+    }
+    
+    .navbar {
+        padding: 10px 0;
+        width: 100%;
+    }
+    
+    .brand-text {
+        font-size: 20px;
+    }
+    
+    .brand-tagline {
+        font-size: 8px;
+    }
+    
+    .nav-links, .nav-desktop-only { display: none !important; }
+    .navbar .container { justify-content: center; }
+    .nav-brand { align-items: center; }
+    .brand-text { font-size: 22px; }
+    .brand-tagline { margin-top: 4px; }
+    
+    .hero {
+        padding: 160px 0 100px;
+        min-height: 100vh;
+        min-height: 100svh; /* Safari iOS fix */
+    }
+    
+    .hero-headline { font-size: clamp(2.2rem, 5.2vw, 3.3rem); margin-bottom: 28px; }
+    
+    .journey-section,
+    .meet-human-section {
+        padding: 25px 0;
+    }
+    
+    .challenge-grid,
+    .solution-highlights {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Mobile optimizations for challenge and turning point sections */
+    .challenge-item {
+        padding: 12px 10px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .challenge-metric {
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    
+    .metric-number {
+        font-size: 1.4rem;
+        line-height: 1;
+    }
+    
+    .metric-label {
+        font-size: 0.75rem;
+    }
+    
+    .challenge-description h4 {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+    }
+    
+    .challenge-description p {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+    
+    .highlight-item {
+        flex-direction: row;
+        gap: 10px;
+        padding: 12px 10px;
+        border-radius: 8px;
+        text-align: left;
+    }
+    
+    .highlight-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .highlight-text h4 {
+        font-size: 0.9rem;
+        margin-bottom: 2px;
+    }
+    
+    .highlight-text p {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+    
+    .journey-step {
+        margin-bottom: 30px;
+    }
+    
+    .step-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+    
+    .step-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 16px;
+    }
+    
+    .challenge-grid {
+        gap: 12px;
+    }
+    
+    .solution-highlights {
+        gap: 12px;
+    }
+    
+    /* Make sections more compact on mobile */
+    .step-container {
+        gap: 20px;
+        padding: 20px 0;
+    }
+    
+    .step-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+    
+    .agent-navigation {
+        gap: 15px;
+    }
+    
+    .nav-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+    }
+    
+    .profile-container {
+        min-height: 350px;
+        margin: 0 10px;
+        border-radius: 15px;
+        padding: 20px;
+    }
+    
+    .footer-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .learn-more-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    .container {
+        padding: 0 10px;
+        max-width: 100vw;
+    }
+    
+    .brand-text {
+        font-size: 18px;
+    }
+    
+    .brand-tagline {
+        font-size: 7px;
+    }
+    
+    .hero {
+        padding: 140px 0 80px;
+        min-height: 95vh;
+        min-height: 95svh; /* Safari iOS fix */
+    }
+    
+    .hero-headline { font-size: clamp(2.05rem, 6vw, 2.6rem); margin-bottom: 22px; }
+    
+    /* Smaller mobile optimizations */
+    .challenge-item {
+        padding: 10px 8px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+    }
+    
+    .metric-number {
+        font-size: 1.2rem;
+    }
+    
+    .metric-label {
+        font-size: 0.7rem;
+    }
+    
+    .challenge-description h4 {
+        font-size: 0.8rem;
+        margin-bottom: 3px;
+    }
+    
+    .challenge-description p {
+        font-size: 0.7rem;
+    }
+    
+    .highlight-item {
+        padding: 10px 8px;
+        gap: 8px;
+    }
+    
+    .highlight-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+    
+    .highlight-text h4 {
+        font-size: 0.8rem;
+    }
+    
+    .highlight-text p {
+        font-size: 0.7rem;
+    }
+    
+    .step-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .step-subtitle {
+        font-size: 0.8rem;
+        margin-bottom: 12px;
+    }
+    
+    .journey-step {
+        margin-bottom: 24px;
+    }
+    
+    .challenge-grid {
+        gap: 8px;
+    }
+    
+    .solution-highlights {
+        gap: 8px;
+    }
+    
+    .step-container {
+        padding: 20px;
+    }
+    
+    .agent-card {
+        padding: 20px;
+    }
+    
+    .agent-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .agent-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .profile-container {
+        min-height: 300px;
+        margin: 0 5px;
+        padding: 15px;
+    }
+    
+    .agent-features {
+        justify-content: center;
+    }
+}

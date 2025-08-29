@@ -1,4 +1,3 @@
-
 // Global time tracking variables
 let globalStartTime = null;
 
@@ -88,123 +87,6 @@ function optimizeForMobile() {
     }
 }
 
-// Scroll Progress Bar
-function initScrollProgress() {
-    const progressBar = document.getElementById('scrollProgressBar');
-    if (!progressBar) return;
-    
-    const updateProgress = () => {
-        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (window.pageYOffset / totalHeight) * 100;
-        
-        progressBar.style.width = Math.min(progress, 100) + '%';
-        
-        // Add glow effect when near completion
-        if (progress > 90) {
-            progressBar.style.boxShadow = '0 0 20px rgba(0, 212, 255, 0.8)';
-        } else {
-            progressBar.style.boxShadow = '0 0 10px rgba(0, 212, 255, 0.4)';
-        }
-    };
-    
-    // Throttled scroll event
-    let ticking = false;
-    const handleScroll = () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                updateProgress();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    updateProgress(); // Initial call
-}
-
-function initNavbarEffects() {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    let lastY = window.scrollY;
-    let ticking = false;
-
-    const onScroll = () => {
-        const y = window.scrollY;
-        if (y > 100) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
-        // Hide when scrolling down, show when scrolling up
-        if (y > lastY && y > 140) navbar.classList.add('hide-up'); else navbar.classList.remove('hide-up');
-        lastY = y;
-        ticking = false;
-    };
-
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(onScroll);
-            ticking = true;
-        }
-    }, { passive: true });
-}
-
-// Journey Progress Tracking
-function initJourneyProgress() {
-    const journeySteps = document.querySelectorAll('.journey-step');
-    const progressDots = document.querySelectorAll('.progress-dot');
-    
-    if (!journeySteps.length || !progressDots.length) return;
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const stepNumber = entry.target.getAttribute('data-step');
-                
-                // Update progress dots
-                progressDots.forEach((dot, index) => {
-                    if (index < parseInt(stepNumber)) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
-                });
-                
-                // Add animation class to current step
-                entry.target.classList.add('in-view');
-            }
-        });
-    }, {
-        threshold: 0.3,
-        rootMargin: '-100px 0px'
-    });
-    
-    journeySteps.forEach(step => {
-        observer.observe(step);
-    });
-}
-
-
-// Smooth Scrolling for Navigation Links
-function initSmoothScrolling() {
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const targetId = link.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                e.preventDefault();
-                
-                const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
-
 // Intersection Observer for animations
 function initScrollAnimations() {
     // Only use if AOS is not available or for additional custom animations
@@ -234,10 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
     optimizeForMobile();
     
     // Initialize core features (agent system is handled separately)
-    initScrollProgress();
-    initNavbarEffects();
-    initJourneyProgress();
-    initSmoothScrolling();
     initScrollAnimations();
     
     // Add loading class removal
@@ -261,16 +139,6 @@ window.addEventListener('resize', () => {
     }, 250);
 });
 
-// Global functions for footer interaction
-
-// Journey Progress Dots
-
-
-
-
-// Intersection Observer for animations
-
-
 // Add minimal CSS for scroll animations only
 const style = document.createElement('style');
 style.textContent = `
@@ -279,8 +147,3 @@ style.textContent = `
     [data-aos].aos-animate, .reveal.animate-in { opacity: 1; transform: translateY(0); }
 `;
 document.head.appendChild(style);
-
-// Performance optimizations
-
-
-// (Removed unused utility helpers for leaner bundle)

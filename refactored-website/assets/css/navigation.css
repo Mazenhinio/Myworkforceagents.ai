@@ -1,0 +1,168 @@
+/* =============================================
+   NAVIGATION STYLES
+   ============================================= */
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 50%, rgba(26, 26, 46, 0.98) 100%);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--electric-blue);
+    box-shadow: 
+        0 2px 20px rgba(0, 212, 255, 0.15),
+        0 8px 32px rgba(26, 26, 46, 0.4),
+        inset 0 1px 0 rgba(0, 212, 255, 0.1);
+    z-index: 1000;
+    padding: 15px 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hide-on-scroll animation state */
+.navbar.hide-up {
+    transform: translateY(-120%);
+}
+
+.navbar.scrolled {
+    background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 40%, rgba(26, 26, 46, 0.99) 100%);
+    box-shadow: 
+        0 4px 30px rgba(0, 212, 255, 0.2),
+        0 12px 48px rgba(26, 26, 46, 0.6),
+        inset 0 1px 0 rgba(0, 212, 255, 0.15);
+}
+
+/* Global Scroll Progress Bar */
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    z-index: 1001;
+    transform-origin: 0%;
+    transform: scaleX(0);
+    transition: transform 0.1s ease-out;
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
+}
+
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.brand-text {
+    font-size: 24px;
+    font-weight: 800;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    letter-spacing: -0.3px;
+    text-align: center;
+}
+
+.brand-tagline {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--electric-blue);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-top: 5px;
+    opacity: 0.8;
+    text-shadow: 0 0 5px rgba(0, 212, 255, 0.3);
+    animation: mottoGlow 3s ease-in-out infinite;
+}
+
+@keyframes mottoGlow {
+    0%, 100% { 
+        text-shadow: 0 0 5px rgba(0, 212, 255, 0.3);
+        transform: scale(1);
+    }
+    50% { 
+        text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+        transform: scale(1.02);
+    }
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: var(--transition-normal);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Mobile Navigation Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 0;
+        width: 100%;
+    }
+    
+    .brand-text {
+        font-size: 20px;
+    }
+    
+    .brand-tagline {
+        font-size: 8px;
+    }
+    
+    .nav-links, .nav-desktop-only { 
+        display: none !important; 
+    }
+    
+    .navbar .container { 
+        justify-content: center; 
+    }
+    
+    .nav-brand { 
+        align-items: center; 
+    }
+    
+    .brand-text { 
+        font-size: 22px; 
+    }
+    
+    .brand-tagline { 
+        margin-top: 4px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-text {
+        font-size: 18px;
+    }
+    
+    .brand-tagline {
+        font-size: 7px;
+    }
+}
