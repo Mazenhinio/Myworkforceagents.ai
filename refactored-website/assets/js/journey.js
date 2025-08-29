@@ -17,6 +17,7 @@ class JourneyAnimations {
         this.setupRevealAnimations();
         this.setupProgressTracking();
         this.setupStaggeredReveal();
+        this.setupMobileInteractions();
     }
     
     setupRevealAnimations() {
@@ -108,6 +109,54 @@ class JourneyAnimations {
                 header.style.transform = 'translateY(0)';
             }, 200);
         }
+    }
+    
+    setupMobileInteractions() {
+        const challengeItems = document.querySelectorAll('.challenge-item');
+        
+        challengeItems.forEach(item => {
+            // Handle touch/click events for mobile
+            item.addEventListener('click', (e) => {
+                // Check if it's a mobile device or touch event
+                if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all other items
+                    challengeItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle active class on clicked item
+                    item.classList.toggle('active');
+                }
+            });
+            
+            // Handle touch start for better mobile UX
+            item.addEventListener('touchstart', (e) => {
+                if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                    // Add a subtle visual feedback
+                    item.style.transform = 'scale(0.98)';
+                }
+            });
+            
+            // Handle touch end
+            item.addEventListener('touchend', (e) => {
+                if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                    item.style.transform = '';
+                }
+            });
+        });
+        
+        // Close active items when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.challenge-item')) {
+                challengeItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
+        });
     }
 }
 

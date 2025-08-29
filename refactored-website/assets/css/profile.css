@@ -157,8 +157,8 @@
     height: 420px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 102, 255, 0.25);
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(139, 92, 246, 0.1));
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: var(--navy-light);
 }
 
 .profile-photo {
@@ -170,7 +170,7 @@
 }
 
 .profile-photo:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
 }
 
 .photo-overlay {

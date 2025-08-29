@@ -287,38 +287,7 @@ img, video, iframe {
         grid-template-columns: 1fr;
     }
     
-    /* Mobile optimizations for challenge and turning point sections */
-    .challenge-item {
-        padding: 12px 10px;
-        border-radius: 8px;
-        margin-bottom: 10px;
-    }
-    
-    .challenge-metric {
-        flex-direction: row;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 8px;
-    }
-    
-    .metric-number {
-        font-size: 1.4rem;
-        line-height: 1;
-    }
-    
-    .metric-label {
-        font-size: 0.75rem;
-    }
-    
-    .challenge-description h4 {
-        font-size: 0.9rem;
-        margin-bottom: 4px;
-    }
-    
-    .challenge-description p {
-        font-size: 0.75rem;
-        line-height: 1.3;
-    }
+
     
     .highlight-item {
         flex-direction: row;
@@ -434,29 +403,7 @@ img, video, iframe {
     
     .hero-headline { font-size: clamp(2.05rem, 6vw, 2.6rem); margin-bottom: 22px; }
     
-    /* Smaller mobile optimizations */
-    .challenge-item {
-        padding: 10px 8px;
-        border-radius: 6px;
-        margin-bottom: 8px;
-    }
-    
-    .metric-number {
-        font-size: 1.2rem;
-    }
-    
-    .metric-label {
-        font-size: 0.7rem;
-    }
-    
-    .challenge-description h4 {
-        font-size: 0.8rem;
-        margin-bottom: 3px;
-    }
-    
-    .challenge-description p {
-        font-size: 0.7rem;
-    }
+
     
     .highlight-item {
         padding: 10px 8px;
