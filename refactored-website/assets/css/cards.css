@@ -1,37 +1,17 @@
 /* =============================================
-   CARD SYSTEM STYLES - CLEAN & CROSS-BROWSER
+   CLEAN CARD SYSTEM - PRODUCTION-STYLE APPROACH
    ============================================= */
-
-/* Cross-browser normalization */
-* {
-    box-sizing: border-box;
-}
-
-/* Ensure consistent text rendering across browsers */
-.game-card,
-.game-card *,
-.card-front,
-.card-back,
-.card-content,
-.card-header,
-.card-body,
-.card-actions,
-.btn-select {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-}
 
 /* Experience Section */
 .experience-section {
     text-align: center;
     margin-top: 40px;
     position: relative;
-    z-index: 800; /* Below navbar */
+    z-index: 800;
 }
 
 .experience-caption {
-    color: var(--card-text-primary);
+    color: var(--text-secondary);
     font-size: 1.1rem;
     margin-bottom: 30px;
     font-weight: 500;
@@ -46,180 +26,50 @@
     gap: 30px;
     padding: 20px;
     position: relative;
-    z-index: 900; /* Below navbar (1000) */
+    z-index: 900;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-/* Desktop-specific overrides to ensure proper desktop experience */
-@media (min-width: 769px) {
-    .mobile-nav-dots {
-        display: none !important;
-    }
-
-    /* Desktop-specific layout overrides */
-    .cards-container {
-        z-index: 900; /* Below navbar */
-    }
-
-    .game-card {
-        z-index: 900; /* Below navbar */
-    }
-
-    /* Desktop Button Styles - Moved up for proper precedence */
-    .btn-select {
-        /* Core button properties for desktop */
-        background: linear-gradient(135deg, var(--card-primary), var(--card-secondary));
-        color: white;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        pointer-events: auto;
-
-        /* Desktop-specific sizing */
-        padding: 12px 25px;
-        font-size: 1rem;
-        border-radius: 25px;
-        min-height: 44px;
-
-        /* Layout and interaction */
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        position: relative;
-        z-index: 100;
-
-        /* Visual feedback */
-        box-shadow: 0 4px 15px var(--card-glow);
-
-        /* Cross-browser text rendering */
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-    }
-
-    .btn-select:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px var(--card-glow);
-        background: linear-gradient(135deg, var(--card-primary), var(--card-secondary));
-    }
-
-    .btn-select:active {
-        transform: translateY(0) scale(0.95);
-        box-shadow: 0 2px 8px var(--card-glow);
-    }
-
-    /* Click feedback animation */
-    .btn-select.clicked {
-        animation: buttonClickFeedback 0.3s ease-out;
-    }
-
-    @keyframes buttonClickFeedback {
-        0% {
-            transform: scale(1);
-            box-shadow: 0 4px 15px var(--card-glow);
-        }
-        50% {
-            transform: scale(0.95);
-            box-shadow: 0 2px 8px var(--card-glow);
-        }
-        100% {
-            transform: scale(1);
-            box-shadow: 0 4px 15px var(--card-glow);
-        }
-    }
-
-    /* Ripple effect for visual feedback */
-    .btn-select::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.3);
-        transform: translate(-50%, -50%);
-        transition: width 0.3s, height 0.3s;
-        pointer-events: none;
-    }
-
-    .btn-select.clicked::before {
-        width: 300px;
-        height: 300px;
-        opacity: 0;
-    }
-}
-
-/* Game Card Base - Desktop */
+/* Game Card - Production Style */
 .game-card {
     position: relative;
     width: 260px;
     height: 380px;
     cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.3s ease;
     z-index: 10;
     perspective: 1000px;
-    animation: cardFloat 8s ease-in-out infinite;
 }
 
-/* Game Card Variables - Applied to all cards */
-.game-card {
-    --card-primary: #00d4ff;
-    --card-secondary: #0066ff;
-    --card-accent: #33e6ff;
-    --card-glow: rgba(0, 212, 255, 0.4);
-    --card-bg-dark: #0a0a1a;
-    --card-bg-medium: #1a1a2e;
-    --card-bg-light: #2a2a4e;
-    --card-text-primary: rgba(255, 255, 255, 0.7);
-    --card-text-secondary: rgba(255, 255, 255, 0.8);
-    --card-text-hover: rgba(255, 255, 255, 0.9);
-    --card-shadow-dark: rgba(0, 0, 0, 0.4);
-    --card-shadow-light: rgba(0, 0, 0, 0.2);
-    --card-shadow-text: rgba(0, 0, 0, 0.6);
-    --card-glow-light: rgba(0, 212, 255, 0.15);
-    --card-glow-medium: rgba(0, 212, 255, 0.2);
-    --card-glow-strong: rgba(0, 212, 255, 0.3);
-    --card-overlay: rgba(0, 0, 0, 0.95);
-    --card-overlay-light: rgba(255, 255, 255, 0.1);
-    --card-text-muted: rgba(255, 255, 255, 0.6);
-    --card-pending-bg: #666;
-    --card-pending-bg-hover: #888;
+/* Responsive Card Sizing */
+@media (max-width: 1200px) {
+    .cards-container { gap: 20px; }
+    .game-card { width: 250px; height: 370px; }
 }
 
-/* Desktop cards use base sizing - no responsive overrides needed for modern screens */
+@media (max-width: 1024px) {
+    .cards-container { gap: 18px; padding: 16px 10px; }
+    .game-card { width: 240px; height: 360px; }
+}
 
-/* Mobile - Vertical Stack Layout (like agents section) */
 @media (max-width: 768px) {
-    .experience-section {
-        padding: 20px 0;
-        position: relative;
-    }
-
-    .experience-caption {
-        font-size: 1.2rem;
-        margin-bottom: 25px;
-        padding: 0 20px;
-    }
-
+    .experience-section { padding: 20px 0; }
+    .experience-caption { font-size: 1.2rem; margin-bottom: 25px; padding: 0 20px; }
     .cards-container {
-        position: relative;
         width: 100%;
-        height: 400px; /* Optimized height for smaller cards */
+        height: 400px;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: visible;
-        padding: 15px 0; /* Reduced padding for better fit */
+        padding: 15px 0;
     }
-
     .game-card {
         position: absolute;
-        width: 75vw; /* Reduced from 85vw for better mobile proportions */
-        max-width: 290px; /* Reduced max-width */
-        height: 340px; /* Reduced height proportionally */
+        width: 75vw;
+        max-width: 290px;
+        height: 340px;
         margin: 0 auto;
         border-radius: 15px;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
@@ -227,377 +77,81 @@
         transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         z-index: 1;
     }
-
-    /* Active card styling */
-    .game-card.active {
-        z-index: 10;
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    /* Inactive cards styling - optimized for smaller cards */
-    .game-card.inactive-left {
-        transform: translateX(-105%) scale(0.85);
-        opacity: 0.3;
-    }
-
-    .game-card.inactive-right {
-        transform: translateX(105%) scale(0.85);
-        opacity: 0.3;
-    }
-
-    .card-inner {
-        /* The card starts in its "un-flipped" state */
-        transform: rotateY(0deg);
-        height: 100%;
-        border-radius: 15px;
-    }
-
-    /* Mobile card sides - smaller border radius */
-    .card-side {
-        border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Mobile card sides - proper z-index hierarchy */
-    .card-front {
-        transform: rotateY(180deg);
-        z-index: 3; /* Higher than back to appear on top when flipped */
-    }
-
-    .card-back {
-        transform: rotateY(0deg);
-        z-index: 1;
-    }
-
-    .card-content {
-        padding: 40px 30px;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .card-header {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    .icon-container {
-        width: 80px;
-        height: 80px;
-        font-size: 2.2rem;
-        margin: 0 auto 20px;
-        background: linear-gradient(135deg, var(--card-primary), var(--card-secondary));
-        box-shadow: 0 12px 30px var(--card-glow);
-    }
-
-    .card-header h3 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin: 0;
-        background: linear-gradient(135deg, var(--card-primary), var(--card-secondary));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        letter-spacing: 2px;
-    }
-
-    .card-body {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 30px;
-    }
-
-    .card-body p {
-        font-size: 1.2rem;
-        line-height: 1.6;
-        text-align: center;
-        margin: 0;
-        color: var(--card-text-secondary);
-        max-width: 300px;
-        margin: 0 auto;
-    }
-
-    /* Mobile card actions and button improvements */
-    .card-actions {
-        text-align: center;
-        margin-top: auto;
-        padding: 0 20px;
-    }
-
-        /* Mobile-optimized button styling - Cross-browser compatible */
-    .btn-select {
-        /* Core button properties */
-        background: linear-gradient(135deg, var(--card-primary), var(--card-secondary));
-        color: white;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        /* Mobile-specific sizing */
-        min-height: 48px; /* Touch-friendly height */
-        font-size: 1.1rem;
-        padding: 14px 28px;
-        border-radius: 28px;
-
-        /* Layout and interaction */
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        position: relative;
-        z-index: 100; /* Much higher to ensure it's above everything */
-
-        /* Touch optimizations */
-        -webkit-tap-highlight-color: rgba(0, 212, 255, 0.2);
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        touch-action: manipulation; /* Optimize for touch */
-
-        /* Visual feedback */
-        box-shadow: 0 4px 15px var(--card-glow);
-
-        /* Cross-browser text rendering */
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-        }
-
-    /* Mobile button click feedback */
-    .btn-select:active {
-        transform: scale(0.95);
-        box-shadow: 0 2px 8px var(--card-glow);
-    }
-
-    .btn-select.clicked {
-        animation: buttonClickFeedbackMobile 0.4s ease-out;
-    }
-
-    @keyframes buttonClickFeedbackMobile {
-        0% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(0.92);
-        }
-        100% {
-            transform: scale(1);
-        }
-    }
-
-    /* Ripple effect for visual feedback */
-    .btn-select::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.3);
-        transform: translate(-50%, -50%);
-        transition: width 0.3s, height 0.3s;
-        pointer-events: none;
-    }
-
-    .btn-select.clicked::before {
-        width: 300px;
-        height: 300px;
-        opacity: 0;
-    }
-
-
-
-
-
-
-
-
-
-    /* Mobile Navigation Arrows (like agents section) */
-    .mobile-nav-dots {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        margin-top: 30px;
-        padding: 0 20px;
-    }
-
-    .nav-arrow {
-        width: 50px;
-        height: 50px;
-        border-radius: 8px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--card-primary);
-        font-size: 1.5rem;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        position: relative;
-        z-index: 100;
-    }
-
-    .nav-arrow:hover {
-        border-color: var(--card-primary);
-        background: rgba(0, 212, 255, 0.1);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
-    }
-
-    .nav-arrow:active {
-        transform: translateY(0);
-    }
-
-    .nav-arrow.disabled {
-        opacity: 0.3;
-        cursor: not-allowed;
-        pointer-events: none;
-    }
-
-    /* Remove active state transform interference on mobile */
 }
 
-
-
-/* Desktop Fan Layout */
-@media (min-width: 769px) {
-    .game-card:nth-child(1) {
-        transform: rotate(-15deg) translateY(0px);
-        margin-right: -20px;
-        animation-delay: 0s;
-        animation-name: cardFloat1;
-    }
-
-    .game-card:nth-child(2) {
-        transform: rotate(0deg) translateY(0px);
-        z-index: 15;
-        animation-delay: 1s;
-        animation-name: cardFloat2;
-    }
-
-    .game-card:nth-child(3) {
-        transform: rotate(15deg) translateY(0px);
-        margin-left: -20px;
-        animation-delay: 2s;
-        animation-name: cardFloat3;
-    }
+/* Fan Layout Positioning */
+.game-card:nth-child(1) {
+    transform: rotate(-15deg);
+    margin-right: -20px;
 }
 
-/* Desktop Hover Effects */
-@media (min-width: 769px) {
-    .game-card:hover {
-        transform: translateY(-16px) scale(1.04);
-        z-index: 100;
-    }
-
-    .game-card:nth-child(1):hover {
-        transform: rotate(-15deg) translateY(-16px) scale(1.04);
-    }
-
-    .game-card:nth-child(2):hover {
-        transform: rotate(0deg) translateY(-16px) scale(1.04);
-    }
-
-    .game-card:nth-child(3):hover {
-        transform: rotate(15deg) translateY(-16px) scale(1.04);
-    }
+.game-card:nth-child(2) {
+    transform: rotate(0deg);
+    z-index: 15;
 }
 
-
-
-/* Desktop Floating Animations */
-@keyframes cardFloat1 {
-    0%, 100% { 
-        transform: rotate(-15deg) translateY(0px);
-    }
-    33% { 
-        transform: rotate(-14deg) translateY(-15px);
-    }
-    66% { 
-        transform: rotate(-16deg) translateY(-8px);
-    }
+.game-card:nth-child(3) {
+    transform: rotate(15deg);
+    margin-left: -20px;
 }
 
-@keyframes cardFloat2 {
-    0%, 100% { 
-        transform: rotate(0deg) translateY(0px);
-    }
-    33% { 
-        transform: rotate(1deg) translateY(-18px);
-    }
-    66% { 
-        transform: rotate(-1deg) translateY(-10px);
-    }
+/* Hover Effects - Cards flip on hover */
+.game-card:hover {
+    transform: translateY(-16px) scale(1.04);
+    z-index: 100;
 }
 
-@keyframes cardFloat3 {
-    0%, 100% { 
-        transform: rotate(15deg) translateY(0px);
-    }
-    33% { 
-        transform: rotate(16deg) translateY(-15px);
-    }
-    66% { 
-        transform: rotate(14deg) translateY(-8px);
-    }
+.game-card:nth-child(1):hover {
+    transform: rotate(-15deg) translateY(-16px) scale(1.04);
 }
 
-/* Card Flip States */
-.game-card.flipped .card-inner {
+.game-card:nth-child(2):hover {
+    transform: rotate(0deg) translateY(-16px) scale(1.04);
+}
+
+.game-card:nth-child(3):hover {
+    transform: rotate(15deg) translateY(-16px) scale(1.04);
+}
+
+/* Hover flip effect */
+.game-card:hover .card-inner {
     transform: rotateY(180deg);
 }
 
+/* Flipped State - LOCKED POSITIONING */
 .game-card.flipped {
-    z-index: 950; /* Above cards but below navbar */
+    z-index: 1500 !important;
 }
 
-/* Ensure button is clickable when card is flipped - Cross-browser fix */
-.game-card.flipped .btn-select {
-    z-index: 20;
-    pointer-events: auto;
+.game-card:nth-child(1).flipped {
+    transform: rotate(-15deg) !important;
 }
 
-/* Maintain fan layout when flipped */
-@media (min-width: 769px) {
-    .game-card:nth-child(1).flipped {
-        transform: rotate(-15deg);
-    }
-
-    .game-card:nth-child(2).flipped {
-        transform: rotate(0deg);
-    }
-
-    .game-card:nth-child(3).flipped {
-        transform: rotate(15deg);
-    }
+.game-card:nth-child(2).flipped {
+    transform: rotate(0deg) !important;
 }
 
-/* Card Inner Container - Clean */
+.game-card:nth-child(3).flipped {
+    transform: rotate(15deg) !important;
+}
+
+/* Card Inner Container */
 .card-inner {
     position: relative;
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 20px;
     -webkit-transform-style: preserve-3d;
     will-change: transform;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
 }
 
-/* Card Sides - Clean */
+.game-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Card Sides */
 .card-side {
     position: absolute;
     width: 100%;
@@ -607,29 +161,22 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow:
-        0 20px 40px var(--card-shadow-dark),
-        0 8px 16px var(--card-shadow-light);
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Card Back (Tech Pattern) */
 .card-back {
-    background: linear-gradient(135deg, var(--card-bg-dark) 0%, var(--card-bg-medium) 50%, var(--card-bg-light) 100%);
-    border: 2px solid var(--card-primary);
-    box-shadow: 
-        inset 0 0 15px var(--card-glow-light),
-        0 0 20px var(--card-glow);
+    background: linear-gradient(135deg, var(--navy-primary) 0%, #16213e 50%, #0f3460 100%);
+    border: 2px solid rgba(0, 212, 255, 0.3);
     transform: rotateY(0deg);
     z-index: 1;
 }
 
-/* Card Front (Content) - Global */
 .card-front {
-    background: linear-gradient(135deg, var(--card-bg-dark) 0%, var(--card-bg-medium) 50%, var(--card-bg-light) 100%);
-    border: 2px solid var(--card-primary);
+    background: linear-gradient(135deg, #0a0a1a 0%, var(--navy-primary) 50%, #2a2a4e 100%);
+    border: 2px solid rgba(0, 212, 255, 0.5);
     transform: rotateY(180deg);
-    z-index: 3; /* Consistent with mobile - higher than back */
+    z-index: 2;
 }
 
 /* Tech Pattern Background */
@@ -641,11 +188,9 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
 }
 
-/* Circuit Grid Animation - Optimized for Mobile */
+/* Circuit Grid Animation */
 .circuit-grid {
     position: absolute;
     top: 0;
@@ -653,8 +198,8 @@
     right: 0;
     bottom: 0;
     background-image:
-        linear-gradient(90deg, var(--card-primary) 1px, transparent 1px),
-        linear-gradient(var(--card-primary) 1px, transparent 1px);
+        linear-gradient(90deg, var(--accent-color) 1px, transparent 1px),
+        linear-gradient(var(--accent-color) 1px, transparent 1px);
     background-size: 40px 40px, 40px 40px;
     background-position: 0 0, 0 0;
     opacity: 0.15;
@@ -678,7 +223,7 @@
     }
 }
 
-/* Holographic Sweep Effect - Optimized */
+/* Holographic Sweep Effect */
 .holo-sweep {
     position: absolute;
     top: 0;
@@ -714,15 +259,15 @@
     }
 }
 
-/* Brand Logo on Card Back - Optimized */
+/* Brand Logo on Card Back */
 .tech-pattern .brand-logo {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--card-primary);
+    color: var(--accent-color);
     letter-spacing: 3px;
     text-shadow:
-        0 2px 4px var(--card-shadow-text),
-        0 0 10px var(--card-glow-strong);
+        0 2px 4px rgba(0, 0, 0, 0.6),
+        0 0 10px var(--shadow-glow);
     animation: brandGlow 4s ease-in-out infinite;
     position: relative;
     z-index: 10;
@@ -732,13 +277,13 @@
 @keyframes brandGlow {
     0%, 100% {
         text-shadow:
-            0 2px 4px var(--card-shadow-text),
-            0 0 10px var(--card-glow-strong);
+            0 2px 4px rgba(0, 0, 0, 0.6),
+            0 0 10px var(--shadow-glow);
     }
     50% {
         text-shadow:
-            0 2px 4px var(--card-shadow-text),
-            0 0 15px var(--card-glow-strong);
+            0 2px 4px rgba(0, 0, 0, 0.6),
+            0 0 15px var(--shadow-glow);
     }
 }
 
@@ -761,7 +306,7 @@
 .icon-container {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, var(--card-primary), var(--card-secondary));
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -769,7 +314,7 @@
     margin: 0 auto 15px;
     font-size: 1.5rem;
     color: white;
-    box-shadow: 0 8px 20px var(--card-glow);
+    box-shadow: 0 8px 20px var(--shadow-glow);
     animation: iconFloat 3s ease-in-out infinite;
 }
 
@@ -786,7 +331,7 @@
     font-size: 1.8rem;
     font-weight: 700;
     margin: 0;
-    background: linear-gradient(135deg, var(--card-primary), var(--card-secondary));
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -801,7 +346,7 @@
 }
 
 .card-body p {
-    color: var(--card-text-secondary);
+    color: var(--text-secondary);
     font-size: 1rem;
     line-height: 1.5;
     text-align: center;
@@ -810,7 +355,7 @@
 }
 
 .game-card:hover .card-body p {
-    color: var(--card-text-hover);
+    color: var(--text-primary);
 }
 
 /* Card Actions */
@@ -819,66 +364,101 @@
     margin-top: 20px;
 }
 
+/* Select Button - Production Style */
+.btn-select {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+}
 
+.btn-select:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 102, 255, 0.5);
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+}
+
+.btn-select:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 3px 10px rgba(0, 102, 255, 0.4);
+    transition: all 0.1s ease;
+}
+
+/* Mobile Button Styles */
+@media (max-width: 768px) {
+    .btn-select {
+        min-height: 48px;
+        font-size: 1.1rem;
+        padding: 14px 28px;
+        border-radius: 28px;
+        -webkit-tap-highlight-color: rgba(0, 212, 255, 0.2);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        touch-action: manipulation;
+    }
+
+    .btn-select:active {
+        transform: scale(0.95);
+        box-shadow: 0 2px 8px rgba(0, 102, 255, 0.4);
+    }
+}
 
 /* Selection States */
 .game-card.selected {
-    z-index: 950; /* Above cards but below navbar */
+    z-index: 950;
+}
+
+.game-card.pending {
+    animation: cardPending 1.5s ease-in-out infinite;
+    pointer-events: none;
 }
 
 .game-card.pending .btn-select {
-    background: linear-gradient(135deg, var(--card-pending-bg), var(--card-pending-bg-hover));
-    cursor: not-allowed;
-    opacity: 0.6;
-    /* Don't use pointer-events: none to allow visual feedback */
+    background: linear-gradient(135deg, #666, #888);
+    color: rgba(255, 255, 255, 0.7);
+    animation: buttonPulse 1s ease-in-out infinite;
 }
 
 .game-card.pending .btn-select::after {
     content: '';
-    width: 16px;
-    height: 16px;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    width: 12px;
+    height: 12px;
+    margin-top: -6px;
     border: 2px solid transparent;
-    border-top: 2px solid white;
+    border-top: 2px solid rgba(255, 255, 255, 0.7);
+    border-right: 2px solid rgba(255, 255, 255, 0.7);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin-left: 8px;
+}
+
+@keyframes cardPending {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes buttonPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-
-/* Tablet - Medium screens */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .cards-container {
-        gap: 20px;
-        padding: 18px;
-    }
-
-    .game-card {
-        width: 240px;
-        height: 350px;
-    }
-
-    .card-content {
-        padding: 25px 20px;
-    }
-
-    /* Tablet Fan Layout - Scaled down desktop */
-    .game-card:nth-child(1) {
-        transform: rotate(-12deg) scale(0.9);
-        margin-right: -18px;
-    }
-
-    .game-card:nth-child(2) {
-        transform: rotate(0deg) scale(0.95);
-    }
-
-    .game-card:nth-child(3) {
-        transform: rotate(12deg) scale(0.9);
-        margin-left: -18px;
-    }
 }
 
 /* Loading Screen */
@@ -888,11 +468,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--card-overlay);
+    background: rgba(0, 0, 0, 0.95);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1050; /* Above interface container */
+    z-index: 1050;
     backdrop-filter: blur(10px);
 }
 
@@ -906,27 +486,27 @@
 .card-loading-icon {
     font-size: 3rem;
     margin-bottom: 20px;
-    color: var(--card-primary);
+    color: var(--accent-color);
 }
 
 .card-loading-title {
     font-size: 2rem;
     margin-bottom: 15px;
-    background: linear-gradient(135deg, var(--card-primary), var(--card-secondary));
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .card-loading-message {
-    color: var(--card-text-secondary);
+    color: var(--text-secondary);
     margin-bottom: 30px;
 }
 
 .card-loading-progress {
     width: 100%;
     height: 4px;
-    background: var(--card-overlay-light);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 2px;
     overflow: hidden;
     margin-bottom: 20px;
@@ -934,7 +514,7 @@
 
 .card-loading-progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--card-primary), var(--card-secondary));
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
     border-radius: 2px;
     animation: loadingProgress 2s ease-in-out infinite;
 }
@@ -946,7 +526,7 @@
 }
 
 .card-loading-status {
-    color: var(--card-text-muted);
+    color: var(--text-secondary);
     font-size: 0.9rem;
 }
 
@@ -957,8 +537,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--card-overlay);
-    z-index: 1100; /* Above navbar but reasonable */
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1100;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -973,9 +553,56 @@
     visibility: visible;
 }
 
-/* Body Scroll Lock */
-body.loading-active {
-    overflow: hidden;
+/* Mobile Navigation Dots */
+.mobile-nav-dots {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-nav-dots {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 30px;
+        padding: 0 20px;
+    }
+}
+
+.nav-arrow {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    position: relative;
+    z-index: 100;
+}
+
+.nav-arrow:hover {
+    border-color: var(--accent-color);
+    background: rgba(0, 212, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+}
+
+.nav-arrow:active {
+    transform: translateY(0);
+}
+
+.nav-arrow.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 /* Performance optimizations for low-end mobile devices */
@@ -992,7 +619,7 @@ body.loading-active {
 
     .tech-pattern .brand-logo {
         animation: none;
-        text-shadow: 0 2px 4px var(--card-shadow-text);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
     }
 
     .card-inner {

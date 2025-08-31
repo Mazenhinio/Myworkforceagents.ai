@@ -1,207 +1,102 @@
 /* =============================================
-   CARD SYSTEM - REFACTORED & SIMPLIFIED
+   CLEAN CARD SYSTEM - PRODUCTION-STYLE APPROACH
    ============================================= */
 
-class CardSystem {
-    constructor() {
-        this.isMobile = window.innerWidth <= 768;
-        this.cardsContainer = document.getElementById('cardsContainer');
-        this.cards = this.cardsContainer ? Array.from(this.cardsContainer.querySelectorAll('.game-card')) : [];
-        this.currentCardIndex = 0;
-        this.isResizing = false;
+// Simple Card System - Production Style
+function initializeCardExperience() {
+    console.log('🃏 Initializing Card Experience...');
 
-        this.init();
-    }
+    // Add click handlers to card backs (only for mobile)
+    if (window.innerWidth <= 768) {
+        const gameCards = document.querySelectorAll('.game-card');
 
-    init() {
-        if (this.cards.length === 0) {
-            return;
-        }
-        this.setupEventListeners();
-        if (this.isMobile) {
-            this.initializeMobileLayout();
-        }
-    }
+        gameCards.forEach(card => {
+            const cardBack = card.querySelector('.card-back');
 
-    setupEventListeners() {
-        // --- Event Delegation for Select Buttons ---
-        // This is more robust and performant than individual listeners.
-        this.cardsContainer.addEventListener('click', (e) => {
-            const selectButton = e.target.closest('.btn-select');
-            if (selectButton && !selectButton.disabled) {
-                e.stopPropagation(); // Prevent card flip on button click.
-
-                const card = selectButton.closest('.game-card');
-                const cardType = card ? card.dataset.card : null;
-
-                if (cardType && card) {
-                    // Mark card as being selected to prevent flip-back
-                    card.dataset.preventFlipBack = 'true';
-
-                    // Add visual feedback
-                    selectButton.classList.add('clicked');
-                    setTimeout(() => selectButton.classList.remove('clicked'), 400);
-
-                    // Trigger the global selection function
-                    selectCard(cardType);
-                }
-            }
-        });
-
-        // --- Card Flip Event Listeners ---
-        this.cards.forEach(card => {
-            if (this.isMobile) {
-                // On mobile, tapping the card (but not the button) flips it.
-                card.addEventListener('click', (e) => {
-                    if (e.target.closest('.btn-select')) {
-                        return; // Button click is handled by the delegated listener.
-                    }
-                    this.toggleCardFlip(card);
-                });
-            } else {
-                // On desktop, hovering the card flips it.
-                card.addEventListener('mouseenter', () => {
-                    // Only flip if not being selected
-                    if (!card.dataset.preventFlipBack) {
-                        this.toggleCardFlip(card);
-                    }
-                });
-                card.addEventListener('mouseleave', () => {
-                    // Only flip back if not being selected and not already selected
-                    if (!card.dataset.preventFlipBack && !card.classList.contains('selected')) {
-                        this.toggleCardFlip(card);
-                    }
-                });
-            }
-        });
-
-        // --- Mobile-Only Arrow Navigation ---
-        if (this.isMobile) {
-            const prevButton = document.getElementById('prevCard');
-            const nextButton = document.getElementById('nextCard');
-            if (prevButton && nextButton) {
-                prevButton.addEventListener('click', () => this.navigateToPrevious());
-                nextButton.addEventListener('click', () => this.navigateToNext());
-            }
-        }
-
-        // --- Robust Resize Handler ---
-        // Reloads the page on mode change to ensure a clean state.
-        window.addEventListener('resize', () => {
-            if (this.isResizing) return;
-            this.isResizing = true;
-            setTimeout(() => {
-                const newIsMobile = window.innerWidth <= 768;
-                if (newIsMobile !== this.isMobile) {
-                    window.location.reload();
-                }
-                this.isResizing = false;
-            }, 200);
+            // Click on card back to flip (mobile only)
+            cardBack.addEventListener('click', () => {
+                const cardType = card.dataset.card;
+                flipCard(cardType);
+            });
         });
     }
+}
 
-    toggleCardFlip(card) {
-        card.classList.toggle('flipped');
-    }
+function flipCard(cardType) {
+    console.log(`🃏 Flipping card: ${cardType}`);
 
-    // --- Mobile-Specific Methods ---
-    initializeMobileLayout() {
-        this.currentCardIndex = 0;
-        this.updateMobileCardPositions();
-    }
+    const gameCard = document.querySelector(`[data-card="${cardType}"]`);
 
-    updateMobileCardPositions() {
-        this.cards.forEach((card, index) => {
-            card.classList.remove('active', 'inactive-left', 'inactive-right');
-            if (index === this.currentCardIndex) {
-                card.classList.add('active');
-            } else if (index < this.currentCardIndex) {
-                card.classList.add('inactive-left');
-            } else {
-                card.classList.add('inactive-right');
-            }
-        });
-        this.updateArrowStates();
-    }
+    // Add flip animation - only to the game card container
+    gameCard.classList.add('flipped');
+}
 
-    navigateToPrevious() {
-        if (this.currentCardIndex > 0) {
-            this.currentCardIndex--;
-            this.updateMobileCardPositions();
-        }
-    }
+function flipCardBack(cardType) {
+    console.log(`🃏 Flipping card back: ${cardType}`);
 
-    navigateToNext() {
-        if (this.currentCardIndex < this.cards.length - 1) {
-            this.currentCardIndex++;
-            this.updateMobileCardPositions();
-        }
-    }
+    const gameCard = document.querySelector(`[data-card="${cardType}"]`);
 
-    updateArrowStates() {
-        const prevButton = document.getElementById('prevCard');
-        const nextButton = document.getElementById('nextCard');
-        if (!prevButton || !nextButton) return;
+    // Remove flip animation
+    gameCard.classList.remove('flipped');
 
-        prevButton.classList.toggle('disabled', this.currentCardIndex === 0);
-        nextButton.classList.toggle('disabled', this.currentCardIndex === this.cards.length - 1);
-    }
+    // Remove selection state
+    gameCard.classList.remove('selected');
 }
 
 // Card Selection and Effects
 function selectCard(cardType) {
+    console.log(`🃏 Card selected: ${cardType}`);
+
     const gameCard = document.querySelector(`[data-card="${cardType}"]`);
-    if (!gameCard) {
+
+    // Prevent double-tapping on mobile
+    if (gameCard.classList.contains('selected')) {
+        console.log('🚫 Card already selected, preventing double selection');
         return;
     }
 
-    // Prevent double selection
-    if (gameCard && gameCard.classList.contains('selected')) {
-        return;
-    }
+    // Add selection state and pending animation
+    gameCard.classList.add('selected', 'pending');
 
-    // Add selection state and ensure card stays flipped
-    gameCard.classList.add('selected', 'pending', 'flipped');
-
-    // Update button state
+    // Update button text to show loading
     const button = gameCard.querySelector('.btn-select');
-    if (button) {
-        const originalText = button.innerHTML;
-        if (!gameCard.dataset.originalLabel) {
-            gameCard.dataset.originalLabel = originalText;
-        }
-        button.innerHTML = 'Loading... <i class="fas fa-spinner fa-spin"></i>';
-        button.disabled = true;
+    const originalText = button.innerHTML;
+    // Persist original label on the card for later restore
+    if (!gameCard.dataset.originalLabel) {
+        gameCard.dataset.originalLabel = originalText;
     }
+    button.innerHTML = 'Loading... <i class="fas fa-spinner fa-spin"></i>';
 
-    // Visual effects
-    createSelectionEffect(gameCard);
+    // Disable button to prevent multiple clicks
+    button.disabled = true;
+    button.style.pointerEvents = 'none';
 
-    // Show loading screen
+    // Create dramatic effect
+    createCardSelectionEffect(gameCard);
+
+    // Show loading screen after a brief moment
     setTimeout(() => {
-        showLoadingScreen(cardType);
+        showCardLoadingScreen(cardType);
     }, 600);
 }
 
-function createSelectionEffect(card) {
-    if (!card) return;
-
+function createCardSelectionEffect(gameCard) {
+    // Simple selection effect
     const ring = document.createElement('div');
-    ring.className = 'selection-ring';
     ring.style.cssText = `
         position: absolute;
         top: -8px;
         left: -8px;
         right: -8px;
         bottom: -8px;
-        border: 2px solid #00d4ff;
+        border: 2px solid var(--accent-color);
         border-radius: 25px;
         pointer-events: none;
         z-index: 999;
         animation: selectionPulse 0.6s ease-out;
     `;
 
-    card.appendChild(ring);
+    gameCard.appendChild(ring);
 
     // Add animation styles if not present
     if (!document.querySelector('#selection-styles')) {
@@ -217,25 +112,26 @@ function createSelectionEffect(card) {
     }
 
     setTimeout(() => {
-        if (card.contains(ring)) {
-            card.removeChild(ring);
+        if (gameCard.contains(ring)) {
+            gameCard.removeChild(ring);
         }
     }, 600);
 }
 
-function showLoadingScreen(cardType) {
+// Show loading screen between card selection and interface transition
+function showCardLoadingScreen(cardType) {
+    console.log(`🔄 Showing loading screen for: ${cardType}`);
+
+    // Remove pending state from card
     const gameCard = document.querySelector(`[data-card="${cardType}"]`);
-    if (gameCard) {
-        gameCard.classList.remove('pending');
-    } else {
-        return;
-    }
+    gameCard.classList.remove('pending');
 
     // Create loading screen
     const loadingScreen = document.createElement('div');
     loadingScreen.className = 'card-loading-screen';
     loadingScreen.id = 'cardLoadingScreen';
 
+    // Get card info for personalized loading
     const cardInfo = getCardInfo(cardType);
 
     loadingScreen.innerHTML = `
@@ -271,11 +167,12 @@ function showLoadingScreen(cardType) {
             messageIndex++;
         } else {
             clearInterval(statusInterval);
-            completeLoading(cardType);
+            completeCardLoading(cardType, loadingScreen);
         }
     }, 800);
 }
 
+// Get card information for personalized loading
 function getCardInfo(cardType) {
     const cardInfo = {
         click: {
@@ -298,22 +195,24 @@ function getCardInfo(cardType) {
     return cardInfo[cardType] || cardInfo.click;
 }
 
-function completeLoading(cardType) {
-    const loadingScreen = document.getElementById('cardLoadingScreen');
-    if (loadingScreen) {
-        loadingScreen.style.opacity = '0';
-        setTimeout(() => {
-            if (document.body.contains(loadingScreen)) {
-                document.body.removeChild(loadingScreen);
-            }
-        }, 300);
-    }
+function completeCardLoading(cardType, loadingScreen) {
+    console.log(`✅ Loading complete for: ${cardType}`);
+
+    // Fade out loading screen
+    loadingScreen.style.opacity = '0';
+    setTimeout(() => {
+        if (document.body.contains(loadingScreen)) {
+            document.body.removeChild(loadingScreen);
+        }
+    }, 300);
 
     document.body.classList.remove('loading-active');
-    navigateToInterface(cardType);
+    navigateToFormInterfaceDirect(cardType);
 }
 
-function navigateToInterface(cardType) {
+function navigateToFormInterfaceDirect(cardType) {
+    console.log(`🚀 Direct navigation to ${cardType} interface...`);
+
     const interfaceContainer = document.getElementById('interfaceContainer');
     if (interfaceContainer) {
         interfaceContainer.style.display = 'flex';
@@ -342,6 +241,8 @@ function navigateToInterface(cardType) {
 }
 
 function closeInterface() {
+    console.log('🔙 Closing interface');
+
     const interfaceContainer = document.getElementById('interfaceContainer');
     if (interfaceContainer) {
         interfaceContainer.classList.remove('active');
@@ -355,12 +256,10 @@ function closeInterface() {
 }
 
 function resetAllCards() {
+    console.log('🔄 Resetting all cards...');
     const gameCards = document.querySelectorAll('.game-card');
     gameCards.forEach(card => {
         card.classList.remove('selected', 'pending', 'flipped');
-
-        // Clear the prevent flip back flag
-        delete card.dataset.preventFlipBack;
 
         const button = card.querySelector('.btn-select');
         if (button) {
@@ -368,15 +267,18 @@ function resetAllCards() {
                 button.innerHTML = card.dataset.originalLabel;
             }
             button.disabled = false;
+            button.style.pointerEvents = '';
         }
     });
+    console.log('✅ All cards reset');
 }
 
 function initializeInterface(cardType) {
+    console.log(`🔧 Initializing ${cardType} interface`);
     // Interface-specific initialization logic here
 }
 
-// Placeholder interface creators (implement based on your needs)
+// Placeholder interface creators
 function createClickInterface() {
     return '<div class="interface-content">Click Interface Loading...</div>';
 }
@@ -391,7 +293,7 @@ function createVoiceInterface() {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    new CardSystem();
+    initializeCardExperience();
 });
 
 // Global functions for HTML onclick handlers
