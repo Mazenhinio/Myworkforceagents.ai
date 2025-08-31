@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="assets/css/core.css">
     <link rel="stylesheet" href="assets/css/navigation.css">
     <link rel="stylesheet" href="assets/css/hero.css">
+    <link rel="stylesheet" href="assets/css/cards.css">
     <link rel="stylesheet" href="assets/css/journey.css">
     <link rel="stylesheet" href="assets/css/agents.css">
     <link rel="stylesheet" href="assets/css/profile.css">
@@ -69,11 +70,127 @@
                     <!-- Hero Title -->
                     <div class="hero-title">
                         <h1 class="hero-headline">
-                            Welcome<br><span class="highlight">To the Future!</span>
+                            Welcome<br><span class="highlight">To The Future!</span>
                         </h1>
                     </div>
                     
-                    <!-- Hand Shadow Effect -->
+                    <!-- Experience Cards Section -->
+                    <div class="experience-section" id="experiences">
+                        <p class="experience-caption">Select Your Preferred Experience</p>
+                        
+                        <!-- Retro-Futuristic Card System -->
+                        <div class="cards-container" id="cardsContainer">
+                            <!-- Card 1: Click -->
+                            <div class="game-card" data-card="click">
+                                <div class="card-inner">
+                                    <!-- Card Back -->
+                                    <div class="card-side card-back">
+                                        <div class="tech-pattern">
+                                            <div class="circuit-grid"></div>
+                                            <div class="holo-sweep"></div>
+                                            <div class="brand-logo">TAP</div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Front -->
+                                    <div class="card-side card-front">
+                                        <div class="card-content">
+                                            <div class="card-header">
+                                                <div class="icon-container">
+                                                    <i class="fas fa-mouse-pointer"></i>
+                                                </div>
+                                                <h3>TAP</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Interactive interface for guided workflows</p>
+                                            </div>
+                                            <div class="card-actions">
+                                                <button class="btn-select">
+                                                    Select <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 2: Type -->
+                            <div class="game-card" data-card="type" title="Instant message communications for text-based users.">
+                                <div class="card-inner">
+                                    <!-- Card Back -->
+                                    <div class="card-side card-back">
+                                        <div class="tech-pattern">
+                                            <div class="circuit-grid"></div>
+                                            <div class="holo-sweep"></div>
+                                            <div class="brand-logo">TEXT</div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Front -->
+                                    <div class="card-side card-front">
+                                        <div class="card-content">
+                                            <div class="card-header">
+                                                <div class="icon-container">
+                                                    <i class="fas fa-keyboard"></i>
+                                                </div>
+                                                <h3>TEXT</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Real-time chat interface for text-based users</p>
+                                            </div>
+                                            <div class="card-actions">
+                                                <button class="btn-select">
+                                                    Select <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 3: Voice -->
+                            <div class="game-card" data-card="voice" title="Hands‑free natural voice interface for conversational users.">
+                                <div class="card-inner">
+                                    <!-- Card Back -->
+                                    <div class="card-side card-back">
+                                        <div class="tech-pattern">
+                                            <div class="circuit-grid"></div>
+                                            <div class="holo-sweep"></div>
+                                            <div class="brand-logo">TALK</div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Front -->
+                                    <div class="card-side card-front">
+                                        <div class="card-content">
+                                            <div class="card-header">
+                                                <div class="icon-container">
+                                                    <i class="fas fa-microphone"></i>
+                                                </div>
+                                                <h3>TALK</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Audio conversational interaction</p>
+                                            </div>
+                                            <div class="card-actions">
+                                                <button class="btn-select">
+                                                    Select <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Navigation Arrows (like agents section) -->
+                        <div class="mobile-nav-dots" id="mobileNavDots">
+                            <button class="nav-arrow disabled" id="prevCard" aria-label="Previous card">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="nav-arrow" id="nextCard" aria-label="Next card">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+
+                    </div>                    <!-- Hand Shadow Effect -->
                     <div class="hand-effect">
                         <div class="shadow-base"></div>
                     </div>
@@ -95,6 +212,11 @@
             </div>
         </div>
     </section>
+
+    <!-- Interface Container for Card Interactions -->
+    <div class="interface-container" id="interfaceContainer" style="display: none;">
+        <!-- Dynamic content will be loaded here -->
+    </div>
 
     <!-- Real Estate Journey Section -->
     <section id="meet-section" class="journey-section">
@@ -507,6 +629,7 @@
     <script defer src="assets/js/core.js"></script>
     <script defer src="assets/js/navigation.js"></script>
     <script defer src="assets/js/hero.js"></script>
+    <script defer src="assets/js/cards.js"></script>
     <script defer src="assets/js/journey.js"></script>
     <script defer src="assets/js/agents.js"></script>
     <script defer src="assets/js/profile.js"></script>
