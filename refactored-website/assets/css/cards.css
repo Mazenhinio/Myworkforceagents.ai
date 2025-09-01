@@ -31,15 +31,16 @@
     margin: 0 auto;
 }
 
-/* Game Card - Production Style */
+/* Game Card - Production Style with Floating Animation */
 .game-card {
     position: relative;
-    width: 260px;
-    height: 380px;
+    width: 280px;
+    height: 400px;
     cursor: pointer;
     transition: transform 0.3s ease;
     z-index: 10;
     perspective: 1000px;
+    animation: cardFloat 8s ease-in-out infinite;
 }
 
 /* Responsive Card Sizing */
@@ -57,42 +58,211 @@
     .experience-section { padding: 20px 0; }
     .experience-caption { font-size: 1.2rem; margin-bottom: 25px; padding: 0 20px; }
     .cards-container {
+        position: relative;
         width: 100%;
-        height: 400px;
+        height: 380px;
         display: flex;
         align-items: center;
         justify-content: center;
-        overflow: visible;
-        padding: 15px 0;
+        overflow: hidden;
+        padding: 10px;
     }
     .game-card {
         position: absolute;
-        width: 75vw;
-        max-width: 290px;
+        width: 85vw;
+        max-width: 300px;
         height: 340px;
-        margin: 0 auto;
         border-radius: 15px;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         perspective: 1000px;
-        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: all 0.4s ease;
         z-index: 1;
+        cursor: pointer;
+    }
+
+    /* Remove desktop rotation and make cards straight + enable subtle floating */
+    .game-card:nth-child(1),
+    .game-card:nth-child(2),
+    .game-card:nth-child(3) {
+        transform: rotate(0deg) !important;
+        margin: 0 !important;
+        /* Re-enable subtle floating for mobile */
+        animation: cardFloatMobile 12s ease-in-out infinite !important;
+    }
+
+    /* Adjust mobile card size for better content fit */
+    .game-card {
+        width: 80vw !important;
+        max-width: 280px !important;
+        height: 330px !important;
+    }
+
+    /* Clean mobile card states - no overlapping */
+    .game-card.active {
+        z-index: 10;
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0) scale(1);
+        pointer-events: auto;
+    }
+
+    .game-card.inactive,
+    .game-card.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateX(100%) scale(0.95);
+    }
+
+
+
+    /* Mobile card flip functionality */
+    .game-card.active.flipped .card-inner {
+        transform: rotateY(180deg);
+    }
+
+    /* Ensure select button is accessible when card is flipped */
+    .game-card.active.flipped .btn-select {
+        pointer-events: auto !important;
+        z-index: 20;
+    }
+
+    /* Mobile card content - adjusted for better button fit */
+    .card-content {
+        padding: 25px 20px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card-header {
+        text-align: center;
+        margin-bottom: 15px;
+        flex-shrink: 0;
+    }
+
+    .icon-container {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+        margin: 0 auto 12px;
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        box-shadow: 0 6px 15px rgba(0, 102, 255, 0.4);
+    }
+
+    .card-header h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0;
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .card-body {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        min-height: 0;
+    }
+
+    .card-body p {
+        font-size: 1rem;
+        line-height: 1.4;
+        text-align: center;
+        margin: 0;
+        color: var(--text-secondary);
+    }
+
+    .card-actions {
+        text-align: center;
+        margin-top: 0;
+        padding: 10px 0;
+        flex-shrink: 0;
+    }
+
+    /* Mobile Navigation Arrows - Hidden by default */
+    .mobile-nav-arrows {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+
+    /* Show ONLY on mobile */
+    @media (max-width: 768px) {
+        .mobile-nav-arrows {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+            padding: 0 20px;
+        }
+
+    .nav-arrow {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--accent-color);
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .nav-arrow:hover {
+        border-color: var(--accent-color);
+        background: rgba(0, 212, 255, 0.2);
+        transform: scale(1.1);
+        box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+    }
+
+    .nav-arrow:active {
+        transform: scale(0.95);
+    }
+
+    .nav-arrow.disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        pointer-events: none;
     }
 }
 
-/* Fan Layout Positioning */
+
+}
+
+/* Fan Layout Positioning with Individual Floating Animations */
 .game-card:nth-child(1) {
     transform: rotate(-15deg);
     margin-right: -20px;
+    animation-delay: 0s;
+    animation-name: cardFloat1;
 }
 
 .game-card:nth-child(2) {
     transform: rotate(0deg);
     z-index: 15;
+    animation-delay: 1s;
+    animation-name: cardFloat2;
 }
 
 .game-card:nth-child(3) {
     transform: rotate(15deg);
     margin-left: -20px;
+    animation-delay: 2s;
+    animation-name: cardFloat3;
 }
 
 /* Hover Effects - Cards flip on hover */
@@ -114,25 +284,14 @@
 }
 
 /* Hover flip effect */
-.game-card:hover .card-inner {
+.game-card:not(.is-mobile):hover .card-inner,
+.game-card.flipped .card-inner {
     transform: rotateY(180deg);
 }
 
-/* Flipped State - LOCKED POSITIONING */
-.game-card.flipped {
-    z-index: 1500 !important;
-}
-
-.game-card:nth-child(1).flipped {
-    transform: rotate(-15deg) !important;
-}
-
-.game-card:nth-child(2).flipped {
-    transform: rotate(0deg) !important;
-}
-
-.game-card:nth-child(3).flipped {
-    transform: rotate(15deg) !important;
+/* Click fix for Safari/Chrome on 3D transformed elements */
+.game-card.flipped .btn-select {
+    transform: translateZ(1px);
 }
 
 /* Card Inner Container */
@@ -553,7 +712,7 @@
     visibility: visible;
 }
 
-/* Mobile Navigation Dots */
+/* Mobile Navigation Dots - Hidden on desktop, visible on mobile */
 .mobile-nav-dots {
     display: none;
 }
@@ -566,43 +725,104 @@
         margin-top: 30px;
         padding: 0 20px;
     }
+
+    .nav-arrow {
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--accent-color);
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        position: relative;
+        z-index: 100;
+    }
+
+    .nav-arrow:hover {
+        border-color: var(--accent-color);
+        background: rgba(0, 212, 255, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+    }
+
+    .nav-arrow:active {
+        transform: translateY(0);
+    }
+
+    .nav-arrow.disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
 }
 
-.nav-arrow {
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--accent-color);
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    position: relative;
-    z-index: 100;
+
+
+/* Base Card Floating Animation */
+@keyframes cardFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
-.nav-arrow:hover {
-    border-color: var(--accent-color);
-    background: rgba(0, 212, 255, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+/* Subtle Mobile Floating Animation */
+@keyframes cardFloatMobile {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(0deg);
+    }
 }
 
-.nav-arrow:active {
-    transform: translateY(0);
+
+
+/* Floating Animations for Individual Cards */
+@keyframes cardFloat1 {
+    0%, 100% {
+        transform: rotate(-15deg) translateY(0px);
+    }
+    33% {
+        transform: rotate(-14deg) translateY(-15px);
+    }
+    66% {
+        transform: rotate(-16deg) translateY(-8px);
+    }
 }
 
-.nav-arrow.disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-    pointer-events: none;
+@keyframes cardFloat2 {
+    0%, 100% {
+        transform: rotate(0deg) translateY(0px);
+    }
+    33% {
+        transform: rotate(1deg) translateY(-18px);
+    }
+    66% {
+        transform: rotate(-1deg) translateY(-10px);
+    }
+}
+
+@keyframes cardFloat3 {
+    0%, 100% {
+        transform: rotate(15deg) translateY(0px);
+    }
+    33% {
+        transform: rotate(16deg) translateY(-15px);
+    }
+    66% {
+        transform: rotate(14deg) translateY(-8px);
+    }
 }
 
 /* Performance optimizations for low-end mobile devices */
