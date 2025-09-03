@@ -1,131 +1,352 @@
 class CardSystem {
     constructor() {
-        this.cards = document.querySelectorAll('.game-card');
-        this.isMobile = window.innerWidth <= 768;
-        this.currentCardIndex = 0;
+        this.caption = document.getElementById('experienceCaption');
+        this.showTimeout = null;
         this.init();
     }
 
     init() {
-        if (!this.cards.length) {
-            console.warn('No cards found to initialize.');
-            return;
-        }
         console.log('🃏 Initializing Card System...');
-        this.setupEventListeners();
-        
-        if (this.isMobile) {
-            this.setupMobileNavigation();
-        }
+        class CardSystem {
+    constructor() {
+        this.caption = document.getElementById('experienceCaption');
+        this.showTimeout = null;
+        this.init();
     }
 
-    setupEventListeners() {
-        this.cards.forEach(card => {
-            const selectButton = card.querySelector('.btn-select');
+    init() {
+        console.log('🃏 Initializing Card System...');
+        console.log('📝 Caption element found:', !!this.caption);
+        
+        // Initialize caption state with smooth showing
+        if (this.caption) {
+            this.caption.classList.remove('hidden');
+            this.caption.classList.add('showing');
+        }
+        
+        // Simple approach: listen to all card interactions
+        this.setupCaptionInteractions();
+        this.setupCardSystem();
+    }
 
-            // Direct listener for the select button with stopPropagation
+    setupCaptionInteractions() {
+        const cards = document.querySelectorAll('.game-card');
+        const cardsContainer = document.getElementById('cardsContainer');
+        
+        console.log('🃏 Found cards:', cards.length);
+        
+        // For every card, add both mobile and desktop listeners
+        cards.forEach(card => {
+            // Mouse events (desktop)
+            card.addEventListener('mouseenter', () => {
+                console.log('🖱️ Card mouseenter');
+                this.hideCaption();
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                console.log('🖱️ Card mouseleave');
+                this.scheduleShowCaption();
+            });
+            
+            // Touch/click events (mobile and desktop)
+            card.addEventListener('click', () => {
+                console.log('👆 Card clicked');
+                this.hideCaption();
+                this.scheduleShowCaption();
+            });
+            
+            // Handle select button
+            const selectButton = card.querySelector('.btn-select');
             if (selectButton) {
                 selectButton.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    this.handleSelection(card);
+                    console.log('🎯 Select button clicked');
+                    this.hideCaption(); // Hide permanently on selection
                 });
             }
+        });
+        
+        // Container mouse leave (desktop safety net)
+        if (cardsContainer) {
+            cardsContainer.addEventListener('mouseleave', () => {
+                console.log('🖱️ Cards container mouseleave');
+                this.scheduleShowCaption();
+            });
+        }
+    }
 
-            // Different logic for mobile vs. desktop
-            if (this.isMobile) {
-                // Mobile: Click card to flip (only active card)
+    setupCardSystem() {
+        const cards = document.querySelectorAll('.game-card');
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+            this.setupMobileNavigation();
+        }
+        
+        // Setup card flip functionality
+        cards.forEach(card => {
+            if (isMobile) {
                 card.addEventListener('click', () => {
                     if (card.classList.contains('active') && !card.classList.contains('flipped')) {
-                        this.flipCard(card);
+                        card.classList.add('flipped');
                     }
                 });
             } else {
-                // Desktop: Hover to flip
-                card.addEventListener('mouseenter', () => this.flipCard(card));
-                card.addEventListener('mouseleave', () => this.unflipCard(card));
+                card.addEventListener('mouseenter', () => {
+                    if (!card.classList.contains('selected')) {
+                        card.classList.add('flipped');
+                    }
+                });
+                card.addEventListener('mouseleave', () => {
+                    if (!card.classList.contains('selected')) {
+                        card.classList.remove('flipped');
+                    }
+                });
             }
         });
     }
 
     setupMobileNavigation() {
+        const cards = document.querySelectorAll('.game-card');
         const prevButton = document.getElementById('prevCard');
         const nextButton = document.getElementById('nextCard');
+        let currentCardIndex = 0;
+
+        function updateCardDisplay() {
+            cards.forEach((card, index) => {
+                card.classList.remove('active', 'inactive');
+                if (index === currentCardIndex) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.add('inactive');
+                }
+            });
+        }
 
         if (prevButton && nextButton) {
-            prevButton.addEventListener('click', () => this.navigateCards('prev'));
-            nextButton.addEventListener('click', () => this.navigateCards('next'));
+            prevButton.addEventListener('click', () => {
+                currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+                updateCardDisplay();
+            });
+            nextButton.addEventListener('click', () => {
+                currentCardIndex = (currentCardIndex + 1) % cards.length;
+                updateCardDisplay();
+            });
         }
 
-        this.updateCardDisplay();
+        updateCardDisplay();
     }
 
-    navigateCards(direction) {
-        if (direction === 'next') {
-            this.currentCardIndex = (this.currentCardIndex + 1) % this.cards.length;
-        } else if (direction === 'prev') {
-            this.currentCardIndex = (this.currentCardIndex - 1 + this.cards.length) % this.cards.length;
+    hideCaption() {
+        console.log('🔥 Hiding caption smoothly');
+        if (this.caption) {
+            this.caption.classList.remove('showing');
+            this.caption.classList.add('hidden');
+            console.log('✅ Hidden class added with smooth transition');
         }
-        this.updateCardDisplay();
+        this.clearShowTimeout();
     }
 
-    updateCardDisplay() {
-        this.cards.forEach((card, index) => {
-            card.classList.remove('active', 'inactive', 'flipped');
+    scheduleShowCaption() {
+        console.log('⏰ Scheduling caption to show smoothly in 3s');
+        this.clearShowTimeout();
+        this.showTimeout = setTimeout(() => {
+            this.showCaption();
+        }, 3000);
+    }
+
+    showCaption() {
+        console.log('✨ Showing caption smoothly');
+        if (this.caption) {
+            this.caption.classList.remove('hidden');
+            // Add showing class for smooth fade in
+            setTimeout(() => {
+                if (this.caption) {
+                    this.caption.classList.add('showing');
+                }
+            }, 50); // Small delay to ensure smooth transition
+            console.log('✅ Showing with smooth transition');
+        }
+    }
+
+    clearShowTimeout() {
+        if (this.showTimeout) {
+            clearTimeout(this.showTimeout);
+            this.showTimeout = null;
+        }
+    }
+}
+
+// Initialize the system once the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new CardSystem();
+});
+        
+        // Initialize caption state
+        if (this.caption) {
+            this.caption.classList.remove('hidden');
+            this.caption.classList.add('showing');
+        }
+        
+        // Simple approach: listen to all card interactions
+        this.setupCaptionInteractions();
+        this.setupCardSystem();
+    }
+
+    init() {
+        console.log('🃏 Initializing Card System...');
+        console.log(' Caption element found:', !!this.caption);
+        
+        // Simple approach: listen to all card interactions
+        this.setupCaptionInteractions();
+        this.setupCardSystem();
+    }
+
+    setupCaptionInteractions() {
+        const cards = document.querySelectorAll('.game-card');
+        const cardsContainer = document.getElementById('cardsContainer');
+        
+        console.log('🃏 Found cards:', cards.length);
+        
+        // For every card, add both mobile and desktop listeners
+        cards.forEach(card => {
+            // Mouse events (desktop)
+            card.addEventListener('mouseenter', () => {
+                console.log('�️ Card mouseenter');
+                this.hideCaption();
+            });
             
-            if (index === this.currentCardIndex) {
-                card.classList.add('active');
+            card.addEventListener('mouseleave', () => {
+                console.log('🖱️ Card mouseleave');
+                this.scheduleShowCaption();
+            });
+            
+            // Touch/click events (mobile and desktop)
+            card.addEventListener('click', () => {
+                console.log('� Card clicked');
+                this.hideCaption();
+                this.scheduleShowCaption();
+            });
+            
+            // Handle select button
+            const selectButton = card.querySelector('.btn-select');
+            if (selectButton) {
+                selectButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    console.log('🎯 Select button clicked');
+                    this.hideCaption(); // Hide permanently on selection
+                });
+            }
+        });
+        
+        // Container mouse leave (desktop safety net)
+        if (cardsContainer) {
+            cardsContainer.addEventListener('mouseleave', () => {
+                console.log('🖱️ Cards container mouseleave');
+                this.scheduleShowCaption();
+            });
+        }
+    }
+
+    setupCardSystem() {
+        const cards = document.querySelectorAll('.game-card');
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+            this.setupMobileNavigation();
+        }
+        
+        // Setup card flip functionality
+        cards.forEach(card => {
+            if (isMobile) {
+                card.addEventListener('click', () => {
+                    if (card.classList.contains('active') && !card.classList.contains('flipped')) {
+                        card.classList.add('flipped');
+                    }
+                });
             } else {
-                card.classList.add('inactive');
+                card.addEventListener('mouseenter', () => {
+                    if (!card.classList.contains('selected')) {
+                        card.classList.add('flipped');
+                    }
+                });
+                card.addEventListener('mouseleave', () => {
+                    if (!card.classList.contains('selected')) {
+                        card.classList.remove('flipped');
+                    }
+                });
             }
         });
     }
 
-    flipCard(card) {
-        if (card.classList.contains('selected')) return;
-        card.classList.add('flipped');
-    }
+    setupMobileNavigation() {
+        const cards = document.querySelectorAll('.game-card');
+        const prevButton = document.getElementById('prevCard');
+        const nextButton = document.getElementById('nextCard');
+        let currentCardIndex = 0;
 
-    unflipCard(card) {
-        if (card.classList.contains('selected')) return;
-        card.classList.remove('flipped');
-    }
-
-    handleSelection(card) {
-        const cardType = card.dataset.card;
-        console.log(`✅ Card selected: ${cardType}`);
-
-        if (card.classList.contains('selected')) {
-            console.log('🚫 Card already selected.');
-            return;
+        function updateCardDisplay() {
+            cards.forEach((card, index) => {
+                card.classList.remove('active', 'inactive');
+                if (index === currentCardIndex) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.add('inactive');
+                }
+            });
         }
 
-        this.cards.forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        this.showLoadingState(card);
+        if (prevButton && nextButton) {
+            prevButton.addEventListener('click', () => {
+                currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+                updateCardDisplay();
+            });
+            nextButton.addEventListener('click', () => {
+                currentCardIndex = (currentCardIndex + 1) % cards.length;
+                updateCardDisplay();
+            });
+        }
 
-        console.log(`🚀 Triggering action for: ${cardType}`);
+        updateCardDisplay();
     }
 
-    showLoadingState(card) {
-        const button = card.querySelector('.btn-select');
-        if (button) {
-            if (!button.dataset.originalText) {
-                button.dataset.originalText = button.innerHTML;
-            }
-            button.innerHTML = 'Loading... <i class="fas fa-spinner fa-spin"></i>';
-            button.disabled = true;
+    hideCaption() {
+        console.log('🔥 Hiding caption smoothly');
+        if (this.caption) {
+            this.caption.classList.remove('showing');
+            this.caption.classList.add('hidden');
+            console.log('✅ Hidden class added with smooth transition');
+        }
+        this.clearShowTimeout();
+    }
+
+    scheduleShowCaption() {
+        console.log('⏰ Scheduling caption to show smoothly in 3s');
+        this.clearShowTimeout();
+        this.showTimeout = setTimeout(() => {
+            this.showCaption();
+        }, 3000);
+    }
+
+    showCaption() {
+        console.log('✨ Showing caption smoothly');
+        if (this.caption) {
+            this.caption.classList.remove('hidden');
+            // Add showing class for smooth fade in
+            setTimeout(() => {
+                if (this.caption) {
+                    this.caption.classList.add('showing');
+                }
+            }, 50); // Small delay to ensure smooth transition
+            console.log('✅ Showing with smooth transition');
         }
     }
 
-    reset() {
-        this.cards.forEach(card => {
-            card.classList.remove('flipped', 'selected', 'active', 'inactive');
-            const button = card.querySelector('.btn-select');
-            if (button && button.dataset.originalText) {
-                button.innerHTML = button.dataset.originalText;
-                button.disabled = false;
-            }
-        });
+    clearShowTimeout() {
+        if (this.showTimeout) {
+            clearTimeout(this.showTimeout);
+            this.showTimeout = null;
+        }
     }
 }
 

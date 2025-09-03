@@ -127,6 +127,26 @@
     opacity: 1;
 }
 
+/* Secondary button styling */
+.learn-more-btn.secondary {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-secondary);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.learn-more-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--electric-blue);
+    color: var(--text-primary);
+    box-shadow: 
+        0 8px 25px rgba(0, 212, 255, 0.2),
+        0 15px 35px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
 /* Responsive Footer */
 @media (max-width: 768px) {
     .learn-more-footer {
@@ -134,17 +154,47 @@
     }
 
     .footer-buttons {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row;
+        gap: 12px;
+        padding: 0 20px;
+        justify-content: center;
     }
 
     .learn-more-btn {
-        padding: 18px 35px;
-        font-size: 1rem;
+        padding: 12px 20px;
+        font-size: 0.8rem;
+        flex: 1;
+        max-width: 220px;
+        white-space: nowrap;
     }
     
+    .learn-more-btn.secondary {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-buttons {
+        gap: 8px;
+        padding: 0 15px;
+    }
+
     .learn-more-btn {
-        width: 100%;
-        max-width: 300px;
+        padding: 10px 18px;
+        font-size: 0.75rem;
+        max-width: 200px;
+        white-space: nowrap;
+    }
+    
+    .learn-more-btn.secondary {
+        max-width: 130px;
+    }
+    
+    .btn-text {
+        font-size: 0.75rem;
+    }
+    
+    .learn-more-btn i {
+        font-size: 0.85rem;
     }
 }

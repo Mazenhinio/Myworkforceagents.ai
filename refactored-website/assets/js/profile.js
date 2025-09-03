@@ -90,30 +90,54 @@ class ProfileSection {
     }
     
     setupRevealAnimations() {
+        // Simplified animations for mobile
+        const isMobile = window.innerWidth <= 768;
+        
         // Get animation elements
         const profileInfo = this.container.querySelector('.profile-info');
         const profilePhoto = this.container.querySelector('.profile-photo-section');
         const credentialItems = this.container.querySelectorAll('.credential-item');
         
-        // Set initial animation states (consistent with journey.js style)
-        if (profileInfo) {
-            profileInfo.style.opacity = '0';
-            profileInfo.style.transform = 'translateX(-50px)'; // Slide from left
-            profileInfo.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        if (isMobile) {
+            // Simpler mobile animations
+            if (profileInfo) {
+                profileInfo.style.opacity = '0';
+                profileInfo.style.transform = 'translateY(20px)';
+                profileInfo.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            }
+            
+            if (profilePhoto) {
+                profilePhoto.style.opacity = '0';
+                profilePhoto.style.transform = 'translateY(20px)';
+                profilePhoto.style.transition = 'opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s';
+            }
+            
+            // Credentials fade in without complex transforms
+            credentialItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(15px)';
+                item.style.transition = `opacity 0.4s ease ${0.2 + index * 0.1}s, transform 0.4s ease ${0.2 + index * 0.1}s`;
+            });
+        } else {
+            // Desktop animations (unchanged)
+            if (profileInfo) {
+                profileInfo.style.opacity = '0';
+                profileInfo.style.transform = 'translateX(-50px)';
+                profileInfo.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            }
+            
+            if (profilePhoto) {
+                profilePhoto.style.opacity = '0';
+                profilePhoto.style.transform = 'translateX(50px)';
+                profilePhoto.style.transition = 'opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s';
+            }
+            
+            credentialItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(50px)';
+                item.style.transition = `opacity 0.6s ease ${0.4 + index * 0.15}s, transform 0.6s ease ${0.4 + index * 0.15}s`;
+            });
         }
-        
-        if (profilePhoto) {
-            profilePhoto.style.opacity = '0';
-            profilePhoto.style.transform = 'translateX(50px)'; // Slide from right  
-            profilePhoto.style.transition = 'opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s';
-        }
-        
-        // Credentials slide in from right (like challenge items)
-        credentialItems.forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(50px)';
-            item.style.transition = `opacity 0.6s ease ${0.4 + index * 0.15}s, transform 0.6s ease ${0.4 + index * 0.15}s`;
-        });
         
         // Set up intersection observer for scroll-based reveals
         this.setupScrollReveal();
@@ -143,37 +167,37 @@ class ProfileSection {
         const profilePhoto = this.container.querySelector('.profile-photo-section');
         const credentialItems = this.container.querySelectorAll('.credential-item');
         
-        // Reveal profile info (slide from left)
+        // Reveal all elements with transform reset
         if (profileInfo) {
             profileInfo.style.opacity = '1';
-            profileInfo.style.transform = 'translateX(0)';
+            profileInfo.style.transform = 'translateY(0) translateX(0)';
         }
         
-        // Reveal profile photo (slide from right)
         if (profilePhoto) {
             profilePhoto.style.opacity = '1';
-            profilePhoto.style.transform = 'translateX(0)';
+            profilePhoto.style.transform = 'translateY(0) translateX(0)';
         }
         
-        // Reveal credentials (staggered from right)
         credentialItems.forEach(item => {
             item.style.opacity = '1';
-            item.style.transform = 'translateX(0)';
+            item.style.transform = 'translateY(0) translateX(0)';
         });
     }
     
     setupInteractions() {
-        // Clean hover effects for credentials (consistent with site style)
-        const credentialItems = this.container.querySelectorAll('.credential-item');
-        credentialItems.forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                item.style.transform = 'translateY(-2px)';
+        // Clean hover effects for credentials (desktop only)
+        if (window.innerWidth > 768) {
+            const credentialItems = this.container.querySelectorAll('.credential-item');
+            credentialItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'translateY(-2px)';
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'translateY(0)';
+                });
             });
-            
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = 'translateY(0)';
-            });
-        });
+        }
     }
 }
 

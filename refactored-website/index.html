@@ -35,6 +35,9 @@
     <link rel="stylesheet" href="assets/css/footer.css">
 </head>
 <body>
+    <!-- Top anchor point -->
+    <div id="top"></div>
+    
     <!-- Global Scroll Progress Bar -->
     <div class="scroll-progress-bar" id="scrollProgressBar"></div>
     
@@ -48,9 +51,9 @@
                 <div class="brand-tagline">YOUR TRUSTED AI TRANSFORMATION PARTNER</div>
             </div>
             <div class="nav-links nav-desktop-only">
+                <a href="#top">Experiences</a>
                 <a href="#meet-section">Solutions</a>
                 <a href="#meet-human">Meet Dr. G</a>
-                <a href="https://myworkforceagents.ai/" target="_blank" class="btn btn-outline">Learn More</a>
             </div>
         </div>
     </nav>
@@ -76,8 +79,6 @@
                     
                     <!-- Experience Cards Section -->
                     <div class="experience-section" id="experiences">
-                        <p class="experience-caption">Select Your Preferred Experience</p>
-                        
                         <!-- Retro-Futuristic Card System -->
                         <div class="cards-container" id="cardsContainer">
                             <!-- Card 1: Click -->
@@ -188,6 +189,15 @@
                             <button class="nav-arrow" id="nextCard" aria-label="Next card">
                                 <i class="fas fa-chevron-right"></i>
                             </button>
+                        </div>
+
+                        <!-- Experience Caption (appears below cards for both mobile and desktop) -->
+                        <div class="experience-caption-bottom" id="experienceCaption">
+                            <p class="caption-text">Select Your Preferred Experience</p>
+                            <div class="caption-indicator">
+                                <span class="indicator-dot"></span>
+                                <span class="indicator-text">Tap a card to explore</span>
+                            </div>
                         </div>
 
                     </div>                    <!-- Hand Shadow Effect -->
@@ -599,13 +609,17 @@
             <div class="learn-more-content">
                 <div class="learn-more-header">
                     <h2>Your Transformation Starts Now</h2>
-                    <p>Ready to begin your AI transformation journey? Contact us to start your journey</p>
+                    <p>Ready to begin your AI transformation journey? Choose your preferred experience to get started</p>
                 </div>
                 <div class="learn-more-cta">
                     <div class="footer-buttons">
-                        <a href="https://myworkforceagents.ai/" target="_blank" class="learn-more-btn">
-                            <span class="btn-text">Get Started Today</span>
+                        <a href="#top" class="learn-more-btn">
+                            <span class="btn-text">Choose Your Experience</span>
                             <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="https://myworkforceagents.ai/" target="_blank" class="learn-more-btn secondary">
+                            <span class="btn-text">Learn More</span>
+                            <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
                 </div>
