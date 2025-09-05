@@ -1,0 +1,447 @@
+/* =============================================
+   VOICE INTERFACE STYLES
+   ============================================= */
+
+.voice-form-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(26, 26, 46, 0.95);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Voice Header */
+.voice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.7));
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.voice-header-content {
+    flex: 1;
+}
+
+.voice-header-content h2 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 5px 0;
+}
+
+.voice-header-content p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.voice-header-controls {
+    display: flex;
+    gap: 10px;
+}
+
+/* Voice Layout */
+.centered-voice-layout {
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* VAPI Base Layer (Hidden Iframe) */
+.vapi-base-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.vapi-base-layer iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Globe Overlay Layer */
+.globe-overlay-layer {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.main-globe-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Globe Status Overlay */
+.globe-status-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+    text-align: center;
+    pointer-events: none;
+}
+
+.status-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.status-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(0, 212, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.status-dot.active {
+    background: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+    animation: pulse 2s infinite;
+}
+
+.status-dot.listening {
+    background: #00ff88;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+    animation: listeningPulse 1s infinite;
+}
+
+.status-dot.processing {
+    background: #ffaa00;
+    box-shadow: 0 0 20px rgba(255, 170, 0, 0.8);
+    animation: processingPulse 0.5s infinite;
+}
+
+.status-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    max-width: 200px;
+}
+
+/* Interactive Globe Wrapper */
+.interactive-globe-wrapper {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.interactive-globe-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.interactive-globe-wrapper.active {
+    transform: scale(1.1);
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.6);
+}
+
+/* Canvas Container */
+.globe-canvas-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.6));
+}
+
+.globe-canvas-container canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: pointer;
+}
+
+/* Voice States */
+.voice-interface.inactive .status-text {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.voice-interface.listening .status-text {
+    color: #00ff88;
+}
+
+.voice-interface.processing .status-text {
+    color: #ffaa00;
+}
+
+.voice-interface.speaking .status-text {
+    color: #00d4ff;
+}
+
+/* Audio Visualization */
+.audio-visualization {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 20;
+}
+
+.audio-bar {
+    width: 4px;
+    height: 20px;
+    background: rgba(0, 212, 255, 0.6);
+    border-radius: 2px;
+    transition: all 0.1s ease;
+}
+
+.audio-bar.active {
+    background: #00d4ff;
+    animation: audioBarPulse 0.3s ease-in-out;
+}
+
+@keyframes audioBarPulse {
+    0%, 100% { opacity: 0.6; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.5); }
+}
+
+/* Voice Activity Indicator */
+.voice-activity-indicator {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 15px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.activity-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.activity-dot.active {
+    background: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+}
+
+.activity-text {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+/* Connection Status */
+.connection-status {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 12px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.connection-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.connection-dot.connected {
+    background: #00ff88;
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.8);
+}
+
+.connection-dot.connecting {
+    background: #ffaa00;
+    box-shadow: 0 0 8px rgba(255, 170, 0, 0.8);
+}
+
+.connection-dot.disconnected {
+    background: #ff6b6b;
+    box-shadow: 0 0 8px rgba(255, 107, 107, 0.8);
+}
+
+.connection-text {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+/* Pulsing Animations */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+@keyframes listeningPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 30px rgba(0, 255, 136, 1);
+    }
+}
+
+@keyframes processingPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(255, 170, 0, 0.8);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 25px rgba(255, 170, 0, 1);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .voice-form-container {
+        margin: 10px;
+        border-radius: 15px;
+    }
+
+    .voice-header {
+        padding: 15px 20px;
+    }
+
+    .voice-header-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .voice-header-content p {
+        font-size: 0.9rem;
+    }
+
+    .centered-voice-layout {
+        height: 400px;
+    }
+
+    .main-globe-container {
+        width: 250px;
+        height: 250px;
+    }
+
+    .interactive-globe-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+
+    .status-text {
+        font-size: 1rem;
+        max-width: 180px;
+    }
+
+    .voice-activity-indicator {
+        top: 15px;
+        right: 15px;
+        padding: 8px 12px;
+    }
+
+    .connection-status {
+        top: 15px;
+        left: 15px;
+        padding: 6px 10px;
+    }
+
+    .activity-text,
+    .connection-text {
+        font-size: 0.8rem;
+    }
+}
+
+/* Interface States */
+.voice-interface.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.voice-interface.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Error States */
+.voice-error {
+    text-align: center;
+    padding: 40px 20px;
+    color: #ff6b6b;
+}
+
+.voice-error h3 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ff6b6b;
+}
+
+.voice-error p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.retry-btn {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #ff6b6b, #ff4757);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
